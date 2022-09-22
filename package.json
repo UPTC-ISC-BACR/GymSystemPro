@@ -1,0 +1,19 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "carpeta de backend del proyecto de gymsystempro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UPTC-ISC-BACR/GymSystemPro.git"
+  },
+  "author": "David Sosa//Dario Baron//Santiago Moreno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UPTC-ISC-BACR/GymSystemPro/issues"
+  },
+  "homepage": "https://github.com/UPTC-ISC-BACR/GymSystemPro#readme"
+}
