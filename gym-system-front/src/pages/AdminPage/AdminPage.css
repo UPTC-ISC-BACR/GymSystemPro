@@ -1,0 +1,25 @@
+*{
+    border: 0px;
+    padding: 0px;
+}
+.buttons_register{
+    width: 30%;
+    background-color: black;
+    justify-content: flex-start;
+    margin-right: 200px;
+}
+.user_data{
+    
+    border: 1px solid;
+    margin-top: 50px;
+    height: 200px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: red;
+}
+button{
+    align-items: flex-start;
+    margin-left: 20px;
+    background-color: antiquewhite;
+}
