@@ -4,22 +4,19 @@ import axios from '../../api/axios'
 import {useForm} from '../../helpers/useForm'
 import './CreateUser.css'
 const CreateUser = () => {
-  const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
+  const LOGIN_URL = 'http://localhost:3000/api/personas/register'
 
   //const [plan, setplan] = useState('1month')
   const [role, setRole] = useState('Ad')
   const [type_document,setTypeDocument] = useState('CC')
-  const [formValues, handleInputChange] = useForm({
-    names:'Santiago',
-    lastNames:'Moreno',
-    email:"santiago.moreno01@uptc.edu.co",
-    password:'123456',
-    date:'16/09/1996',
-    phone:'12345',
-    document:'12341234',
-   // plan:'1month',
-    role:'user'
-});
+  const [formValues, handleInputChange] = useForm({ "documento": "123456789",
+   "nombres": "Juan",
+    "apellidos": "Vasquez",
+     "fecha_nacimiento":"1-01-2012",
+      "correo":"Juan@gmail.com",
+       "telefono":"12345",
+        "estado":"Activado",
+         "tipo_documento":"CC" });
 
 const{name,lastNames,email,date,password,phone,document} = formValues;
 
@@ -30,11 +27,7 @@ const handleSubmit = async (e) => {
   formValues.role = role
   console.log(formValues)
   try{
-  const response = await axios.post(LOGIN_URL,JSON.stringify({formValues}),
-          {
-            headers:{'Content-Type':'application/json'},
-            withCredentials:true
-          }
+  const response = await axios.post(LOGIN_URL,JSON.stringify({formValues})
         );
   console.log(response)
       }catch(err){
