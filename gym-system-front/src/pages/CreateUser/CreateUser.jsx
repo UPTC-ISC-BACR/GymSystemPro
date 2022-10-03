@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
+import axios from '../../api/axios'
 import {useForm} from '../../helpers/useForm'
 import './CreateUser.css'
 const CreateUser = () => {
+  const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
+
   //const [plan, setplan] = useState('1month')
   const [role, setRole] = useState('Ad')
   const [type_document,setTypeDocument] = useState('CC')
@@ -21,15 +24,23 @@ const CreateUser = () => {
 const{name,lastNames,email,date,password,phone,document} = formValues;
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   // formValues.plan = plan
-    formValues.role = role
-    formValues.type_document = type_document
+const handleSubmit = async (e) => {
+  e.preventDefault();
+ // formValues.plan = plan
+  formValues.role = role
+  console.log(formValues)
+  try{
+  const response = await axios.post(LOGIN_URL,JSON.stringify({formValues}),
+          {
+            headers:{'Content-Type':'application/json'},
+            withCredentials:true
+          }
+        );
+  console.log(response)
+      }catch(err){
 
-    //console.log(plan+'sadfas')
-  }
-
+      }
+}
    
   return (
     <>
