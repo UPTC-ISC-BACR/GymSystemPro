@@ -4,14 +4,15 @@ var express = require("express"),
   methodOverride = require("method-override"),
   morgan = require("morgan");
 
-require('./database/db')
-app.set('port',3000)
+require('./database/db');
+app.set('port',3000);
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(morgan('dev'));
-app.use(require('./routes/apiRouter'))
+app.use(require('./routes/apiRouter'));
 
 app.listen(app.get('port'), function () {
 });
