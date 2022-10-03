@@ -27,7 +27,6 @@ const{name,lastNames,email,date,password,phone,document} = formValues;
     formValues.role = role
     formValues.type_document = type_document
 
-    console.log(formValues)
     //console.log(plan+'sadfas')
   }
 

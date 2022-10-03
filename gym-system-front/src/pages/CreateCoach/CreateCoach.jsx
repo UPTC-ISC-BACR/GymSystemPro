@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import axios from '../../api/axios'
 import {useForm} from '../../helpers/useForm'
 import './CreateCoach.css'
 const CreateCoach = () => {
@@ -18,13 +19,24 @@ const CreateCoach = () => {
 
 const{name,email,password,phone,document} = formValues;
 
+const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     formValues.plan = plan
     formValues.role = role
     console.log(formValues)
-    console.log(plan+'sadfas')
+    try{
+    const response = await axios.post(LOGIN_URL,JSON.stringify({formValues}),
+            {
+              headers:{'Content-Type':'application/json'},
+              withCredentials:true
+            }
+          );
+    console.log(response)
+        }catch(err){
+
+        }
   }
 
    

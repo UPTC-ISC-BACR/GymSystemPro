@@ -6,7 +6,7 @@ import {useRef,useState,useEffect} from 'react'
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
-const LOGIN_URL = '/auth'
+const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
 const LogIn =()=>{
 
     const {setAuth}= useContext(AuthContext)
