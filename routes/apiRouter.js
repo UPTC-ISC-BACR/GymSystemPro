@@ -9,7 +9,13 @@ router.get("/api/personas", async (req, res) =>{
   });
 
 router.post("/api/personas/register", async (req, res) => {
-  var persona = await Persona.create(req.body);
+  const {documento, nombres, apellidos,fecha_nacimiento,correo, telefono,estado, tipo_documento} = req.body
+
+  console.log(req.body);
+  const arrayString = Object.keys(req.body)
+  const jsonObjet = JSON.parse(arrayString[0])
+  console.log(JSON.parse(arrayString[0]));
+  var persona = await Persona.create(jsonObjet);
     res.send(persona);
   });
 
