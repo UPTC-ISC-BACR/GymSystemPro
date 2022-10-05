@@ -4,28 +4,28 @@ import axios from '../../api/axios'
 import {useForm} from '../../helpers/useForm'
 import './CreateUser.css'
 const CreateUser = () => {
-  const LOGIN_URL = 'http://localhost:3000/api/personas/register'
+  const LOGIN_URL = 'http://localhost:3000/api/persons/register'
 
-  //const [plan, setplan] = useState('1month')
-  //const [role, setRole] = useState('Ad')
-  const [type_document,setTypeDocument] = useState('CC')
-  const [formValues, handleInputChange] = useForm({ documento: "123456789",
-   nombres: "Juan",
-    apellidos: "Vasquez",
-     fecha_nacimiento:"1-01-2012",
-      correo:"Juan@gmail.com",
-       telefono:"12345",
-        estado:"Activado",
-         tipo_documento:"CC" });
+  const [sex, setSex] = useState('F')
+ // const [role, setRole] = useState('Ad')
+  const [type_document_other,setTypeDocument] = useState('CC')
+  const [formValues, handleInputChange] = useForm({ document: "123456789",
+   names: "Juan",
+    last_name: "Vasquez",
+    date_of_birth:"1-01-2012",
+    email:"Juan@gmail.com",
+    cell_phone:"12345",
+    type_document:"CC",
+    sex:"F" });
 
-const{nombres,apellidos,correo,fecha_nacimiento,telefono,estado, tipo_documento, documento} = formValues;
+const{names,last_name,email,date_of_birth,cell_phone, type_document, document} = formValues;
 
 
 const handleSubmit = async (e) => {
   e.preventDefault();
  // formValues.plan = plan
-  //formValues.role = role
-  formValues.tipo_documento = type_document
+  formValues.sex = sex
+  formValues.tipo_document = type_document_other
   console.log(formValues)
   try{
   const response = await axios.post(LOGIN_URL,JSON.stringify(formValues));
@@ -45,46 +45,46 @@ const handleSubmit = async (e) => {
         <h1>Registro Usuario</h1>
         
         <fieldset>
-          <legend><span class="number">1</span>Informacion Basica</legend>
+          <legend><span className="number">1</span>Informacion Basica</legend>
           <label>Nombres:</label>
           <input type="text"
                     placeholder="Name"
-                    name="name"
+                    name="names"
                     autoComplete = "off"
-                    value = {nombres}
+                    value = {names}
                     onChange = {handleInputChange}/>
           <label >Apellidos:</label>
           <input type="text"
                     placeholder="LastName"
-                    name="lastName"
+                    name="last_name"
                     autoComplete = "off"
-                    value = {apellidos}
+                    value = {last_name}
                     onChange = {handleInputChange}/>
           
           <label >Email:</label>
           <input  type="text"
                   placeholder="Email"
-                  name="correo"
-                  autoComplete = "off" value={correo}  onChange={handleInputChange} />
-                  <label >Fecha de nacimiento:</label>
+                  name="email"
+                  autoComplete = "off" value={email}  onChange={handleInputChange} />
+          <label >Fecha de nacimiento:</label>
           <input  type="text"
                   placeholder="date"
-                  name="fecha_nacimiento"
-                  autoComplete = "off" value={fecha_nacimiento}  onChange={handleInputChange} />
+                  name="date_of_birth"
+                  autoComplete = "off" value={date_of_birth}  onChange={handleInputChange} />
 
 
-          <label >Documento:</label>
+          <label >document:</label>
           <input type="text"
-                  placeholder="documento"
-                  name="document"value={documento}  onChange={handleInputChange}/>
+                  placeholder="document"
+                  name="document"value={document}  onChange={handleInputChange}/>
           
 
           {/*
           <label >Password:</label>
           <input type="password" placeholder="password"  name="password" value={password}  onChange={handleInputChange}/>
           */}
-          <label >Telefono:</label>
-          <input type="text" placeholder="phone number"  name="nombre" value={telefono}  autoComplete = "off"  onChange={handleInputChange}/>
+          <label >cell_phone:</label>
+          <input type="text" placeholder="phone number"  name="nombre" value={cell_phone}  autoComplete = "off"  onChange={handleInputChange}/>
     
         
        
@@ -105,20 +105,20 @@ const handleSubmit = async (e) => {
         </select >
         </fieldset> 
         <label>Role:</label>
-      
-        <select id="tipo_cliente" value={role} onChange={(e) => setRole(e.target.value)} >
-        <optgroup label="Role">
-            <option value="Ad" >Administrador</option>
-            <option value="Cl">Cliente</option>
-            <option value="En">Entrenador</option>
-            </optgroup>
-        </select>
-        */}
-   
-        <label >Documento:</label>
+      */}
 
-        <select id="tipo_documento" value={tipo_documento} onChange={(e) => setTypeDocument(e.target.value)} >
-        <optgroup label="Documento">
+        <label >sex:</label>
+        <select id="sex" value={sex} onChange={(e) => setSex(e.target.value)} >
+          <optgroup label="Sex">
+            <option value="F" >Femenino</option>
+            <option value="M">Masculino</option>
+          </optgroup>
+        </select>
+
+        <label >document:</label>
+
+        <select id="tipo_document" value={type_document} onChange={(e) => setTypeDocument(e.target.value)} >
+        <optgroup label="document">
             <option value="CC" >Cedula</option>
             <option value="TI">Tarjeta de identidad</option>
             </optgroup>
