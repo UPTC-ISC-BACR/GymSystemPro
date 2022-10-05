@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const PersonasModel = require('./../models/personas')
 const UsuariosModel = require('./../models/usuarios')
 
-const sequelize = new Sequelize('gymsystempro','root','1234',{
+const sequelize = new Sequelize('gymsystempro','root','mysql',{
     host:'127.0.0.1',
     dialect:'mysql',
     port: 3306
