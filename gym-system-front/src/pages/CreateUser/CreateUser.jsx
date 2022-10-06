@@ -10,13 +10,13 @@ const CreateUser = () => {
   const [role, setRole] = useState('Ad')
   const [type_document,setTypeDocument] = useState('CC')
   const [formValues, handleInputChange] = useForm({
-    names:'Santiago',
-    lastNames:'Moreno',
-    email:"santiago.moreno01@uptc.edu.co",
-    password:'123456',
-    date:'16/09/1996',
-    phone:'12345',
-    document:'12341234',
+    nombres:'Santiago',
+    apellidos:'Moreno',
+    correo:"santiago.moreno01@uptc.edu.co",
+    contrasena:'123456',
+    fecha_nacimiento:'16/09/1996',
+    telefono:'12345',
+    documento:'12341234',
    // plan:'1month',
     role:'user'
 });
@@ -30,11 +30,8 @@ const handleSubmit = async (e) => {
   formValues.role = role
   console.log(formValues)
   try{
-  const response = await axios.post(LOGIN_URL,JSON.stringify({formValues}),
-          {
-            headers:{'Content-Type':'application/json'},
-            withCredentials:true
-          }
+  const response = await axios.post(LOGIN_URL,JSON.stringify({formValues})
+         
         );
   console.log(response)
       }catch(err){
