@@ -19,7 +19,7 @@ const CreateCoach = () => {
 
 const{name,email,password,phone,document} = formValues;
 
-const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
+const LOGIN_URL = 'http://localhost:3000/api/personas/register'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
