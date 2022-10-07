@@ -8,7 +8,7 @@ import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../helpers/useForm";
-const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
+const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LogIn =()=>{
     
     const {login}= useContext(AuthContext)
@@ -32,7 +32,7 @@ const LogIn =()=>{
       console.log(err)
     }
     }
-    login('Santiago')
+    
     navigate('/',{
       replace:true
     })

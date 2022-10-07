@@ -1,14 +1,22 @@
 import React from "react"
 import {useForm} from "react-hook-form"
 import './CreateUser.css'
+import axios from '../../api/axios'
 
+const LOGIN_URL = 'http://localhost:3000/api/persons'
 
 const CreateUser = ()=>{
   
   const{register, handleSubmit, formState: { errors }} = useForm()
 
-  const custonSubmit = (data) =>{
+  const custonSubmit = async(data) =>{
     console.log(data);
+    try{
+      const response = await axios.post(LOGIN_URL,JSON.stringify(data));
+      console.log(response)
+      }catch(err){
+      
+      }
   }
 
   return(
@@ -29,19 +37,19 @@ const CreateUser = ()=>{
 
       <div>
         <label>Documento</label>
-        <input type="number" className="form_input" {...register("document", {required: true})}/>
-        {errors.name?.type === "required" && <small className="is-required"></small>}
+        <input type="number" {...register("document", {required: true})}/>
+        {errors.number?.type === "required" && <small className="is-required"></small>}
       </div>
 
       <div>
         <label>Nombres</label>
-          <input type="text" className="label_text" {...register("name", {required: true})} />
+          <input {...register("name", {required: true})} />
           {errors.name?.type === "required" && <small className="is-required"></small>}
       </div>
       
       <div>
           <label>Apellidos</label>
-          <input type="text" className="label_text" {...register("last_name", {required: true})} />
+          <input {...register("last_name", {required: true})} />
           {errors.last_name?.type === "required" && <small className="is-required"></small>}
       </div>
 
@@ -72,7 +80,7 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-
+      {/** 
       <div>
         <label >Rol:</label>
         <select {...register("rol")}  >
@@ -83,10 +91,8 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
+  */}
 
-      <div>
-
-      </div>
 
       <button type="submit">Registrar</button>
     </form>
