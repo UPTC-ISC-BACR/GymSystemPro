@@ -1,6 +1,6 @@
 import React from "react"
 import {useForm} from "react-hook-form"
-
+import './CreateUser.css'
 
 
 const CreateUser = ()=>{
@@ -16,9 +16,11 @@ const CreateUser = ()=>{
     <h1>Registro Usuario</h1>
 
     <form onSubmit={handleSubmit(custonSubmit)}>
+      
       <div>
+        <label>Tipo de Documento</label>
         <select {...register("type_document")}  >
-          <optgroup>
+          <optgroup >
             <option value="CC" >Cedula</option>
             <option value="TI">Tarjeta de identidad</option>
             </optgroup>
@@ -27,7 +29,8 @@ const CreateUser = ()=>{
 
       <div>
         <label>Documento</label>
-        <input type="number" {...register("document", {required: true})}/>
+        <input type="number" className="form_input" {...register("document", {required: true})}/>
+        {errors.name?.type === "required" && <small>campo obligatorio</small>}
       </div>
 
       <div>
@@ -37,20 +40,20 @@ const CreateUser = ()=>{
       </div>
       
       <div>
-        <label>Apellidos</label>
-          <input type="text" {...register("last_name", {required: true})} />
+          <label>Apellidos</label>
+          <input type="text" className="form_input" {...register("last_name", {required: true})} />
           {errors.last_name?.type === "required" && <small>campo obligatorio</small>}
       </div>
 
       <div>
         <label>Fecha de Nacimiento</label>
-        <input type="date" {...register("date_of_birth", {required: true , valueAsDate: true,})}/>
+        <input type="date" className="form_input" {...register("date_of_birth", {required: true , valueAsDate: true,})}/>
         {errors.date_of_birth?.type === "required" && <small>campo obligatorio</small>}
       </div>
 
       <div>
         <label>Correo:</label>
-        <input type="email" {...register("email", {required: true}) }/>
+        <input type="email" className="form_input" {...register("email", {required: true}) }/>
         {errors.email?.type === "required" && <small>campo obligatorio</small>}
       </div>
 
@@ -61,13 +64,28 @@ const CreateUser = ()=>{
       </div>
 
       <div>
-      <label >sex:</label>
+        <label >Sexo:</label>
         <select {...register("sex")}  >
           <optgroup>
             <option value="F" >Femenino</option>
             <option value="M">Masculino</option>
           </optgroup>
         </select>
+      </div>
+
+      <div>
+        <label >Rol:</label>
+        <select {...register("rol")}  >
+          <optgroup>
+            <option value="Ad">Administrador</option>
+            <option value="En">Entrenador</option>
+            <option value="Cl">Cliente</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div>
+
       </div>
 
       <button type="submit">Registrar</button>
