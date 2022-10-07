@@ -10,7 +10,7 @@
   }
   
   form {
-    max-width: 300px;
+    max-width: 400px;
     margin: 10px auto;
     padding: 10px 20px;
     background: #f4f7f8;
@@ -21,39 +21,52 @@
     margin: 0 0 30px 0;
     text-align: center;
   }
-  
-  input[type="text"],
-  input[type="password"],
-  input[type="date"],
-  input[type="datetime"],
-  input[type="email"],
-  input[type='document'],
-  input[type='phone'],
-  input[type="number"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="time"],
-  input[type="url"],
-  textarea,
-  select {
-    background: rgba(255,255,255,0.1);
-    border: none;
-    font-size: 16px;
-    height: auto;
-    margin: 0;
-    outline: 0;
-    padding: 15px;
-    width: 100%;
-    background-color: #e8eeef;
-    color: #8a97a0;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
+
+  .label_text{
+    background-color: red;
   }
-  
-  input[type="radio"],
-  input[type="checkbox"] {
-    margin: 0 4px 8px 0;
+
+  .is-required:after {
+    content: '*';
+    margin-left: 3px;
+    color: red;
+    font-weight: bold;
   }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="email"],
+    input[type='document'],
+    input[type='phone'],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea,
+    select {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      font-size: 16px;
+      height: auto;
+      margin: 0;
+      outline: 0;
+      padding: 15px;
+      width: 100%;
+      background-color: white;
+      color: #8a97a0;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+      margin-bottom: 30px;
+      transition: .3 ease all;
+    }
+    
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin: 0 4px 8px 0;
+    }
+  
   
   select {
     padding: 6px;
@@ -76,11 +89,6 @@
     margin-bottom: 10px;
   }
   
-  fieldset {
-    margin-bottom: 30px;
-    border: none;
-  }
-  
   legend {
     font-size: 1.4em;
     margin-bottom: 10px;
@@ -89,13 +97,32 @@
   label {
     display: block;
     margin-bottom: 8px;
+    text-align: center;
+    width: 410px;
+    margin-right: 5px;
+    padding: 15px;
   }
+  /*
   
   label.light {
     font-weight: 300;
     display: inline;
   }
+  */
+  form div input:focus{
+    border: 3px solid #0075FF;
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+  }
   
+  form div{
+    display: flex;
+    height: auto;
+    /*border: 2px solid black;*/
+  }
+  
+  
+
   .number {
     background-color: #5fcf80;
     color: #fff;
@@ -109,11 +136,16 @@
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     border-radius: 100%;
   }
+
+  small{
+    color: indianred;
+  }
   
   @media screen and (min-width: 480px) {
   
     form {
-      max-width: 480px;
+      max-width: 500px;
+      display: block
     }
   
   }
