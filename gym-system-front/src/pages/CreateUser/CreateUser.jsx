@@ -4,7 +4,7 @@ import axios from '../../api/axios'
 import {useForm} from '../../helpers/useForm'
 import './CreateUser.css'
 const CreateUser = () => {
-  const LOGIN_URL = 'http://localhost:3000/api/usuarios/register'
+  const LOGIN_URL = 'http://localhost:3000/api/personas/register'
 
   //const [plan, setplan] = useState('1month')
   const [role, setRole] = useState('Ad')

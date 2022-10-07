@@ -21,11 +21,13 @@ const LogIn =()=>{
      
    const onLogin = async(e)=>{
     e.prevent.default()
+    console.log('enviando datos')
     try{
-      const {data} = await axios.post('',
+      const {data} = await axios.post('api/login',
       {
         ...formValues,
-      });
+      })
+      console.log(data)
     }catch(err){
       console.log(err)
     }
