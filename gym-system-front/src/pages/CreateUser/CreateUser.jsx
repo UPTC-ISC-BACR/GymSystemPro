@@ -80,10 +80,10 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-      {/** 
+      
       <div>
         <label >Rol:</label>
-        <select {...register("rol")}  >
+        <select {...register("type_user")}  >
           <optgroup>
             <option value="Ad">Administrador</option>
             <option value="En">Entrenador</option>
@@ -91,9 +91,6 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-  */}
-
-
       <button type="submit">Registrar</button>
     </form>
     </>
