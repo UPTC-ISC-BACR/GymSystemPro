@@ -1,17 +1,17 @@
 module.exports = (sequelize,type) => {
-    return sequelize.define('personas',{
-        documento:{
+    return sequelize.define('persons',{
+        document:{
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: false
         },
-        nombres: type.STRING,
-        apellidos: type.STRING,
-        fecha_nacimiento: type.DATE,
-        correo: type.STRING,
-        telefono: type.STRING,
-        estado: type.STRING,
-        tipo_documento:type.STRING
+        name: type.STRING,
+        last_name: type.STRING,
+        date_of_birth: type.DATE,
+        email: type.STRING,
+        cell_phone: type.STRING,
+        type_document: type.STRING,
+        sex:type.STRING
     },{
         timestamps: false,
         createdAt: false,
