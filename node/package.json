@@ -4,7 +4,7 @@
   "description": "carpeta de backend del proyecto de gymsystempro",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "test": "npx jest",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -24,5 +24,9 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.23.2"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "supertest": "^6.3.0"
   }
 }
