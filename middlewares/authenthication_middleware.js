@@ -1,10 +1,11 @@
-const jwt = require('jwt-simple')
+const jwt = require('jwt-simple');
+const moment = require('moment');
 const checkToken = (req, res, next) =>{
     
     if(!req.headers['user_token']){
         return res.json({error: 'Es obligatorio incluir el token dentro de la cabecera'});
     }
-    const userToken = req.headers['user-token'];
+    const userToken = req.headers['user_token'];
     let payload = {};
     try{
         payload = jwt.decode(userToken,'encriptacionLOL');
@@ -19,6 +20,6 @@ const checkToken = (req, res, next) =>{
     next();
 }
 
-module.export = {
+module.exports = {
     checkToken: checkToken
 }
