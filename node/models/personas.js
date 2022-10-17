@@ -11,7 +11,7 @@ module.exports = (sequelize,type) => {
         email: type.STRING,
         cell_phone: type.STRING,
         type_document: type.STRING,
-        sex:type.STRING
+        gender:type.STRING
     },{
         timestamps: false,
         createdAt: false,
