@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form"
 import './CreateUser.css'
 import axios from '../../api/axios'
 
-const LOGIN_URL = 'http://localhost:3000/api/persons'
+const LOGIN_URL = 'http://localhost:3000/api/persons/register'
 
 const CreateUser = ()=>{
   
@@ -72,8 +72,8 @@ const CreateUser = ()=>{
       </div>
 
       <div>
-        <label>Sexo:</label>
-        <select {...register("sex")}  >
+        <label>Genero:</label>
+        <select {...register("gender")}  >
           <optgroup>
             <option value="F" >Femenino</option>
             <option value="M">Masculino</option>

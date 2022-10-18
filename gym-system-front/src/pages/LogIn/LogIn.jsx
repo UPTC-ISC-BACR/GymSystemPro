@@ -6,53 +6,58 @@ import {useRef,useState,useEffect} from 'react'
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "../../helpers/useForm";
-const LOGIN_URL = 'http://localhost:3000/api/users/login'
+import {useDispatch, useSelector} from 'react-redux'
+import { checkingAuthentication, startLoginWithEmailPassword } from "../../store/auth/thunks";
+import { useMemo } from "react";
+
 const LogIn =()=>{
-    
-    const {login}= useContext(AuthContext)
-    const navigate = useNavigate();
-    const userRef = useRef();
+
+  const {status} =  useSelector(state=>state.auth)
+  const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
     const [formValues, handleInputChange] = useForm({
-      nombre:'data',
-      password:'data'
+      user_name:'',
+      password:''
     });
-     
-   const onLogin = async(e)=>{
-    e.prevent.default()
-    console.log('enviando datos')
-    try{
-      const {data} = await axios.post('api/login',
-      {
-        ...formValues,
-      })
-      console.log(data)
-    }catch(err){
-      console.log(err)
-    }
+  const isAuthenticating = useMemo(()=>status === 'checking',[status])
+    const {user_name,password} = formValues
+   const onLogin = (event)=>{
+    event.preventDefault()
+    console.log('asdfas')
+    dispatch(startLoginWithEmailPassword({user_name,password}))
+    // try{
+    //   const {data} = await axios.post('api/login',
+    //   {
+    //   //  ...formValues,
+    //   })
+    //   console.log(data)
+    // }catch(err){
+    //   console.log(err)
+    // }
     }
     
-    navigate('/',{
-      replace:true
-    })
+   
    
     return <>
-      <header>
+      
         <NavBar />
-      </header>
-      <div className="form">
-        <div id="formContent">
+    
+      <div className="form-padre">
+
+      <div className="form-children">
+        
+        <div className="formContent">
           <div className="fadeIn first">
             <img src={pic} className="SampleImage" id="icon" alt="User Icon" />
           </div>
-          <form onSubmit={(e)=>onLogin(e)}>
-            <input type="text" id="username" ref={userRef} autoComplete="off" className="fadeIn second" name="login" placeholder="login" value={'nombre'} onChange={handleInputChange} />
-            <input type="password" id="password" className="fadeIn third" name="login" placeholder="password" value={'password'} onChange={handleInputChange} required />
-            <input type="submit" className="fadeIn fourth" value="Log In"  />
+          <form onSubmit={onLogin}>
+            <input type="text" id="username"  autoComplete="off" className="fadeIn second" name="user_name" placeholder="user_name" value={user_name} onChange={handleInputChange}/>
+            <input type="password" id="password" className="fadeIn third" name="password" placeholder="password" value={password} onChange={handleInputChange}  />
+            <button type="submit" disabled={isAuthenticating}></button>
           </form>
          
         </div>
+      </div>
       </div>
     </>
 }
