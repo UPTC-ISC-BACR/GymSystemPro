@@ -4,7 +4,8 @@ const authenthication_middleware = require('../../middlewares/authenthication_mi
 const apiPersonsRouter = require('./persons');
 const apiUsersRouter = require('./users')
 
-router.use('/persons', authenthication_middleware.checkToken, apiPersonsRouter);
+router.use('/persons', apiPersonsRouter);
+// authenthication_middleware.checkToken
 router.use('/users', apiUsersRouter);
 
 module.exports = router;
