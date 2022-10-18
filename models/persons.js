@@ -1,5 +1,5 @@
 module.exports = (sequelize,type) => {
-    return sequelize.define('persons',{
+    return sequelize.define('Persons',{
         document:{
             type: type.INTEGER,
             primaryKey: true,
@@ -10,8 +10,8 @@ module.exports = (sequelize,type) => {
         date_of_birth: type.DATE,
         email: type.STRING,
         cell_phone: type.STRING,
-        type_document: type.STRING,
-        sex:type.STRING
+        type_document:type.STRING,
+        gender: type.STRING
     },{
         timestamps: false,
         createdAt: false,

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const PersonasModel = require('./../models/personas')
-const UsuariosModel = require('./../models/usuarios')
+const PersonsModel = require('../models/persons')
+const UsersModel = require('../models/users')
 
 const sequelize = new Sequelize('gymsystempro','root','mysql',{
     host:'127.0.0.1',
@@ -8,14 +8,14 @@ const sequelize = new Sequelize('gymsystempro','root','mysql',{
     port: 3306
 });
 
-const Persona = PersonasModel(sequelize, Sequelize);
-const Usuario = UsuariosModel(sequelize, Sequelize);
+const Person = PersonsModel(sequelize, Sequelize);
+const User = UsersModel(sequelize, Sequelize);
 
 sequelize.sync({force:false})
 .then(()=>{
-    console.log('COnexion a base de datos realizada')
+    console.log('Conexion a base de datos realizada')
 })
 
 module.exports = {
-    Persona,Usuario
+    Person,User
 }
