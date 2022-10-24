@@ -11,20 +11,40 @@ import {useDispatch, useSelector} from 'react-redux'
 import { checkingAuthentication, startLoginWithEmailPassword } from "../../store/auth/thunks";
 import { useMemo } from "react";
 import {Alert,Grid}from '@mui/material'
+import {  useNavigate } from "react-router-dom";
 const LogIn =()=>{
-
-  const {status,errorMessage} =  useSelector(state=>state.auth)
+  const nav = useNavigate()
+  const {status,type,errorMessage} =  useSelector(state=>state.auth)
   const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
     const [formValues, handleInputChange] = useForm({
       name:'',
       password:''
     });
+ 
   const isAuthenticating = useMemo(()=>status === 'checking',[status])
-    const {user_name,password} = formValues
+  const {user_name,password} = formValues
+  useEffect(()=>{
+    switch(type){
+      case 'Ad':
+        nav('/adminPage')
+        break
+      case 'En':
+        nav('/coachPage')
+        break
+      case 'Cl':
+        nav('/userPage')
+        break
+      default:
+        console.log('Role no encontrado')
+        break
+    }
+  },[status])
    const onLogin = (event)=>{
     event.preventDefault()
-
-    dispatch(startLoginWithEmailPassword({user_name,password}))
+    console.log('loggin')
+     dispatch(startLoginWithEmailPassword({user_name,password}))
+    console.log(status)
+   
    }
     return <>
       <NavBar />
@@ -44,7 +64,7 @@ const LogIn =()=>{
                   <Alert severity ='error'>{errorMessage}</Alert>
                 </Grid>
             </Grid>
-            <button type="submit" disabled={isAuthenticating}></button>
+            <button type="submit"  ></button>
           </form>
          
         </div>

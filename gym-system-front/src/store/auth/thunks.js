@@ -1,6 +1,6 @@
 import  axios  from "axios";
 import { useDispatch } from "react-redux";
-import { checkingCredentials, login, logout } from "./authSlice"
+import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
 const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
 
@@ -25,14 +25,10 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
     }
 }
 export const starRegister = (data)=>{
-
-    return async()=>{
-        console.log(data)
-        try{
-            const response = await axios.post(LOGIN_REGISTER,JSON.stringify(data));
-            console.log(response,'jhj')
-            }catch(err){
-                console.log(err)
-            }
+    console.log(data)
+    return async(dispatch)=>{
+            await axios.post(LOGIN_REGISTER,JSON.stringify(data))
+                .then(response=>dispatch(registerSuccess()))
+                .catch(error=>dispatch(starRegister()))
     }
 }

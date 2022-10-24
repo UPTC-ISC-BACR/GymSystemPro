@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const authSlice = createSlice({
     name:'auth',
     initialState:{
-        status:'not-authenticated',//checking, not-authenticated, authenticated
+        status:'checking',//checking, not-authenticated, authenticated
         uid:null,
         type:null,
         user:null,
@@ -30,10 +30,10 @@ export const authSlice = createSlice({
             state.errorMessage=payload.errorMessagge;
         },
         registerSuccess:(state)=>{
-            state.status='register-succes'
+            state.status='register-success'
             state.errorMessage=null
         }
     }
 })
-export const {login,logout,checkingCredentials} = authSlice.actions;
+export const {login,logout,checkingCredentials,registerSuccess} = authSlice.actions;
 

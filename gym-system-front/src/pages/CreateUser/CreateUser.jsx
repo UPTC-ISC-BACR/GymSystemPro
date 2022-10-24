@@ -94,7 +94,7 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-        <button type="submit" disabled = {isAuthenticating}>Registrar</button>
+        <button type="submit" >Registrar</button>
     </form>
     </div>
     </>
