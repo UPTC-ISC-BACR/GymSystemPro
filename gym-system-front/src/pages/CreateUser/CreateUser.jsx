@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { starRegister } from "../../store/auth/thunks"
 import NavBar from "../../components/NavBar/NavBar";
 
-const LOGIN_URL = 'http://localhost:3000/api/persons'
+const LOGIN_URL = 'http://localhost:3000/api/persons/register'
 
 const CreateUser = ()=>{
   
@@ -76,14 +76,14 @@ const CreateUser = ()=>{
 
       <div>
         <label>Genero:</label>
-        <select {...register("sex")}  >
+        <select {...register("gender")}  >
           <optgroup>
             <option value="F" >Femenino</option>
             <option value="M">Masculino</option>
           </optgroup>
         </select>
       </div>
-      {
+      
       <div>
         <label >Rol:</label>
         <select {...register("type_user")}  >
@@ -94,8 +94,7 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-  }
-      <button type="submit" disabled = {isAuthenticating}>Registrar</button>
+        <button type="submit" disabled = {isAuthenticating}>Registrar</button>
     </form>
     </div>
     </>
