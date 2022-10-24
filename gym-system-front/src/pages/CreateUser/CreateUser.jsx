@@ -1,27 +1,30 @@
-import React from "react"
+import React, { useMemo } from "react"
 import {useForm} from "react-hook-form"
 import './CreateUser.css'
 import axios from '../../api/axios'
+import { useDispatch, useSelector } from "react-redux"
+import { starRegister } from "../../store/auth/thunks"
+import NavBar from "../../components/NavBar/NavBar";
 
 const LOGIN_URL = 'http://localhost:3000/api/persons'
 
 const CreateUser = ()=>{
   
   const{register, handleSubmit, formState: { errors }} = useForm()
+  const {status} =  useSelector(state=>state.auth)
+  const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
+  const isAuthenticating = useMemo(()=>status === 'checking',[status])
 
   const custonSubmit = async(data) =>{
     console.log(data);
-    try{
-      const response = await axios.post(LOGIN_URL,JSON.stringify(data));
-      console.log(response)
-      }catch(err){
-      
-      }
+    dispatch(starRegister(data))
   }
 
   return(
     <>
-    <h1>Registro Usuario</h1>
+    <NavBar></NavBar>
+    <h1 className="h1-register">Registro Usuario</h1>
+    <div className="form-register">
 
     <form onSubmit={handleSubmit(custonSubmit)}>
       
@@ -72,7 +75,7 @@ const CreateUser = ()=>{
       </div>
 
       <div>
-        <label>Sexo:</label>
+        <label>Genero:</label>
         <select {...register("sex")}  >
           <optgroup>
             <option value="F" >Femenino</option>
@@ -92,10 +95,9 @@ const CreateUser = ()=>{
         </select>
       </div>
   }
-
-
-      <button type="submit">Registrar</button>
+      <button type="submit" disabled = {isAuthenticating}>Registrar</button>
     </form>
+    </div>
     </>
   )
 }

@@ -3,14 +3,15 @@ import { Provider } from 'react-redux';
 import NavBar from './components/NavBar/NavBar';
 import { PrincipalRoute } from './components/Routers/PrincipalRoute';
 import { store } from './store/store';
+import AppTheme from './theme/AppTheme';
 
 const  App = () =>{
   return (
-    <React.StrictMode>
+   <AppTheme>
       <Provider store = {store}>
       <PrincipalRoute/>
       </Provider>
-    </React.StrictMode>
+   </AppTheme>
   );
 }
 
