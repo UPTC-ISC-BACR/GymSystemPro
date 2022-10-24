@@ -1,6 +1,8 @@
 import React from "react"
 import {useForm} from "react-hook-form"
 import './CreateUser.css'
+//import "../cssConfigurations.css"
+//import "./auCss.css"
 import axios from '../../api/axios'
 
 const LOGIN_URL = 'http://localhost:3000/api/persons/register'
@@ -36,39 +38,39 @@ const CreateUser = ()=>{
       </div>
 
       <div>
-        <label>Documento</label>
+        <label>Documento  {errors.document?.type === "required" && <small className="is-required"></small>}</label>
         <input type="number" {...register("document", {required: true})}/>
-        {errors.number?.type === "required" && <small className="is-required"></small>}
+       
       </div>
 
       <div>
-        <label>Nombres</label>
+        <label>Nombres  {errors.name?.type === "required" && <small className="is-required"></small>} </label>
           <input {...register("name", {required: true})} />
-          {errors.name?.type === "required" && <small className="is-required"></small>}
+        
       </div>
       
       <div>
-          <label>Apellidos</label>
+          <label>Apellidos {errors.last_name?.type === "required" && <small className="is-required"></small>}</label>
           <input {...register("last_name", {required: true})} />
-          {errors.last_name?.type === "required" && <small className="is-required"></small>}
+          
+      </div>
+
+      <div>
+        <label>Telefono {errors.cell_phone?.type === "required" && <small className="is-required"></small>}</label>
+        <input type="number" {...register("cell_phone", {required: true})}/>
+        
+      </div>
+
+      <div>
+        <label>Correo: {errors.email?.type === "required" && <small className="is-required"></small>}</label>
+        <input type="email" className="form_input" {...register("email", {required: true}) }/>
+        
       </div>
 
       <div>
         <label>Fecha de Nacimiento</label>
-        <input type="date" className="form_input" {...register("date_of_birth", {required: true , valueAsDate: true,})}/>
-        {errors.date_of_birth?.type === "required" && <small className="is-required"></small>}
-      </div>
-
-      <div>
-        <label>Correo:</label>
-        <input type="email" className="form_input" {...register("email", {required: true}) }/>
-        {errors.email?.type === "required" && <small className="is-required"></small>}
-      </div>
-
-      <div>
-        <label>Telefono</label>
-        <input type="number" {...register("cell_phone", {required: true})}/>
-        {errors.number?.type === "required" && <small className="is-required"></small>}
+        <input type="date" className="form_input" {...register("date_of_birth", {required: "Date is required" , valueAsDate: true,})}/>
+        {errors.date_of_birth && <small className="is-required">{errors.date_of_birth.message}</small>}
       </div>
 
       <div>
@@ -91,7 +93,11 @@ const CreateUser = ()=>{
           </optgroup>
         </select>
       </div>
-      <button type="submit">Registrar</button>
+
+      <div></div>
+    <div id="button">
+        <button type="submit">Registrar</button>
+    </div>
     </form>
     </>
   )
