@@ -1,9 +1,9 @@
-const {plans} = require('../models/plans');
+const {Plan} = require('../database/db');
 
 //mostrar todos los planes
 const getAllPlans = async(req, res)=>{
     try {
-        const plans = await plans.findAll()        ;
+        const plans = await Plan.findAll()        ;
         res.json(plans)
     } catch (error) {
         res.json({message: error.message})
@@ -14,7 +14,7 @@ const getAllPlans = async(req, res)=>{
 //crear un Plan
 const createPlan = async(req, res)=>{
     try {
-        await plans.create(req.body)
+        await Plan.create(req.body)
         res.json({
             "message":"Registro creado correctamente"
         })
@@ -26,8 +26,8 @@ const createPlan = async(req, res)=>{
 //Actualizar un Plam
 const updatePlan = async(req, res)=>{
     try {
-        await plans.update(req.body, {
-            where: {id: req.params.id}
+        await Plan.update(req.body, {
+            where: {id_plan: req.params.id_plan}
         })
         res.json({
             "message": "!Registro actualizado correctamente!"
@@ -40,8 +40,8 @@ const updatePlan = async(req, res)=>{
 //Eliminar un plan
 const deletePlan = async (req, res)=>{
     try {
-        await plans.destroy({
-            where: {id: req.params.id}
+        await Plan.destroy({
+            where: {id_plan: req.params.id_plan}
         })
         res.json({
             "message": "!Registro Eliminado correctamente!"
