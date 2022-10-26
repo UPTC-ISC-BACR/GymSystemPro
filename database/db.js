@@ -10,6 +10,7 @@ const sequelize = new Sequelize('gymsystempro','root','mysql',{
 
 const Person = PersonsModel(sequelize, Sequelize);
 const User = UsersModel(sequelize, Sequelize);
+const Plan = UsersModel(sequelize, Sequelize);
 
 sequelize.sync({force:false})
 .then(()=>{
@@ -17,5 +18,5 @@ sequelize.sync({force:false})
 })
 
 module.exports = {
-    Person,User
+    Person,User, Plan
 }
