@@ -1,5 +1,6 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { BrowserRouter, Route,  Routes, useNavigate } from 'react-router-dom'
+import SideBar from '../../components/SideBar/SideBar'
 import  './AdminPage.css'
 const AdminPage = () => {
     const navigate = useNavigate()
@@ -14,14 +15,16 @@ const AdminPage = () => {
 
   return (
     <>
-        <div className='buttons_register'>
+        {/* <div className='buttons_register'>
         <button onClick={registrerUser}>Registrar </button>
        
 
         </div>
         <div className = 'user_data'>
 
-        </div>
+        </div> */}
+          <SideBar/>
+         
     </>
   )
 }

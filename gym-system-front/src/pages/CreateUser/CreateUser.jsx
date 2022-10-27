@@ -5,6 +5,7 @@ import axios from '../../api/axios'
 import { useDispatch, useSelector } from "react-redux"
 import { starRegister } from "../../store/auth/thunks"
 import NavBar from "../../components/NavBar/NavBar";
+import SideBar from "../../components/SideBar/SideBar"
 
 const LOGIN_URL = 'http://localhost:3000/api/persons/register'
 
@@ -22,7 +23,7 @@ const CreateUser = ()=>{
 
   return(
     <>
-    <NavBar></NavBar>
+    <SideBar/>
     <h1 className="h1-register">Registro Usuario</h1>
     <div className="form-register">
 

@@ -5,7 +5,7 @@
 }
 
 
-nav{
+/* nav{
   background-color: rgb(0, 0, 0);
     width: 80;
     height: 4em;
@@ -13,8 +13,8 @@ nav{
     padding: 1em;
     justify-content: space-between;
     gap: 2rem;
-}
-
+} */
+/* 
 nav ul{
     margin-right: 60%;
     margin-top: 5px;
@@ -26,7 +26,7 @@ nav ul{
 nav ul li{
     color: white;
     margin-left: 100px;
-}
+} */
 
 .buttons{
     margin-left: 80%;
@@ -40,7 +40,6 @@ nav ul li{
 .button-3 {
   margin-right: 20px;
   appearance: none;
-  background-color: #f54e6a;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
