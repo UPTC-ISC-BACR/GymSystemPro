@@ -3,7 +3,7 @@ const {Plan} = require('../database/db');
 //mostrar todos los planes
 const getAllPlans = async(req, res)=>{
     try {
-        const plans = await Plan.findAll()        ;
+        const plans = await Plan.findAll();
         res.json(plans)
     } catch (error) {
         res.json({message: error.message})
@@ -13,13 +13,18 @@ const getAllPlans = async(req, res)=>{
 
 //crear un Plan
 const createPlan = async(req, res)=>{
-    try {
+    try { // si viene de postman
         await Plan.create(req.body)
         res.json({
             "message":"Registro creado correctamente"
         })
-    } catch (error) {
-        res.json({message: error.message})
+        
+    }catch(error){ // si viene de IU
+        const arrayString = Object.keys(req.body)
+        const jsonObject = JSON.parse(arrayString[0])
+            
+        await Plan.create(jsonObject)
+        res.json({ "message":"Registro creado correctamente" })
     }
 }
 
