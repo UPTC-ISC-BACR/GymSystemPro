@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form"
 
 import axios from '../../api/axios'
 
-const PLANS_URL = 'http://localhost:3000/api/persons/register'
+const PLANS_URL = 'http://localhost:3000/api/plans/'
 
 const CreatePlan = ()=>{
     const{register, handleSubmit, formState: { errors }} = useForm()
@@ -13,8 +13,8 @@ const CreatePlan = ()=>{
         try{
           const response = await axios.post(PLANS_URL, JSON.stringify(data));
           console.log(response)
-          }catch(err){
-          
+          }catch(error){
+            console.error("servidor desconectado");
           }
         }
     return(

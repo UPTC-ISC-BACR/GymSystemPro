@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Main from './Main'
 import { AuthProvider } from './context/AuthProvider';
+//imporamos boostrap
+import "bootstrap/dist/css/bootstrap.min.css"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
