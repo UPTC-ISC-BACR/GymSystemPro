@@ -4,7 +4,6 @@ const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 
 const postUser = async (req, res,next) =>{
-    console.log("7777" , req);
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 10)    
     } catch (error) {

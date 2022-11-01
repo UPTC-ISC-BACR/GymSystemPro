@@ -1,9 +1,9 @@
-const {plans} = require('../models/plans');
+const {Plan} = require('../database/db');
 
 //mostrar todos los planes
 const getAllPlans = async(req, res)=>{
     try {
-        const plans = await plans.findAll()        ;
+        const plans = await Plan.findAll();
         res.json(plans)
     } catch (error) {
         res.json({message: error.message})

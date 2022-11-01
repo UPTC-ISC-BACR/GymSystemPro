@@ -1,6 +1,3 @@
-const { INTEGER } = require("sequelize")
-const { DataTypes } = require( "sequelize")
-
 module.exports = (sequelize,type) => {
     return sequelize.define('users',{
         id_user:{

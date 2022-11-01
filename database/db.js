@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
-const PersonsModel = require('../models/persons')
-const UsersModel = require('../models/users')
+const PersonsModel = require('../models/persons');
+const UsersModel = require('../models/users');
+const PlansModel = require('..//models/plans');
+const RecordsModel = require('../models/records');
 
 const sequelize = new Sequelize('gymsystempro','root','mysql',{
     host:'127.0.0.1',
@@ -10,7 +12,8 @@ const sequelize = new Sequelize('gymsystempro','root','mysql',{
 
 const Person = PersonsModel(sequelize, Sequelize);
 const User = UsersModel(sequelize, Sequelize);
-const Plan = UsersModel(sequelize, Sequelize);
+const Plan = PlansModel(sequelize, Sequelize);
+const Record = RecordsModel(sequelize, Sequelize);
 
 sequelize.sync({force:false})
 .then(()=>{
@@ -18,5 +21,5 @@ sequelize.sync({force:false})
 })
 
 module.exports = {
-    Person,User, Plan
+    Person, User, Plan, Record
 }
