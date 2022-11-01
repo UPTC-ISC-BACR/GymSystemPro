@@ -18,7 +18,9 @@ const ShowPlans = ()=>{
     }
     //procedimiento para eliminar un plan
     const deletePlan = async(id_plan)=>{
+        console.log("HOOO", `${URI_PLANS}${id_plan}`);
         await axios.delete(`${URI_PLANS}${id_plan}`)
+        
         getPlans()
     }
 
@@ -45,7 +47,7 @@ const ShowPlans = ()=>{
                                     <td> {plan.price} </td>
                                     <td> {plan.duration_months} </td>
                                     <td>
-                                        <Link to={`/edit/${plan.id_plan}`} className="btn btn-info"><i className="fa-solid fa-pen-to-square"></i></Link>
+                                        <Link to={`/editPlan/${plan.id_plan}`} className="btn btn-info"><i className="fa-solid fa-pen-to-square"></i></Link>
                                         <button onClick={()=>deletePlan(plan.id_plan)} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
