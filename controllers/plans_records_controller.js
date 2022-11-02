@@ -8,12 +8,13 @@ const getPlansRecords = async(req, res)=>{
     } catch (error) {
         res.json({message: error.message})
     }
-    
 }
 
 const createPlanRecord = async(req, res)=>{
     try { 
-        await PlansRecords.create(createDataJson(req.body))
+        await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
+            PlansRecords.create(values[0])
+         })
         res.json({
             "message":"Registro creado correctamente"
         })
@@ -25,8 +26,10 @@ const createPlanRecord = async(req, res)=>{
         res.json({ "message":"Asignacion de plan realizada con exito" })
     }
 }
-function createDataJson(data){
-    var final_plan_date = getFinalRegistrationDate(data.id_plan);
+async function createDataJson(data){
+    var final_plan_date = await Promise.all([final_plan_date = getFinalRegistrationDate(data.id_plan)]).then((values) =>{
+        return (values[0]);
+     })
     const jsonRecord ={
         start_date_plan:getToStringDate(getTodaysDate()),
         end_date_plan: getToStringDate(final_plan_date),
@@ -41,13 +44,12 @@ function getTodaysDate() {
     return dateTime;
 }
 
-function getFinalRegistrationDate(id_plan_request){
-    console.log("xd")
-    console.log(getPlanDuration(id_plan_request)) 
-    console.log("xd")
+async function getFinalRegistrationDate(id_plan_request){
     var finalDate = new Date();
-    finalDate.setFullYear(finalDate.getMonth() + getPlanDuration(id_plan_request).duration_months);
-    console.log(finalDate)
+    var planDuration = await Promise.all([planDuration = getPlanDuration(id_plan_request)]).then((values) =>{
+        return (values[0].duration_months);
+    })
+    finalDate.setMonth(finalDate.getMonth() + planDuration);
     return finalDate;
 }
 
