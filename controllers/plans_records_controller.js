@@ -64,5 +64,5 @@ function getToStringDate(dateTime){
 
 
 module.exports = {
-    getPlansRecords, createPlanRecord
+    getPlansRecords, createPlanRecord, getToStringDate, getTodaysDate
 }
