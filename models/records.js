@@ -1,13 +1,14 @@
 module.exports = (sequelize,type) => {
-    return sequelize.define('plans',{
-        id_plan:{
+    return sequelize.define('records',{
+        id_record:{
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        name_plan: type.STRING,
+        document: type.INTEGER,
+        start_date_register: type.DATE,
+        end_date_register: type.DATE,
         price: type.DOUBLE,
-        duration_months: type.INTEGER,
     },{
         timestamps: false,
         createdAt: false,

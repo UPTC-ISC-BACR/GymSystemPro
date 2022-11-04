@@ -1,6 +1,6 @@
 const {Person} = require('../database/db');
-const {parseJSON} = require('../utilities/json_parser')
 const { postUser } = require('./users_controller');
+const {addRecord} = require('../controllers/records_controller');
 
 const getPersons = async (req, res, next) =>{
     let persons = await Person.findAll();
@@ -8,13 +8,13 @@ const getPersons = async (req, res, next) =>{
 } 
 
 const postPersons = async (req, res, next) =>{
-    console.log("mio", req)
     try { //si viene desde postman
         let person = await Person.create(req.body);
-        //res.send(person);
         const jsonUser  = fromatRequest(req.body)
         //llamar el metodo que guarda en BD un Usuario
-        postUser(jsonUser,res)
+        addRecord(jsonUser.document);
+        postUser(jsonUser,res);
+        
     } catch (error) { //si viene desde IU
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
@@ -24,7 +24,8 @@ const postPersons = async (req, res, next) =>{
 
         const jsonUser  = fromatRequest(jsonObject)
         //llamar el metodo que guarda en BD un Usuario
-        postUser(jsonUser,res)
+        postUser(jsonUser,res);
+        addRecord(jsonUser.document);
     }
 }
 

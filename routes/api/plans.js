@@ -8,7 +8,7 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-router.get("/", cors(corsOptions), getAllPlans);
+router.get("/",cors(corsOptions),getAllPlans);
 router.post("/",cors(corsOptions), createPlan)
 router.put("/:id_plan", cors(corsOptions), updatePlan)
 router.delete("/:id_plan",cors(), deletePlan)
