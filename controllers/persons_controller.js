@@ -12,20 +12,21 @@ const postPersons = async (req, res, next) =>{
         let person = await Person.create(req.body);
         const jsonUser  = fromatRequest(req.body)
         //llamar el metodo que guarda en BD un Usuario
-        addRecord(jsonUser.document);
+        addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name));
         postUser(jsonUser,res);
         
     } catch (error) { //si viene desde IU
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        console.log(jsonObject,'JSON OBJECT')
-        //crea la persona
-        const person = await Person.create(jsonObject)
+        // const arrayString = Object.keys(req.body)
+        // const jsonObject = JSON.parse(arrayString[0])
+        // console.log(jsonObject,'JSON OBJECT')
+        // //crea la persona
+        // const person = await Person.create(jsonObject)
 
-        const jsonUser  = fromatRequest(jsonObject)
-        //llamar el metodo que guarda en BD un Usuario
-        postUser(jsonUser,res);
-        addRecord(jsonUser.document);
+        // const jsonUser  = fromatRequest(jsonObject)
+        // //llamar el metodo que guarda en BD un Usuario
+        // postUser(jsonUser,res);
+        // addRecord(jsonUser.document);
+        console.log(error)
     }
 }
 

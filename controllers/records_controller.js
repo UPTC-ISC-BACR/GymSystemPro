@@ -3,10 +3,11 @@ const {sendEmails} = require('..//utilities/mail_service')
 const YearsOfSubcription = 1;
 const PriceOfSubscription = 100000;
 
-const addRecord = async(document)=>{
+const addRecord = async(document, email, person_name)=>{
     try {
-        let records = await Record.create(createDataJson(document));
-        sendEmails();
+        dataJsonRecords = createDataJson(document);
+        await Record.create(dataJsonRecords);
+        sendEmails(dataJsonRecords, email, person_name);
         return({message: "Factura de registro creada en base de datos"})
     } catch (error) {
         return ({message: error.message})
