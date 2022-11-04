@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import { PrincipalRoute } from './components/Routers/PrincipalRoute';
 import { store } from './store/store';
@@ -9,7 +10,9 @@ const  App = () =>{
   return (
    <AppTheme>
       <Provider store = {store}>
-      <PrincipalRoute/>
+        <BrowserRouter>
+          <PrincipalRoute/>
+        </BrowserRouter>
       </Provider>
    </AppTheme>
   );

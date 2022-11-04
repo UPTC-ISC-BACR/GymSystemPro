@@ -5,12 +5,19 @@ import * as AiIcons from "react-icons/ai";
 import { SideBarData } from './SideBarData';
 import './SideBar.css'
 import { IconContext } from 'react-icons/lib';
+import { startLogOut } from '../../store/auth/thunks';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/auth/authSlice';
 
 const SideBar = () => {
     const [sidebar, setsidebar] = useState(false)
-
+    const dispatch = useDispatch
     const showSideBar =()=>setsidebar(!sidebar)
+    const [active, setActive] = useState(false);
 
+  const handleClick = () => {
+    console.log('data')
+  };
   return (
     <>
     {/* <IconContext.Provider value={{color:'#fff'}}> */}
@@ -19,7 +26,11 @@ const SideBar = () => {
         <Link to="" className='menu-bars'>
             <FaIcons.FaBars onClick={showSideBar}/>
         </Link>
+    <button className={'toggle-button'+(active ? 'toggle--close':'') }onClick={handleClick}>
+        Log Out
+    </button>   
     </div>
+    
     <nav className={sidebar ? 'nav-menu active':'nav-menu'}>
         <ul className='nav-menu-items' onClick={showSideBar}>
             <li className='navbar-toggle'>
@@ -39,7 +50,11 @@ const SideBar = () => {
                 )
             })}
         </ul>
+   
     </nav>
+    <div>
+    
+    </div>
     {/* </IconContext.Provider> */}
     </>
   )

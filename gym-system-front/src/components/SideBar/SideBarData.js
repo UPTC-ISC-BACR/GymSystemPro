@@ -21,7 +21,7 @@ export const SideBarData = [
     },
     {
         title:'Create Plan',
-        path:'/adminPage',
+        path:'/adminPage/createPlan',
         icon:<CG.CgGym/>,
         cName:'nav-text'
         

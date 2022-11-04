@@ -1,9 +1,12 @@
 import  axios  from "axios";
 import { useDispatch } from "react-redux";
+import { usersApi } from "../../api/axios";
 import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
 const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
+
 export const checkingAuthentication = (email,password)=>{
+
     return async(dispatch)=>{
         dispatch(checkingCredentials())
     }
@@ -36,15 +39,22 @@ export const starRegister = (data)=>{
                 .catch(error=>dispatch(starRegister()))
     }
 }
+export const startLogOut=(dispatch)=>{
+    localStorage.clear();
+   
+    
+    
+}
 export const checkAuthToken =  ()=>{
     const token = localStorage.getItem('token')
+
     if(!token){
         return (dispatch)=>{
-            dispatch(logout)
+            dispatch((logout('LogOut')))
         } 
     } 
     return async(dispatch)=>{
-        await axios.get('http://localhost:3000/api/users/renew')
+        await usersApi.get('users/renew')
             .then(response=>  {
                 localStorage.setItem('token',response.data.success)
                 localStorage.setItem('token-init-date',new Date().getTime())
