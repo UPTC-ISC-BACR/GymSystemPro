@@ -79,7 +79,7 @@ const CreateUser = ()=>{
 
       <div>
         <label>Genero:</label>
-        <select {...register("gender")}  >
+        <select {...register("sex")}  >
           <optgroup>
             <option value="F" >Femenino</option>
             <option value="M">Masculino</option>

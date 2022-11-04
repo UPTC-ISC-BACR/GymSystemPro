@@ -2,8 +2,10 @@ import  axios  from "axios";
 import { useDispatch } from "react-redux";
 import { usersApi } from "../../api/axios";
 import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
+import Swal from 'sweetalert2'
 const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
+
 
 export const checkingAuthentication = (email,password)=>{
 
@@ -32,10 +34,14 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
     }
 }
 export const starRegister = (data)=>{
-    console.log(data)
+    
     return async(dispatch)=>{
             await axios.post(LOGIN_REGISTER,JSON.stringify(data))
-                .then(response=>dispatch(registerSuccess()))
+                .then(response=>{dispatch(registerSuccess())
+                    Swal.fire({
+                    title:<strong>Usuario registrado</strong>,
+                    icon:'success'
+                })})
                 .catch(error=>dispatch(starRegister()))
     }
 }
