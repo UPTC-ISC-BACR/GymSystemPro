@@ -43,7 +43,12 @@ const updatePlan = async(req, res)=>{
 }
 
 //Eliminar un plan
-const deletePlan = async (req, res)=>{
+const deletePlan = async (req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
     try {
         await Plan.destroy({
             where: {id_plan: req.params.id_plan}
