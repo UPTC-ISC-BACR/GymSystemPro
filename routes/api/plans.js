@@ -9,7 +9,7 @@ var corsOptions = {
 }
 
 router.get("/",cors(corsOptions),getAllPlans);
-router.post("/",cors(corsOptions), createPlan)
+router.post("/add",cors(corsOptions), createPlan)
 router.put("/:id_plan",cors(corsOptions), updatePlan)
 router.delete("/:id_plan",cors(corsOptions), deletePlan)
 

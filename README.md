@@ -1,5 +1,32 @@
 Aplicacion backend gym system pro
 
+
+Notas version 2.2
+
+-Se implemento la agregacion de planes del gimnasio, se podran consultar atraves de la URL: http://localhost:3000/api/plans  y agregar una mediante la url http://localhost:3000/api/plans/add , con el siguiente formato
+
+Formato Json planes
+{
+    "id_plan": "1",
+    "name_plan": "mensual_basico",
+    "price": 10000,
+    "duration_months":1
+}
+
+-Se agrego la funcionalidad de facturar los registros de personas, este proceso es automatico en respuesta a un proceso exitoso de registro. Como salida se enviara un correo de confirmacion al correo especificado por el usuario en el momento del registro
+
+-Se agrego la opcion de añadir un plan a una persona mediante la URL: http://localhost:3000/api/plans_records/add  la cual recibe el id del plan y el id del registro de la persona en formato JSON 
+
+Formato Json añadir plan 
+
+{
+    "id_plan": "1",
+    "id_record":12349
+}
+
+
+
+
 Notas version 2.1
 
 -Se implemento la encriptacion de la contraseña en la base de datos
@@ -7,6 +34,8 @@ Notas version 2.1
 -Se realizo refactorizacion del codigo, dejando controladores y routeadores para cada modulo, tambien se reescribio el codigo para manejarse completamente en ingles
 
 -Se agregó la funcionalidad de login de usuario mediante la URL: http://localhost:3000/api/users/login , esta recibe el nombre y la contraseña del usuario en formato JSON y devuelve el token de sesion si el proceso es exitoso. El token debe ser enviado en la cabecera de las peticiones en el servicio de personas con el parametro "user_token"
+
+
 
 
 Notas version 2.0
