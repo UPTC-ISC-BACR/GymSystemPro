@@ -20,15 +20,12 @@ const SideBar = () => {
   };
   return (
     <>
-    {/* <IconContext.Provider value={{color:'#fff'}}> */}
 
     <div className='SideBar'>
         <Link to="" className='menu-bars'>
             <FaIcons.FaBars onClick={showSideBar}/>
         </Link>
-    <button className={'toggle-button'+(active ? 'toggle--close':'') }onClick={handleClick}>
-        Log Out
-    </button>   
+      
     </div>
     
     <nav className={sidebar ? 'nav-menu active':'nav-menu'}>

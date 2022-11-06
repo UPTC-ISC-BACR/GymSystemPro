@@ -32,14 +32,13 @@ export const PrincipalRoute = () => {
            <Route path='/adminPage/createPlane' element = {<AdminPage/>}/> */}
     
   <Route path ='/adminPage/*' element={
-    <PrivateRoutes>
+           
+
+  <PrivateRoutes>
     <AdminRoutes/>
   </PrivateRoutes>}/>
-  
            <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
            <Route path="/" element={<Home/>} />
-          
-
-         </Routes>
+  </Routes>
   )
 }

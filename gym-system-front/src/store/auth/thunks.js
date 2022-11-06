@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import { usersApi } from "../../api/axios";
 import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
 import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
+const MySwal = withReactContent(Swal)
 
 
 export const checkingAuthentication = (email,password)=>{
@@ -34,13 +37,12 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
     }
 }
 export const starRegister = (data)=>{
-    
     return async(dispatch)=>{
             await axios.post(LOGIN_REGISTER,JSON.stringify(data))
                 .then(response=>{dispatch(registerSuccess())
-                    Swal.fire({
-                    title:<strong>Usuario registrado</strong>,
-                    icon:'success'
+                    MySwal.fire({
+                        title: <p>Usuario Creado</p>,
+                        icon:'success'
                 })})
                 .catch(error=>dispatch(starRegister()))
     }
@@ -60,7 +62,7 @@ export const checkAuthToken =  ()=>{
         } 
     } 
     return async(dispatch)=>{
-        await usersApi.get('users/renew')
+        await usersApi.get('/renew')
             .then(response=>  {
                 localStorage.setItem('token',response.data.success)
                 localStorage.setItem('token-init-date',new Date().getTime())

@@ -3,13 +3,11 @@ import {useForm} from "react-hook-form"
 import './CreateUser.css'
 //import "../cssConfigurations.css"
 //import "./auCss.css"
-import axios from '../../api/axios'
 import { useDispatch, useSelector } from "react-redux"
 import { starRegister } from "../../store/auth/thunks"
 import NavBar from "../../components/NavBar/NavBar";
 import SideBar from "../../components/SideBar/SideBar"
 
-const LOGIN_URL = 'http://localhost:3000/api/persons/register'
 
 const CreateUser = ()=>{
   
@@ -79,7 +77,7 @@ const CreateUser = ()=>{
 
       <div>
         <label>Genero:</label>
-        <select {...register("sex")}  >
+        <select {...register("gender")}  >
           <optgroup>
             <option value="F" >Femenino</option>
             <option value="M">Masculino</option>
@@ -100,7 +98,7 @@ const CreateUser = ()=>{
 
       <div></div>
     <div id="button">
-        <button type="submit">Registrar</button>
+        <button className="button-submit" type="submit">Registrar</button>
     </div>
     </form>
     </div>

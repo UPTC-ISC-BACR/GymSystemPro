@@ -21,7 +21,7 @@ const LogIn =()=>{
       password:''
     });
  
-  const isAuthenticating = useMemo(()=>status === 'checking',[status])
+ // const isAuthenticating = useMemo(()=>status === 'checking',[status])
   const {user_name,password} = formValues
   useEffect(()=>{
     switch(type){
@@ -63,8 +63,9 @@ const LogIn =()=>{
                   display = {!!errorMessage ? '':'none'}>
                   <Alert severity ='error'>{errorMessage}</Alert>
                 </Grid>
+                <br></br>
             </Grid>
-            <button type="submit"  ></button>
+            <button className="button-login" type="submit"  >Login</button>
           </form>
          
         </div>

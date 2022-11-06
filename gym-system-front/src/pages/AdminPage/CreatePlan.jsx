@@ -1,22 +1,26 @@
 import React from "react"
 import {useForm} from "react-hook-form"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
 
-import axios, { personsApi } from '../../api/axios'
+import axios, { personsApi, plansApi } from '../../api/axios'
 import SideBar from "../../components/SideBar/SideBar"
 
-const PLANS_URL = 'http://localhost:3000/api/persons/register'
 
 const CreatePlan = ()=>{
     const{register, handleSubmit, formState: { errors }} = useForm()
+    const MySwal = withReactContent(Swal)
 
     const custonSubmit = async(data) =>{
         console.log(data);
-        try{
-          const response = personsApi.post('persons/register', JSON.stringify(data));
-          console.log(response)
-          }catch(err){
-          
-          }
+        await plansApi.post('/add',JSON.stringify(data))
+        .then(response=>{
+            MySwal.fire({
+                title: <p>Plan Creado</p>,
+                icon:'success'
+        })})
+        .catch(error=>console.log('error'))
+   
         }
     return(
         <>

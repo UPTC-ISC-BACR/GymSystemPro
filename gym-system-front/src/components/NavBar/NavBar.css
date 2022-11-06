@@ -5,7 +5,7 @@
 }
 
 
-/* nav{
+.navBar{
   background-color: rgb(0, 0, 0);
     width: 80;
     height: 4em;
@@ -13,9 +13,9 @@
     padding: 1em;
     justify-content: space-between;
     gap: 2rem;
-} */
-/* 
-nav ul{
+} 
+
+.navBar ul{
     margin-right: 60%;
     margin-top: 5px;
     padding: 0;
@@ -23,28 +23,28 @@ nav ul{
     display: flex;
     gap: 1rem;
 }
-nav ul li{
+.navBar ul li{
     color: white;
     margin-left: 100px;
-} */
+}
 
 .buttons{
-    margin-left: 80%;
-    /*background-color: red;*/
     clear: both;
-    display: flex;
-    align-self: flex-end;
+    width: 20px;
     position: absolute;
+    margin-left: 90%;
+
 }
 
 .button-3 {
-  margin-right: 20px;
   appearance: none;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
+  color: white;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   box-sizing: border-box;
-  color: #fff;
+  color: black;
+  background-color: #9e1a1a;
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";

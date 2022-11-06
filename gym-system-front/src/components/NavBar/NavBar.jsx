@@ -1,27 +1,23 @@
 import React , {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './NavBar.css'
 const NavBar =()=>{
-    //const navigate = useNavigate()
-    //useEffect(()=>{
-       // navigate('/login')
-
-    //})
-    //const navigateLogIn =()=>{
-    //}
-    return <div>
-        <nav>
+    
+    
+    return(
+        <nav className="navBar">
             <ul>
                 <li>Home</li>
                 <li>Contact</li>
                 <div className="buttons">
-                <button className="button-3" >Log In</button>
-                <button className="button-3">Sign In</button>
+                    <Link to={"/login"}>
+                <button className="button-3">Log In</button>
+                    </Link>
                 </div>
             </ul>
 
         </nav>
-
-    </div> 
+)
+    
 }
 export default NavBar;

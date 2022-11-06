@@ -17,8 +17,10 @@
     margin-left: 10px;
     border-radius: 10px;
 }
-button{
-    align-items: flex-start;
-    margin-left: 20px;
-    background-color: antiquewhite;
+
+.table-admin{
+    margin: 15% 40px 40px 40px;
+}
+.table-style-admin{
+    border: 2px solid black;
 }
