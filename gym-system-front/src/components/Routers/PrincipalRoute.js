@@ -13,30 +13,22 @@ import { CheckingAuth } from '../../ui/components/CheckingAuth'
 import AdminRoutes from './AdminRoutes'
 import PrivateRoutes from './PrivateRoutes'
 import PublicRouters from './PublicRouters'
+import UsersRoutes from './UsersRoutes'
 
 export const PrincipalRoute = () => {
   const isLogged = true
   const {status,type} = useSelector(state=>state.auth)
-  
+ 
   if(status==='checking'){
     return <h3>Cargando...</h3>
   }
   return (
         <Routes>
-          {/* {((status ==='authenticated') && (type === 'Ad'))?<Route path='/adminPage' element = {<AdminPage/>}/>:<Route path="/" element={<Home/>} />}
-          {((status ==='authenticated') && (type === 'En'))?<Route path='/coachPage' element = {<CoachPage/>}/>:<Route path="/" element={<Home/>} />}
-           <Route path='/adminPage/createUser' element = {<CreateUser/>}/>
-           <Route path='/adminPage/createCoach' element = {<AdminPage/>}/>
-           <Route path='/adminPage' element = {<AdminPage/>}/>
-            <Route path="/adminPage/createPlan"element={<CreatePlan/>}></Route>
-           <Route path='/adminPage/createPlane' element = {<AdminPage/>}/> */}
-    
   <Route path ='/adminPage/*' element={
-           
-
   <PrivateRoutes>
     <AdminRoutes/>
   </PrivateRoutes>}/>
+  <Route path = '/userPage/*' element={<PrivateRoutes><UsersRoutes/></PrivateRoutes>}/>
            <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
            <Route path="/" element={<Home/>} />
   </Routes>

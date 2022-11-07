@@ -19,8 +19,15 @@
 }
 
 .table-admin{
+    text-align: center;
     margin: 15% 40px 40px 40px;
 }
 .table-style-admin{
+    text-align: center;
     border: 2px solid black;
+}
+.table-cell-Admin{
+    border: 1px solid black;
+    text-align: center;
+
 }

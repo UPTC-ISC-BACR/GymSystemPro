@@ -17,10 +17,11 @@ export const authSlice = createSlice({
             state.errorMessage=null;
         },
         logout:(state,{payload})=>{
-            console.log('logOut')
             state.status='not-authenticated';//checking, not-authenticated, authenticated
             state.uid=null;
+            state.type=null;
             state.displayName=null;
+            state.user=null;
             state.errorMessage=payload.errorMessage;
         },
         checkingCredentials:(state)=>{

@@ -25,7 +25,7 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
       };
     return async (dispatch)=>{
         dispatch(checkingCredentials());
-        await axios.post(LOGIN_URL, {user_name:user_name,
+        await usersApi.post('/login', {user_name:user_name,
         password:password},config.headers)
             .then(response =>
                 {
@@ -47,11 +47,11 @@ export const starRegister = (data)=>{
                 .catch(error=>dispatch(starRegister()))
     }
 }
-export const startLogOut=(dispatch)=>{
+export const startLogOut=()=>{
     localStorage.clear();
-   
-    
-    
+    return (dispatch)=>{
+        dispatch((logout('LogOut')))
+    }  
 }
 export const checkAuthToken =  ()=>{
     const token = localStorage.getItem('token')

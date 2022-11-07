@@ -28,3 +28,27 @@ export const SideBarData = [
     },
    
 ]
+
+export const SideBarDataClient = [
+    {
+        title:'Home',
+        path:'/userPage',
+        icon:<AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Show Billing History',
+        path:'/userPage/billingHistory',
+        icon:<IcoMoon.ImUserPlus/>,
+        cName:'nav-text'
+        
+    },
+    {
+        title:'Create Plan',
+        path:'/adminPage/createPlan',
+        icon:<CG.CgGym/>,
+        cName:'nav-text'
+        
+    },
+   
+]

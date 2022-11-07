@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { starRegister } from "../../store/auth/thunks"
 import NavBar from "../../components/NavBar/NavBar";
 import SideBar from "../../components/SideBar/SideBar"
+import { SideBarData } from "../../components/SideBar/SideBarData"
 
 
 const CreateUser = ()=>{
@@ -23,7 +24,7 @@ const CreateUser = ()=>{
 
   return(
     <>
-    <SideBar/>
+    <SideBar data = {SideBarData}/>
     <h1 className="h1-register">Registro Usuario</h1>
     <div className="form-register">
 
