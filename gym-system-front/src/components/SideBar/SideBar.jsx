@@ -7,12 +7,12 @@ import { IconContext } from 'react-icons/lib';
 import { startLogOut } from '../../store/auth/thunks';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/auth/authSlice';
+import Button from '@mui/material/Button';
 
 const SideBar = ({sidebarData}) => {
     const [sidebar, setsidebar] = useState(false)
     const dispatch = useDispatch()
     const showSideBar =()=>setsidebar(!sidebar)
-    const [active, setActive] = useState(false);
 
   const handleClick = () => {
     dispatch(startLogOut())
@@ -27,9 +27,7 @@ const SideBar = ({sidebarData}) => {
       
     </div>
     
-    <button onClick={handleClick}>
-            logOuts
-        </button>
+   
     <nav className={sidebar ? 'nav-menu active':'nav-menu'}>
         <ul className='nav-menu-items' onClick={showSideBar}>
            
@@ -38,6 +36,7 @@ const SideBar = ({sidebarData}) => {
                 <AiIcons.AiOutlineClose/>
             </Link>
             </li>
+
             {sidebarData.map((item,index)=>{
                 return (
                     <li key={index} className={item.cName}>
@@ -49,6 +48,9 @@ const SideBar = ({sidebarData}) => {
 
                 )
             })}
+                        <Button variant="outlined"color ="error" onClick={handleClick} className ='log-out-button'>LogOut</Button>
+
+
         
         </ul>
    

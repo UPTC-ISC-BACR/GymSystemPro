@@ -16,7 +16,7 @@ const CreateUser = ()=>{
   const {status} =  useSelector(state=>state.auth)
   const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
   const isAuthenticating = useMemo(()=>status === 'checking',[status])
-
+  
   const custonSubmit = async(data) =>{
     console.log(data);
     dispatch(starRegister(data))
