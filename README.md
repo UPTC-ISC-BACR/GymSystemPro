@@ -17,7 +17,7 @@ Formato Json planes
 
 -Se agrego la opcion de añadir un plan a una persona mediante la URL: http://localhost:3000/api/plans_records/add  la cual recibe el id del plan y el id del registro de la persona en formato JSON 
 
-Formato Json añadir plan 
+Formato Json añadir plan_records
 
 {
     "id_plan": "1",

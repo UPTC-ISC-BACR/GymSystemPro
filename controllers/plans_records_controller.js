@@ -10,6 +10,7 @@ const getPlansRecords = async(req, res)=>{
     }
 }
 
+
 const createPlanRecord = async(req, res)=>{
     try { 
         await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{

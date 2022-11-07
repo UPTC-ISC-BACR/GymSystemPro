@@ -33,23 +33,19 @@ const Fertilizer = FertilizerModel(sequelize, Sequelize);
 
 
 
-const p = await sequelize.query(`select * from persons p, users u 
+/*const p = await sequelize.query(`select * from persons p, users u 
             where p.document = u.document AND
-            u.type_user= ${rol}`, { type: Sequelize.SELECT });
+            u.type_user= ${rol}`, { type: Sequelize.SELECT });*/
 
-console.log(p);
-
-
-
-
+//console.log(p);
 
 sequelize.sync({force:false})
 .then(()=>{
     console.log('Conexion a base de datos realizada')
 
-    getPersonByRol("Ad")
+    //getPersonByRol("Ad")
 })
 
 module.exports = {
-    Person, User, Plan, Record, PlansRecords, Invoce, Fertilizer
+    Person, User, Plan, Record, PlansRecords, Invoce, Fertilizer, sequelize
 }
