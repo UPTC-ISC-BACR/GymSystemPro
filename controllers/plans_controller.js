@@ -30,6 +30,7 @@ const createPlan = async(req, res)=>{
 
 //Actualizar un Plam
 const updatePlan = async(req, res)=>{
+    console.log(req.body,'asdfasdfasdfasdfasdfasdfasd')
     try {
         await Plan.update(req.body, {
             where: {id_plan: req.params.id_plan}
