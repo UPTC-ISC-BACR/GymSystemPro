@@ -2,10 +2,10 @@ const {Fertilizer} = require("../database/db")
 const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
 
 
-const createFertilize = async(req, res)=>{
+const createFertilize = async(req, res)=>{   
     await Fertilizer.create(createJsonFertilize(req.body))
     res.json({
-        "message":"factura creada correctamente"
+        "message":"Abono registrado correctamente"
     })
 }
 

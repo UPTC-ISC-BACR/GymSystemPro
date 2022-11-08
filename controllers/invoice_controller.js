@@ -36,17 +36,13 @@ async function createJsonInvoice(document){
     var idRecord_result = await Promise.all([idRecord_result = getIdRecord(document)]).then((values) =>{
         return (values[0]);
     })
-
-   
     let dataJson = {
-        
         generation_date: getToStringDate(getTodaysDate()),
         total_value: total_value_result,
         balance: balance_result,
         invoiced_period: invoiced_period_result,
         id_record: idRecord_result
     }
-    console.log("HOLA", dataJson);
     return dataJson
 }
 

@@ -14,20 +14,16 @@ const getDataForAdmi = async(req, res)=>{
 
 //optiene el precio del plan que contrato el cliente
 const getPricePlanThePerson = async(document, res)=>{
+    console.log("SE ESTA EJECUTANDO");
     const price = await sequelize.query(`SELECT pl.price
     FROM Persons p, Records r, Plan_Records pr, Plans pl
     WHERE p.document = ${document} AND
         p.document = r.document AND
         pr.id_record = r.id_record AND
-        pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
-        //res.sendStatus(200)
-
-        //.then(data=>{parseInt(data[0].price)})
-        //console.log(parseInt(price[0].price));
-        //.then(data => {return parseInt(data[0].price)}) 
+        pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT }) 
     return parseInt(price[0].price)
 }
-//const getPricePlanThePerson = async(req, res)=>{}
+
 
 async function getInvoiced_periodPlan(document){
     const period = await sequelize.query(`SELECT  pr.start_date_plan, pr.end_date_plan
@@ -45,9 +41,7 @@ async function getBalance(document,req, res){
         WHERE p.document = ${document} and
 			p.document = r.document AND
             r.id_record = i.id_record AND
-            i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })
-            //.then(data => {return })
-    
+            i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })   
     return parseInt(balance[0].Total)
 }
 

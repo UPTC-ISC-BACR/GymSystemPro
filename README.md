@@ -22,6 +22,9 @@ respondera con un vector de este tipo
     }
 ]
 
+--para generar factura usar ruta (llega por parametro)
+http://localhost:3000/api/admi/{document}
+
 Notas version 2.2
 
 -Se implemento la agregacion de planes del gimnasio, se podran consultar atraves de la URL: http://localhost:3000/api/plans  y agregar una mediante la url http://localhost:3000/api/plans/add , con el siguiente formato
