@@ -27,12 +27,15 @@ const loginUser = async (req,res,next) =>{
         body  = formatRequest(jsonObject)
     } catch (error) {
     }
-    console.log("ojo", body);
+    console.log("ojo", body.user_name,'asdfasdfasdf');
     let user = await User.findOne({where:{user_name:body.user_name}});
         if (user){
             const passwordChecking = bcrypt.compareSync(body.password, user.password);
             if(passwordChecking){
-            res.json({success:createToken(user)})
+            res.json({
+                display_name:user.user_name,
+                type:user.type_user,
+                success:createToken(user)})
             }else{
             res.json({error: 'Los datos proporcionados no coinciden con un usuario existente'})
             }
@@ -52,6 +55,7 @@ function formatRequest(user){
 const createToken = (user)=>{
     var payload = {
       userId: user.id_user,
+      role:user.type,
       createdAt: moment().unix(),
       expiredAt: moment().add(60,'minutes').unix()
     }
