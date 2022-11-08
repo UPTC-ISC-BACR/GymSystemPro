@@ -2,7 +2,9 @@
 const {Router} = require('express');
 const router = Router();
 const cors = require('cors');
-const {getDataForAdmi} = require("../../controllers/admi_controll")
+const {getDataForAdmi} = require("../../controllers/admi_controll");
+const { createInvoice } = require('../../controllers/invoice_controller');
+const { createFertilize } = require('../../controllers/fertilizer_controller');
 
 
 var corsOptions = {
@@ -11,6 +13,8 @@ var corsOptions = {
 }
 
 router.get("/",cors(corsOptions),getDataForAdmi);
+router.post("/:document",cors(corsOptions),createInvoice);
+router.post("/fertilize", cors(corsOptions), createFertilize)
 //router.post("/add",cors(corsOptions), createPlanRecord);
 
 module.exports = router;

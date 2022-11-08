@@ -6,7 +6,7 @@ module.exports = (sequelize,type) => {
             autoIncrement: true
         },
         generation_date: type.DATE,
-        total_value: type.DOUBLE,
+        total_value: type.INTEGER,
         balance: type.INTEGER,
         invoiced_period: type.STRING,
         id_record: type.INTEGER

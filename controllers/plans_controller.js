@@ -10,20 +10,6 @@ const getAllPlans = async(req, res)=>{
     }
     
 }
-//optienen el plan por Id
-const getPlanById = async(req, res)=>{
-    try {
-        const plan = await Plan.findByPk(req)
-            if (plan === null) {
-                console.log('Not found!');
-              } else {
-                console.log(plan instanceof Plan); //True
-                console.log(plan.id_plan);
-              }
-    } catch (error) {
-        res.json({message: error.message})
-    }
-}
 
 //crear un Plan
 const createPlan = async(req, res)=>{
@@ -65,6 +51,21 @@ const deletePlan = async (req, res)=>{
         res.json({
             "message": "!Registro Eliminado correctamente!"
         })
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
+//optienen el plan por Id
+const getPlanById = async(req, res)=>{
+    try {
+        const plan = await Plan.findByPk(req)
+            if (plan === null) {
+                console.log('Not found!');
+              } else {
+                console.log(plan instanceof Plan); //True
+                console.log(plan.id_plan);
+              }
     } catch (error) {
         res.json({message: error.message})
     }

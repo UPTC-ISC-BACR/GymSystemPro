@@ -1,5 +1,26 @@
 Aplicacion backend gym system pro
 
+Notas version 2.3
+-para consultar los datos para mostrar en el admi (document, name, date_end_register, date_end_plan, ir_record)
+usar la ruta 
+GET http://localhost:3000/api/admi
+respondera con un vector de este tipo
+[
+    {
+        "document": 12,
+        "name": "test",
+        "end_date_register": "2023-11-20",
+        "end_date_plan": "2023-02-04",
+        "id_record": 1
+    },
+    {
+        "document": 13,
+        "name": "test2",
+        "end_date_register": "2023-11-07",
+        "end_date_plan": "2023-02-04",
+        "id_record": 2
+    }
+]
 
 Notas version 2.2
 
