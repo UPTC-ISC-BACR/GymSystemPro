@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AdminPage from '../../pages/AdminPage/AdminPage'
 import CreatePlan from '../../pages/AdminPage/CreatePlan'
 import CoachPage from '../../pages/CoachPage/CoachPage'
+import EditPlan from '../../pages/AdminPage/EditPlan'
+import ShowPlans from '../../pages/AdminPage/ShowPlans'
 import CreateUser from '../../pages/CreateUser/CreateUser'
 import Home from '../../pages/Home/Home'
 import LogIn from '../../pages/LogIn/LogIn'
@@ -31,6 +33,7 @@ export const PrincipalRoute = () => {
   <Route path = '/userPage/*' element={<PrivateRoutes><UsersRoutes/></PrivateRoutes>}/>
            <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
            <Route path="/" element={<Home/>} />
+
   </Routes>
   )
 }

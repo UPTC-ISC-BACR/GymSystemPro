@@ -26,6 +26,12 @@ export const SideBarData = [
         cName:'nav-text'
         
     },
+    {
+        title:'Show Plans',
+        path:'/adminPage/showPlans',
+        icon:<CG.CgGym/>,
+        cName:'nav-text'
+    }
    
 ]
 
@@ -49,6 +55,6 @@ export const SideBarDataClient = [
         icon:<CG.CgGym/>,
         cName:'nav-text'
         
-    },
+    }
    
 ]

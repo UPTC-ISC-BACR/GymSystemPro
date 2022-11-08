@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { usersApi } from "../../api/axios";
+import { adminApi, usersApi } from "../../api/axios";
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
@@ -52,7 +52,7 @@ const AdminPage = () => {
   
   const [users, setUsers] = useState('')
   const getUsers = async () => {
-    await usersApi.get('/').then(response => setUsers(response.data))
+    await adminApi.get('/').then(response => {setUsers(response.data); console.log(response)})
       .catch(error => console.log(error))
 
   }
@@ -79,8 +79,11 @@ const AdminPage = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table" className='table-style-admin'>
             <TableHead>
               <TableRow>
-                <TableCell className='table-cell-admin-head'>Nombre</TableCell>
                 <TableCell className='table-cell-admin-head' align="center">Documento</TableCell>
+                <TableCell className='table-cell-admin-head'>Nombre</TableCell>
+                <TableCell className='table-cell-admin-head'>Fecha fin de registro</TableCell>
+                <TableCell className='table-cell-admin-head'>Fecha fin del plan</TableCell>
+
                 {/* <TableCell align="right">Plan</TableCell>
             <TableCell align="right">Fecha de facturacion</TableCell> */}
                 <TableCell className='table-cell-admin-head' align="center" >Realizar Pago</TableCell>
@@ -93,9 +96,11 @@ const AdminPage = () => {
                   key={user.id_user}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell align="right" className='table-cell-Admin'>{user.user_name}</TableCell>
-
                   <TableCell align="right" className='table-cell-Admin'>{user.document}</TableCell>
+
+                  <TableCell align="right" className='table-cell-Admin'>{user.name}</TableCell>
+                  <TableCell align="right" className='table-cell-Admin'>{user.end_date_register}</TableCell>
+                  <TableCell align="right" className='table-cell-Admin'>{user.end_date_plan}</TableCell>
                   <td>
                     <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name)} >
                       Pagar

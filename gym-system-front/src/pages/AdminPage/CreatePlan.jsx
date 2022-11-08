@@ -1,3 +1,4 @@
+import { Button } from "@mui/material"
 import React from "react"
 import {useForm} from "react-hook-form"
 import Swal from "sweetalert2"
@@ -44,7 +45,8 @@ const CreatePlan = ()=>{
             </div>
 
             <div id="button">
-                <button type="submit">Crear Plan</button>
+            <Button variant="contained" type = "submit">Crear Plan</Button>
+
             </div>
         </form>
         </>

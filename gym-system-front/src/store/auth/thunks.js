@@ -31,6 +31,7 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
                 {
                 localStorage.setItem('token',response.data.success)
                 localStorage.setItem('token-init-date',new Date().getTime())
+                console.log(response.data)
                 dispatch(login(response.data))
                 })
             .catch(error=>dispatch(logout(error.response.data)))

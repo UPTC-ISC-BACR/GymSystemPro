@@ -15,6 +15,7 @@ import {  useNavigate } from "react-router-dom";
 const LogIn =()=>{
   const nav = useNavigate()
   const {status,type,errorMessage} =  useSelector(state=>state.auth)
+  
   const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
     const [formValues, handleInputChange] = useForm({
       name:'',
@@ -23,6 +24,7 @@ const LogIn =()=>{
  
  // const isAuthenticating = useMemo(()=>status === 'checking',[status])
   const {user_name,password} = formValues
+
   useEffect(()=>{
     switch(type){
       case 'Ad':
