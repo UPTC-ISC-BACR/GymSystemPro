@@ -13,9 +13,7 @@ import { SideBarData } from "../../components/SideBar/SideBarData"
 const CreateUser = ()=>{
   
   const{register, handleSubmit, formState: { errors }} = useForm()
-  const {status} =  useSelector(state=>state.auth)
   const dispatch = useDispatch();//Permite hacer dispatch de acciones en cualquier lugar
-  const isAuthenticating = useMemo(()=>status === 'checking',[status])
   
   const custonSubmit = async(data) =>{
     console.log(data);
@@ -24,7 +22,7 @@ const CreateUser = ()=>{
 
   return(
     <>
-    <SideBar data = {SideBarData}/>
+    <SideBar sidebarData = {SideBarData}/>
     <h1 className="h1-register">Registro Usuario</h1>
     <div className="form-register">
 

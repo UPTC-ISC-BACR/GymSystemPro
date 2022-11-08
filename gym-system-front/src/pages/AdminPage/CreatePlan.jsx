@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content"
 
 import axios, { personsApi, plansApi } from '../../api/axios'
 import SideBar from "../../components/SideBar/SideBar"
+import { SideBarData } from "../../components/SideBar/SideBarData"
 
 
 const CreatePlan = ()=>{
@@ -24,7 +25,7 @@ const CreatePlan = ()=>{
         }
     return(
         <>
-        <SideBar/>
+        <SideBar sidebarData = {SideBarData}/>
         <h1>Crear Plan</h1>
         <form onSubmit={handleSubmit(custonSubmit)}>
             <div>
