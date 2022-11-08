@@ -19,7 +19,10 @@ const ShowPlans = ()=>{
     //procedimiento para eliminar un plan
     const deletePlan = async(id_plan)=>{
         console.log("HOOO", `${URI_PLANS}${id_plan}`);
-        await axios.delete(`${URI_PLANS}${id_plan}`)
+        let config={
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+        }
+        await axios.delete(`${URI_PLANS}${id_plan}`, config)
         
         getPlans()
     }

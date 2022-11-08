@@ -17,12 +17,15 @@ const EditPlan = ()=>{
 
     const update = async(data) =>{
         console.log(data);
+        let config={
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+        }
         try{
           const response = await axios.put(PLANS_URL + id, {
             name_plan: name_plan,
             price: price,
             duration_months: duration_months
-            })
+            }, config)
             navigate("/");
           console.log(response)
           }catch(error){
