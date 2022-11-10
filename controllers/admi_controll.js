@@ -37,7 +37,7 @@ async function getInvoiced_periodPlan(document){
 
 async function getBalance(document,req, res){
     const balance = await sequelize.query(`SELECT COALESCE(SUM(value),0) As Total
-	FROM Persons p, Records r, invoices i, fertilizers_history f
+	FROM Persons p, Records r, invoices i, fertilizers_histories f
         WHERE p.document = ${document} and
 			p.document = r.document AND
             r.id_record = i.id_record AND
