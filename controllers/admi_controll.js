@@ -9,7 +9,8 @@ const getDataForAdmi = async(req, res)=>{
         WHERE p.document = r.document AND
             pr.id_record = r.id_record AND
             pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
-            .then(data => res.json(data))         
+            //.then(data => res.json(data))
+    return result         
 }
 
 //optiene el precio del plan que contrato el cliente
