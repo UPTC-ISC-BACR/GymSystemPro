@@ -10,7 +10,7 @@ const postUser = async (req, res,next) =>{
         req.password = bcrypt.hashSync(req.password, 10)
         
     }
-    let user = await User.create(req);
+    await User.create(req);
     res.sendStatus(200)
 }
 
@@ -30,10 +30,11 @@ const loginUser = async (req,res,next) =>{
     console.log("ojo", body.user_name,'asdfasdfasdf');
     let user = await User.findOne({where:{user_name:body.user_name}});
         if (user){
+            console.log(body.password, user.password,"contraselassssss")
             const passwordChecking = bcrypt.compareSync(body.password, user.password);
             if(passwordChecking){
             res.json({
-                display_name:user.user_name,
+                user:user.user_name,
                 type:user.type_user,
                 success:createToken(user)})
             }else{
