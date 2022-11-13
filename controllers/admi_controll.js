@@ -13,37 +13,37 @@ const getDataForAdmi = async(req, res)=>{
     return result         
 }
 
-//optiene el precio del plan que contrato el cliente a partir del documento
-const getPricePlanThePerson = async(document, res)=>{
+//optiene el precio del plan que contrato un registro
+const getPricePlan = async(id_record, res)=>{
     const price = await sequelize.query(`SELECT pl.price
-    FROM Persons p, Records r, Plan_Records pr, Plans pl
-    WHERE p.document = ${document} AND
-        p.document = r.document AND
+    FROM Records r, Plan_Records pr, Plans pl
+    WHERE r.id_record = ${id_record} AND
         pr.id_record = r.id_record AND
         pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT }) 
     return parseInt(price[0].price)
 }
 
 
-async function getInvoiced_periodPlan(document){
+async function getInvoiced_periodPlan(idRecord){
     const period = await sequelize.query(`SELECT  pr.start_date_plan, pr.end_date_plan
-        FROM Persons p, Records r, Plan_Records pr, Plans pl
-        WHERE p.document = ${document} and
-			p.document = r.document AND
+        FROM Records r, Plan_Records pr, Plans pl
+        WHERE r.id_record = ${idRecord} AND
             pr.id_record = r.id_record AND
             pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
     return period[0].start_date_plan + " / " + period[0].end_date_plan
 }
 
 //optienen la suma de los abonos de una factura dada
-async function getBalance(id_invoice,req, res){
+async function getBalance(idInvoide,req, res){
     const balance = await sequelize.query(`SELECT COALESCE(SUM(value),0) As Total
 	from invoices i, fertilizers_histories f
-    where i.id_invoice = ${id_invoice} and
+    where i.id_invoice = ${idInvoide} and
     i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })   
     return parseInt(balance[0].Total)
 }
 
+
+///no se esta usando
 async function getIdRecord(document){
     const idRecord = await sequelize.query(`SELECT id_record
         FROM Persons, Records
@@ -60,5 +60,5 @@ async function getMaxIdInvoice(){
 }
 
 module.exports ={
-    getDataForAdmi, getPricePlanThePerson, getInvoiced_periodPlan, getBalance, getIdRecord
+    getDataForAdmi, getPricePlan, getInvoiced_periodPlan, getBalance
 }

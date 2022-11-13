@@ -36,6 +36,7 @@ async function createDataJson(data){
         end_date_plan: getToStringDate(final_plan_date),
         id_record:data.id_record,
         id_plan: data.id_plan,
+        is_active: true
     }
     return jsonRecord;
 }
