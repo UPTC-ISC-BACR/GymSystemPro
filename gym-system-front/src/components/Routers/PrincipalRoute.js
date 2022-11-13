@@ -30,6 +30,7 @@ export const PrincipalRoute = () => {
   <PrivateRoutes>
     <AdminRoutes/>
   </PrivateRoutes>}/>
+
   <Route path = '/userPage/*' element={<PrivateRoutes><UsersRoutes/></PrivateRoutes>}/>
            <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
            <Route path="/" element={<Home/>} />

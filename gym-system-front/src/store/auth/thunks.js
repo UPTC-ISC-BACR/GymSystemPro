@@ -31,7 +31,7 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
                 {
                 localStorage.setItem('token',response.data.success)
                 localStorage.setItem('token-init-date',new Date().getTime())
-                console.log(response.data)
+                console.log(response.data,'datos login')
                 dispatch(login(response.data))
                 })
             .catch(error=>dispatch(logout(error.response.data)))
@@ -40,11 +40,13 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
 export const starRegister = (data)=>{
     return async(dispatch)=>{
             await axios.post(LOGIN_REGISTER,JSON.stringify(data))
-                .then(response=>{dispatch(registerSuccess())
+                .then(response=>{
                     MySwal.fire({
                         title: <p>Usuario Creado</p>,
                         icon:'success'
                 })})
+                
+
                 .catch(error=>dispatch(starRegister()))
     }
 }
