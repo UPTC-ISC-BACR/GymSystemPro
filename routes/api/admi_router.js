@@ -3,7 +3,7 @@ const {Router} = require('express');
 const router = Router();
 const cors = require('cors');
 const {getDataForAdmi} = require("../../controllers/admi_controll");
-const { createInvoice } = require('../../controllers/invoice_controller');
+const { createInvoice, updateInvoice } = require('../../controllers/invoice_controller');
 const { createFertilize } = require('../../controllers/fertilizer_controller');
 
 const corsOptions ={
@@ -15,6 +15,7 @@ const corsOptions ={
 router.get("/",cors(corsOptions),getDataForAdmi);
 router.post("/:document",cors(corsOptions),createInvoice);
 router.post("/fertilize/add", cors(corsOptions), createFertilize)
+router.put("/invoice/update/:id_invoice", cors(corsOptions), updateInvoice)
 //router.post("/add",cors(corsOptions), createPlanRecord);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const getPlansRecords = async(req, res)=>{
     }
 }
 
-
+//vincula un plan con un registro
 const createPlanRecord = async(req, res)=>{
     try { 
         await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
@@ -35,7 +35,7 @@ async function createDataJson(data){
         start_date_plan:getToStringDate(getTodaysDate()),
         end_date_plan: getToStringDate(final_plan_date),
         id_record:data.id_record,
-        id_plan: data.id_plan
+        id_plan: data.id_plan,
     }
     return jsonRecord;
 }

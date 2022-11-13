@@ -13,9 +13,8 @@ const getDataForAdmi = async(req, res)=>{
     return result         
 }
 
-//optiene el precio del plan que contrato el cliente
+//optiene el precio del plan que contrato el cliente a partir del documento
 const getPricePlanThePerson = async(document, res)=>{
-    console.log("SE ESTA EJECUTANDO");
     const price = await sequelize.query(`SELECT pl.price
     FROM Persons p, Records r, Plan_Records pr, Plans pl
     WHERE p.document = ${document} AND
@@ -36,13 +35,12 @@ async function getInvoiced_periodPlan(document){
     return period[0].start_date_plan + " / " + period[0].end_date_plan
 }
 
-async function getBalance(document,req, res){
+//optienen la suma de los abonos de una factura dada
+async function getBalance(id_invoice,req, res){
     const balance = await sequelize.query(`SELECT COALESCE(SUM(value),0) As Total
-	FROM Persons p, Records r, invoices i, fertilizers_histories f
-        WHERE p.document = ${document} and
-			p.document = r.document AND
-            r.id_record = i.id_record AND
-            i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })   
+	from invoices i, fertilizers_histories f
+    where i.id_invoice = ${id_invoice} and
+    i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })   
     return parseInt(balance[0].Total)
 }
 
