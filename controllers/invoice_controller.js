@@ -3,9 +3,9 @@ const {getPricePlan, getInvoiced_periodPlan, getBalance} = require("./admi_contr
 
 const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
 
-const createInvoice = async(req, res) => {
+const createInvoice = async(id_record,req, res) => {
     try { 
-        await Promise.all([dataJson = createJsonInvoice(req.params.id_record)]).then((values) =>{
+        await Promise.all([dataJson = createJsonInvoice(id_record)]).then((values) =>{
             Invoce.create(values[0])
          })
         res.json({

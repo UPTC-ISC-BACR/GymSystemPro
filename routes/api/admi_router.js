@@ -18,4 +18,5 @@ router.post("/fertilize/add", cors(corsOptions), createFertilize)
 router.put("/invoice/update/:id_invoice", cors(corsOptions), updateInvoice)
 //router.post("/add",cors(corsOptions), createPlanRecord);
 
+
 module.exports = router;

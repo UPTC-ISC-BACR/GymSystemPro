@@ -12,10 +12,14 @@ const postPersons = async (req, res, next) =>{
         let person = await Person.create(req.body);
         const jsonUser  = fromatRequest(req.body)
         //llamar el metodo que guarda en BD un Usuario
+                //if(jsonUser.type_user === "Cl"){
+    
         addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name));
+        //}
         postUser(jsonUser,res);
         
     } catch (error) { //si viene desde IU
+       
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
         console.log(jsonObject,'JSON OBJECT')
@@ -24,8 +28,11 @@ const postPersons = async (req, res, next) =>{
 
         const jsonUser  = fromatRequest(jsonObject)
         //llamar el metodo que guarda en BD un Usuario
+        //console.log("ENTRO", jsonUser.type_user);
+        //if(jsonUser.type_user === "Cl"){
+            addRecord(jsonUser.document);
+        //}
         postUser(jsonUser,res);
-        addRecord(jsonUser.document);
     }
 }
 

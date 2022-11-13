@@ -6,7 +6,10 @@ const PriceOfSubscription = 100000;
 const addRecord = async(document, email, person_name)=>{
     try {
         dataJsonRecords = createDataJson(document);
-        await Record.create(dataJsonRecords);
+
+        let record = await Record.create(dataJsonRecords);
+        console.log("porfis", record)
+
         sendEmails(dataJsonRecords, email, person_name);
         return({message: "Factura de registro creada en base de datos"})
     } catch (error) {
@@ -26,6 +29,7 @@ const getRecords = async(req, res)=>{
 
 function createDataJson(document) {
     const jsonRecord ={
+        id_record: document,
         document: document,
         start_date_register:getToStringDate(getTodaysDate()),
         end_date_register: getToStringDate(getFinalRegistrationDate()),

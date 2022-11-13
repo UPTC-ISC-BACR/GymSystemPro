@@ -1,5 +1,6 @@
 const {PlansRecords} = require('../database/db');
 const {Plan} = require('../database/db');
+const {createInvoice} = require("./invoice_controller")
 
 const getPlansRecords = async(req, res)=>{
     try {
@@ -16,6 +17,9 @@ const createPlanRecord = async(req, res)=>{
         await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
             PlansRecords.create(values[0])
          })
+         //crear automaticamente el invoice
+         //llamar  el create INVOICE
+         createInvoice()
         res.json({
             "message":"Registro creado correctamente"
         })

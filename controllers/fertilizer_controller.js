@@ -4,6 +4,7 @@ const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
 
 const createFertilize = async(req, res)=>{   
     await Fertilizer.create(createJsonFertilize(req.body))
+    //actualizar la factura INVOICE
     res.json({
         "message":"Abono registrado correctamente"
     })
