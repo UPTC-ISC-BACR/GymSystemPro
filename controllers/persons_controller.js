@@ -1,6 +1,7 @@
 const {Person} = require('../database/db');
 const { postUser } = require('./users_controller');
 const {addRecord} = require('../controllers/records_controller');
+const { log } = require('console');
 
 const getPersons = async (req, res, next) =>{
     let persons = await Person.findAll();
@@ -14,25 +15,28 @@ const postPersons = async (req, res, next) =>{
         //llamar el metodo que guarda en BD un Usuario
                 //if(jsonUser.type_user === "Cl"){
     
-        addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name));
+        addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name))
+            .then(data=>{
+                console.log(data);
+            })
         //}
         postUser(jsonUser,res);
         
     } catch (error) { //si viene desde IU
        
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        console.log(jsonObject,'JSON OBJECT')
+        //const arrayString = Object.keys(req.body)
+        //const jsonObject = JSON.parse(arrayString[0])
+        //console.log(jsonObject,'JSON OBJECT')
         //crea la persona
-        const person = await Person.create(jsonObject)
+        //const person = await Person.create(jsonObject)
 
-        const jsonUser  = fromatRequest(jsonObject)
+        ///onst jsonUser  = fromatRequest(jsonObject)
         //llamar el metodo que guarda en BD un Usuario
         //console.log("ENTRO", jsonUser.type_user);
         //if(jsonUser.type_user === "Cl"){
-            addRecord(jsonUser.document);
+            //addRecord(jsonUser.document);
         //}
-        postUser(jsonUser,res);
+        //postUser(jsonUser,res);
     }
 }
 

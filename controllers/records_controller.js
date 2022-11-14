@@ -7,8 +7,7 @@ const addRecord = async(document, email, person_name)=>{
     try {
         dataJsonRecords = createDataJson(document);
 
-        let record = await Record.create(dataJsonRecords);
-        console.log("porfis", record)
+        await Record.create(dataJsonRecords);
 
         sendEmails(dataJsonRecords, email, person_name);
         return({message: "Factura de registro creada en base de datos"})
@@ -50,7 +49,7 @@ function getFinalRegistrationDate(){
 }
 
 function getToStringDate(dateTime){
-    return dateTime.getDate()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getFullYear();
+    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+ dateTime.getDate();
 }
 
 module.exports = {
