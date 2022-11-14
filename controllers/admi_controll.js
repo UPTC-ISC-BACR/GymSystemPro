@@ -10,8 +10,8 @@ const getDataForAdmi = async(req, res)=>{
     ON r.id_record = pr.id_record
     where isnull(pr.id_record) or
     pr.is_active = false`,{ type: QueryTypes.SELECT })
-    //.then(data => res.json(data))
-    .then(data => {return data})
+    .then(data => res.json(data))
+    //.then(data => {return data})
     //return result         
 }
 
