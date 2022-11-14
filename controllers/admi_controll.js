@@ -4,13 +4,25 @@ const { QueryTypes } = require('sequelize');
 
 //optienen los datos que se mosuestran el el home del admi
 const getDataForAdmi = async(req, res)=>{
-    const result = await sequelize.query(`SELECT p.document, p.name, r.end_date_register, pr.end_date_plan, r.id_record 
-        FROM Persons p, Records r, Plan_Records pr, Plans pl
-        WHERE p.document = r.document AND
-            pr.id_record = r.id_record AND
-            pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
-            //.then(data => res.json(data))
-    return result         
+    const result = await sequelize.query(`SELECT r.id_record as r
+	FROM records r
+	LEFT JOIN plan_records pr
+    ON r.id_record = pr.id_record
+    where isnull(pr.id_record) or
+    pr.is_active = false`,{ type: QueryTypes.SELECT })
+    //.then(data => res.json(data))
+    .then(data => {return data})
+    //return result         
+}
+
+const getalgo = async(req, res)=>{ //ojo esta vaina no funciona
+    console.log("ojo", typeof getDataForAdmi);
+    console.log("ojo2", getDataForAdmi);
+    getDataForAdmi()
+    .forEach(element => {
+        console.log(element);
+    });
+   
 }
 
 //optiene el precio del plan que contrato un registro
@@ -61,5 +73,5 @@ async function getMaxIdInvoice(){
 }
 
 module.exports ={
-    getDataForAdmi, getPricePlan, getInvoiced_periodPlan, getBalance
+    getalgo, getPricePlan, getInvoiced_periodPlan, getBalance, getDataForAdmi
 }
