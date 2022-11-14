@@ -22,23 +22,22 @@ const postPersons = async (req, res, next) =>{
         
     } catch (error) { //si viene desde IU
        
-        //const arrayString = Object.keys(req.body)
-        //const jsonObject = JSON.parse(arrayString[0])
+        const arrayString = Object.keys(req.body)
+        const jsonObject = JSON.parse(arrayString[0])
         //console.log(jsonObject,'JSON OBJECT')
         //crea la persona
-        //const person = await Person.create(jsonObject)
+        const person = await Person.create(jsonObject)
 
-        //const jsonUser  = fromatRequest(jsonObject)
+        const jsonUser  = fromatRequest(jsonObject)
         //llamar el metodo que guarda en BD un Usuario
         //console.log("ENTRO", jsonUser.type_user);
         
         //no esta entrando al if
-        //if(jsonUser.type_user === "Cl"){
-           // addRecord(jsonUser.document)
-            //.then(data=>{console.log("oye", data);})
-        //}
-        //postUser(jsonUser,res);
-        console.log("cash", error);
+        if(jsonUser.type_user === "Cl"){
+           addRecord(jsonUser.document)
+            .then(data=>{console.log("oye", data);})
+        }
+        postUser(jsonUser,res);
     }
 }
 

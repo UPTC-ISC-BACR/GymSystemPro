@@ -2,7 +2,7 @@ const {sequelize} = require("../database/db")
 const Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
-//optienen los datos que se mosuestran el el home del admi
+//optienen lo registrso que no tienen asociado un plan
 const getRecordNoPlan = async(req, res, next)=>{
     const result = await sequelize.query(`SELECT r.id_record
 	FROM records r
