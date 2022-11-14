@@ -4,7 +4,7 @@ const { QueryTypes } = require('sequelize');
 
 //optienen los datos que se mosuestran el el home del admi
 const getDataForAdmi = async(req, res)=>{
-    const result = await sequelize.query(`SELECT r.id_record as r
+    const result = await sequelize.query(`SELECT r.id_record
 	FROM records r
 	LEFT JOIN plan_records pr
     ON r.id_record = pr.id_record
