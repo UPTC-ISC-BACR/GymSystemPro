@@ -3,27 +3,27 @@ const Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
 //optienen los datos que se mosuestran el el home del admi
-const getDataForAdmi = async(req, res)=>{
+const getDataForAdmi = async(req, res, next)=>{
     const result = await sequelize.query(`SELECT r.id_record
 	FROM records r
 	LEFT JOIN plan_records pr
     ON r.id_record = pr.id_record
     where isnull(pr.id_record) or
     pr.is_active = false`,{ type: QueryTypes.SELECT })
-    .then(data => res.json(data))
-    //.then(data => {return data})
-    //return result         
+    .then(data => {
+        console.log(data);
+        data.forEach(findOwnerByRecord)
+    })
+
+    async function findOwnerByRecord(element){
+            await sequelize.query(`select p.document, p.name, p.last_name, r.id_record
+                    from persons p, records r
+                    where p.document = r.document and
+                    r.id_record = ${element.id_record}`,{ type: QueryTypes.SELECT })
+                    .then((answer =>{res.send(answer)}))
+        }
 }
 
-const getalgo = async(req, res)=>{ //ojo esta vaina no funciona
-    console.log("ojo", typeof getDataForAdmi);
-    console.log("ojo2", getDataForAdmi);
-    getDataForAdmi()
-    .forEach(element => {
-        console.log(element);
-    });
-   
-}
 
 //optiene el precio del plan que contrato un registro
 const getPricePlan = async(id_record, res)=>{
@@ -73,5 +73,5 @@ async function getMaxIdInvoice(){
 }
 
 module.exports ={
-    getalgo, getPricePlan, getInvoiced_periodPlan, getBalance, getDataForAdmi
+    getPricePlan, getInvoiced_periodPlan, getBalance, getDataForAdmi
 }
