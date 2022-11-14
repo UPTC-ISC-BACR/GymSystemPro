@@ -21,7 +21,7 @@ const createPlanRecord = async(req, res)=>{
          //llamar  el create INVOICE
          //createInvoice()
         res.json({
-            "message":"Registro creado correctamente"
+            "message":"Se vinculo plan con record creado correctamente"
         })
         
     }catch(error){
@@ -38,7 +38,7 @@ async function createDataJson(data){
      })
     const jsonRecord ={
         start_date_plan:getToStringDate(getTodaysDate()),
-        end_date_plan: getToStringDate(final_plan_date),
+        end_date_plan:"2020-02-10", //getToStringDate(final_plan_date),
         id_record:data.id_record,
         id_plan: data.id_plan,
         is_active: true
@@ -66,7 +66,7 @@ const getPlanDuration = async(id_plan_request)=>{
 }
 
 function getToStringDate(dateTime){
-    return dateTime.getDate()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getFullYear();
+    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
 }
 
 
