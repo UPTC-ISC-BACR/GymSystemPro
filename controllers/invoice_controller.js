@@ -3,20 +3,17 @@ const {getPricePlan, getInvoiced_periodPlan, getBalance} = require("./admi_contr
 
 const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
 
-const createInvoice = async(id_record,req, res) => {
+const createInvoice = async(req, res) => {
+    console.log("BODY", req.body);
     try { 
-        await Promise.all([dataJson = createJsonInvoice(id_record)]).then((values) =>{
+        await Promise.all([dataJson = createJsonInvoice(req.body.id_invoice)]).then((values) =>{
             Invoce.create(values[0])
          })
         res.json({
-            "message":"Registro creado correctamente"
+            "message":"factura creado correctamente"
         })
-        
     }catch(error){
-        /*const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        await PlansRecords.createDataJson(jsonObject)
-        res.json({ "message":"Asignacion de plan realizada con exito" })*/
+       console.log("error invoice", error);
     }
 }
 

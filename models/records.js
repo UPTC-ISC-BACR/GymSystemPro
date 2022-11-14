@@ -9,6 +9,7 @@ module.exports = (sequelize,type) => {
         start_date_register: type.DATE,
         end_date_register: type.DATE,
         price: type.DOUBLE,
+        is_active: type.BOOLEAN
     },{
         timestamps: false,
         createdAt: false,

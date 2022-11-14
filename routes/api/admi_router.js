@@ -13,7 +13,7 @@ const corsOptions ={
 }
 
 router.get("/",cors(corsOptions),getDataForAdmi);
-router.post("/:document",cors(corsOptions),createInvoice);
+router.post("/",cors(corsOptions),createInvoice);
 router.post("/fertilize/add", cors(corsOptions), createFertilize)
 router.put("/invoice/update/:id_invoice", cors(corsOptions), updateInvoice)
 //router.post("/add",cors(corsOptions), createPlanRecord);

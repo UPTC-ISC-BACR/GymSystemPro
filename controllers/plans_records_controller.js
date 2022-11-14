@@ -19,16 +19,17 @@ const createPlanRecord = async(req, res)=>{
          })
          //crear automaticamente el invoice
          //llamar  el create INVOICE
-         createInvoice()
+         //createInvoice()
         res.json({
             "message":"Registro creado correctamente"
         })
         
     }catch(error){
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        await PlansRecords.createDataJson(jsonObject)
-        res.json({ "message":"Asignacion de plan realizada con exito" })
+        //const arrayString = Object.keys(req.body)
+        //const jsonObject = JSON.parse(arrayString[0])
+        //await PlansRecords.createDataJson(jsonObject)
+        //res.json({ "message":"Asignacion de plan realizada con exito" })
+        console.log("pr", error);
     }
 }
 async function createDataJson(data){

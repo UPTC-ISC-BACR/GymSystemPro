@@ -28,11 +28,11 @@ const getRecords = async(req, res)=>{
 
 function createDataJson(document) {
     const jsonRecord ={
-        id_record: document,
         document: document,
         start_date_register:getToStringDate(getTodaysDate()),
         end_date_register: getToStringDate(getFinalRegistrationDate()),
-        price: PriceOfSubscription
+        price: PriceOfSubscription,
+        is_active: true
     }
     return jsonRecord;
 }

@@ -30,6 +30,7 @@ async function getInvoiced_periodPlan(idRecord){
         WHERE r.id_record = ${idRecord} AND
             pr.id_record = r.id_record AND
             pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
+            console.log(period[0]);
     return period[0].start_date_plan + " / " + period[0].end_date_plan
 }
 
