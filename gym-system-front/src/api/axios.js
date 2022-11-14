@@ -10,7 +10,7 @@ usersApi.interceptors.request.use(config =>{
     return config
 })
 export const adminApi = axios.create({
-    baseURL:'http://localhost:3000/api/admin'
+    baseURL:'http://localhost:3000/api/admi'
 })  
 export const plansApi = axios.create({
     baseURL:'http://localhost:3000/api/plans'
@@ -18,6 +18,23 @@ export const plansApi = axios.create({
 export const personsApi =  axios.create({
     baseURL:'http://localhost:3000/persons/'
 })
+export const recordsApi = axios.create({
+    baseURL:'http://localhost:3000/api/plans_records/'
+})
+recordsApi.interceptors.request.use(config =>{
+    config.headers ={
+        ...config.headers,
+        'x-token':localStorage.getItem('token')
+    }
+    return config
+}) 
+plansApi.interceptors.request.use(config =>{
+    config.headers ={
+        ...config.headers,
+        'x-token':localStorage.getItem('token')
+    }
+    return config
+}) 
 adminApi.interceptors.request.use(config =>{
     config.headers ={
         ...config.headers,

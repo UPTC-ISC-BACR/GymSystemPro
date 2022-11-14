@@ -1,6 +1,6 @@
 import { Button, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React,{useState} from 'react'
-import { adminApi, plansApi } from '../../api/axios'
+import { adminApi, plansApi, recordsApi } from '../../api/axios'
 import SideBar from '../../components/SideBar/SideBar'
 import { SideBarData } from '../../components/SideBar/SideBarData'
 import Autocomplete from '@mui/material/Autocomplete';
@@ -15,12 +15,14 @@ const AssignPlan = () => {
     const [plan, setPlan] = React.useState('');
     useEffect(()=>{
       getPlans()
+      getUsers()
     },[])
     const handleChange = (event) => {
       
       setPlan(event.target.value)
-      console.log(plan,'id')
     };
+    const [users, setUsers] = useState([])
+    const [idRecord,setIdRecord] = useState('')
     const [payment,setPayment] = useState(0.0)
     const [userPay,setUserPay] = useState('')
     const [idUserPay,setIdUserPay] = useState('')
@@ -28,14 +30,20 @@ const AssignPlan = () => {
     const openCloseModal = ()=>{
       setModal(!modal)
     }
-    const openModal = (id = 'id', name = 'nombre') => {
+    const openModal = (id = 'id', name = 'nombre',id_record='2') => {
       openCloseModal()
       setUserPay(name)
       setIdUserPay(id)
+      setIdRecord(id_record)
     }
-    const pay = ()=>{
+    const planAssigment = async ()=>{
       console.log('Pagando...')
-      console.log('user',userPay,'id',idUserPay,'valor',payment)
+      console.log(plan)
+      await recordsApi.post('/add',{id_plan:plan,id_record:idRecord}).then((response)=>console.log(response))
+      .catch((error)=>console.log(error))
+
+      console.log('id-pan',plan,'idecord',idRecord)
+      getUsers()
       openCloseModal()
     }
     
@@ -44,9 +52,12 @@ const AssignPlan = () => {
       setPlansGYM(response.data)})
         .catch(error => console.log(error))
     }
+    const getUsers = async()=>{
+      await adminApi.get('/').then((response)=>{
+        setUsers(response.data)
+      }).catch(error=>console.log(error))
+    }
 
- 
-   
      const body =(
         <div className='modal-admin-pay'>
 
@@ -69,14 +80,13 @@ const AssignPlan = () => {
       </FormControl>
     </Box>
        
-    <Button onClick={pay}>Asignar Plan</Button>
+    <Button onClick={planAssigment}>Asignar Plan</Button>
        </div>
         </div>
     
     )
     const [modal,setModal] = useState(false);
     
-    const [users, setUsers] = useState([{document:123,name:'Santiago',id_record:'asdasd'}])
 
  
 
@@ -99,7 +109,7 @@ const AssignPlan = () => {
                 <TableRow>
                   <TableCell className='table-cell-admin-head' align="center">Documento</TableCell>
                   <TableCell className='table-cell-admin-head'>Nombre</TableCell>
-                  <TableCell className='table-cell-admin-head'>Id Registro</TableCell>
+                  <TableCell className='table-cell-admin-head'>Last Name</TableCell>
   
                   {/* <TableCell align="right">Plan</TableCell>
               <TableCell align="right">Fecha de facturacion</TableCell> */}
@@ -114,11 +124,10 @@ const AssignPlan = () => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell align="right" className='table-cell-Admin'>{user.document}</TableCell>
-  
                     <TableCell align="right" className='table-cell-Admin'>{user.name}</TableCell>
-                    <TableCell align="right" className='table-cell-Admin'>{user.id_record}</TableCell>
+                    <TableCell align="right" className='table-cell-Admin'>{user.last_name}</TableCell>
                     <td>
-                      <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name)} >
+                      <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name,user.id_record)} >
                         Asignar Plan
                       </Button>
                     </td>
