@@ -20,6 +20,13 @@ export const SideBarData = [
         
     },
     {
+        title:'Asignar Plan',
+        path:'/adminPage/assignPlan',
+        icon:<IcoMoon.ImUserPlus/>,
+        cName:'nav-text'
+        
+    },
+    {
         title:'Create Plan',
         path:'/adminPage/createPlan',
         icon:<CG.CgGym/>,

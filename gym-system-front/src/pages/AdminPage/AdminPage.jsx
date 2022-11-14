@@ -50,7 +50,7 @@ const AdminPage = () => {
   </div>)
   const [modal,setModal] = useState(false);
   
-  const [users, setUsers] = useState('')
+  const [users, setUsers] = useState([{document:123,name:'Santiago',id_record:'asdasd'}])
   const getUsers = async () => {
     await adminApi.get('/').then(response => {setUsers(response.data); console.log(response)})
       .catch(error => console.log(error))
