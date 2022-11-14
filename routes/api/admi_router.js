@@ -2,7 +2,7 @@
 const {Router} = require('express');
 const router = Router();
 const cors = require('cors');
-const {getDataForAdmi} = require("../../controllers/admi_controll");
+const {getRecordNoPlan} = require("../../controllers/admi_controll");
 const { createInvoice, updateInvoice } = require('../../controllers/invoice_controller');
 const { createFertilize } = require('../../controllers/fertilizer_controller');
 
@@ -12,7 +12,7 @@ const corsOptions ={
   optionSuccessStatus:200,
 }
 
-router.get("/",cors(corsOptions),getDataForAdmi);
+router.get("/",cors(corsOptions),getRecordNoPlan);
 router.post("/",cors(corsOptions),createInvoice);
 router.post("/fertilize/add", cors(corsOptions), createFertilize)
 router.put("/invoice/update/:id_invoice", cors(corsOptions), updateInvoice)

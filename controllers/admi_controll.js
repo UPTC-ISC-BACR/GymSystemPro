@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
 //optienen los datos que se mosuestran el el home del admi
-const getDataForAdmi = async(req, res, next)=>{
+const getRecordNoPlan = async(req, res, next)=>{
     const result = await sequelize.query(`SELECT r.id_record
 	FROM records r
 	LEFT JOIN plan_records pr
@@ -71,7 +71,6 @@ async function getMaxIdInvoice(){
 
     return idInvoide[0].id_invoice
 }
-
-module.exports ={
-    getPricePlan, getInvoiced_periodPlan, getBalance, getDataForAdmi
+module.exports = {
+    getPricePlan, getInvoiced_periodPlan, getBalance, getRecordNoPlan
 }
