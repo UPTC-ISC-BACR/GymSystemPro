@@ -12,24 +12,24 @@ const getPlansRecords = async(req, res)=>{
 }
 
 //vincula un plan con un registro
-const createPlanRecord = async(req, res)=>{
+const createPlanRecord = async(req, res, next)=>{
     try { 
-        await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
+        var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
             PlansRecords.create(values[0])
-         })
-         //crear automaticamente el invoice
-         //llamar  el create INVOICE
-         //createInvoice()
-        res.json({
-            "message":"Se vinculo plan con record creado correctamente"
+            return values[0].id_record
         })
+        createInvoice(idRecord, res, next)
         
     }catch(error){
-        //const arrayString = Object.keys(req.body)
-        //const jsonObject = JSON.parse(arrayString[0])
-        //await PlansRecords.createDataJson(jsonObject)
-        //res.json({ "message":"Asignacion de plan realizada con exito" })
-        console.log("pr", error);
+        const arrayString = Object.keys(req.body)
+        const jsonObject = JSON.parse(arrayString[0])
+        var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
+            PlansRecords.create(values[0])
+            return values[0].id_record
+        })
+        createInvoice(idRecord, res, next)
+        
+        //console.log("pr", error);
     }
 }
 async function createDataJson(data){
@@ -38,7 +38,7 @@ async function createDataJson(data){
      })
     const jsonRecord ={
         start_date_plan:getToStringDate(getTodaysDate()),
-        end_date_plan:"2020-02-10", //getToStringDate(final_plan_date),
+        end_date_plan: getToStringDate(final_plan_date),
         id_record:data.id_record,
         id_plan: data.id_plan,
         is_active: true

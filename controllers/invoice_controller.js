@@ -1,16 +1,14 @@
 const {Invoce} = require("../database/db")
 const {getPricePlan, getInvoiced_periodPlan, getBalance} = require("./admi_controll")
 
-const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
-
-const createInvoice = async(req, res) => {
-    console.log("BODY", req.body);
+const createInvoice = async(idRecord,res,next) => {
+    console.log("BODY invoice");
     try { 
-        await Promise.all([dataJson = createJsonInvoice(req.body.id_invoice)]).then((values) =>{
+        await Promise.all([dataJson = createJsonInvoice(idRecord)]).then((values) =>{
             Invoce.create(values[0])
          })
         res.json({
-            "message":"factura creado correctamente"
+            "message":"factura creada correctamente"
         })
     }catch(error){
        console.log("error invoice", error);
@@ -71,4 +69,12 @@ const updateInvoice =  async(req, res)=>{
         }
 }
 
+function getToStringDate(dateTime){
+    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
+}
+
+function getTodaysDate() {
+    var dateTime = new Date();
+    return dateTime;
+}
 module.exports={createInvoice, updateInvoice}
