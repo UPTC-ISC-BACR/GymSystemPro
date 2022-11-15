@@ -52,7 +52,7 @@ function getTodaysDate() {
 }
 
 async function getFinalRegistrationDate(id_plan_request){
-    var finalDate = new Date();
+    var finalDate = await new Date();
     var planDuration = await Promise.all([planDuration = getPlanDuration(id_plan_request)]).then((values) =>{
         return (values[0].duration_months);
     })
