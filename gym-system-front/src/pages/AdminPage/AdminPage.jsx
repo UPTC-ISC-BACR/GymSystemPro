@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 
 const AdminPage = () => {
   const [payment,setPayment] = useState(0.0)
+  const [modal,setModal] = useState(false);
 
   const [invoceId,setInvoceId] = useState('')
   const [recordId,setRecordId] = useState('')
@@ -26,8 +27,8 @@ const AdminPage = () => {
     setModal(!modal)
   }
   useEffect(()=>{
-    getUsers()
-  })
+    getUsers( )
+  },[modal])
   
 
   const openModal = (invoce,record) => {
@@ -59,7 +60,6 @@ const AdminPage = () => {
     </div>
 
   </div>)
-  const [modal,setModal] = useState(false);
   
   const [users, setUsers] = useState('')
   const getUsers = async () => {
