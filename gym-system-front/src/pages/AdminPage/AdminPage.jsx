@@ -14,22 +14,33 @@ import Modal from '@mui/material/Modal';
 
 import './AdminPage.css'
 import { SideBarData } from '../../components/SideBar/SideBarData';
+import { useEffect } from 'react';
 
 const AdminPage = () => {
   const [payment,setPayment] = useState(0.0)
-  const [userPay,setUserPay] = useState('')
-  const [idUserPay,setIdUserPay] = useState('')
+
+  const [invoceId,setInvoceId] = useState('')
+  const [recordId,setRecordId] = useState('')
+
   const openCloseModal = ()=>{
     setModal(!modal)
   }
-  const openModal = (id = 'id', name = 'nombre') => {
+  useEffect(()=>{
+    getUsers()
+  })
+  
+
+  const openModal = (invoce,record) => {
+    setInvoceId(invoce)
+    setRecordId(record)
     openCloseModal()
-    setUserPay(name)
-    setIdUserPay(id)
+    
   }
-  const pay = ()=>{
+  const pay = async()=>{
     console.log('Pagando...')
-    console.log('user',userPay,'id',idUserPay,'valor',payment)
+    await adminApi.post('/fertilize/add',{'value':payment,'id_invoice':invoceId,'id_record':recordId})
+      .then((response)=> console.log(response))
+      .catch((error)=>console.log(error))
     openCloseModal()
 
   }
@@ -50,9 +61,9 @@ const AdminPage = () => {
   </div>)
   const [modal,setModal] = useState(false);
   
-  const [users, setUsers] = useState([{document:123,name:'Santiago',id_record:'asdasd'}])
+  const [users, setUsers] = useState('')
   const getUsers = async () => {
-    await adminApi.get('/').then(response => {setUsers(response.data); console.log(response)})
+    await adminApi.get('/fertilize/get').then(response => {setUsers(response.data); console.log(response,'respuesta')})
       .catch(error => console.log(error))
 
   }
@@ -83,6 +94,8 @@ const AdminPage = () => {
                 <TableCell className='table-cell-admin-head'>Nombre</TableCell>
                 <TableCell className='table-cell-admin-head'>Fecha fin de registro</TableCell>
                 <TableCell className='table-cell-admin-head'>Fecha fin del plan</TableCell>
+                <TableCell className='table-cell-admin-head'>Saldo Pendiente</TableCell>
+
 
                 {/* <TableCell align="right">Plan</TableCell>
             <TableCell align="right">Fecha de facturacion</TableCell> */}
@@ -101,8 +114,10 @@ const AdminPage = () => {
                   <TableCell align="right" className='table-cell-Admin'>{user.name}</TableCell>
                   <TableCell align="right" className='table-cell-Admin'>{user.end_date_register}</TableCell>
                   <TableCell align="right" className='table-cell-Admin'>{user.end_date_plan}</TableCell>
+                  <TableCell align="right" className='table-cell-Admin'>{user.balance}</TableCell>
+
                   <td>
-                    <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name)} >
+                    <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_invoice,user.id_record)} >
                       Pagar
                     </Button>
                   </td>

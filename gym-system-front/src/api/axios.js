@@ -21,6 +21,7 @@ export const personsApi =  axios.create({
 export const recordsApi = axios.create({
     baseURL:'http://localhost:3000/api/plans_records/'
 })
+
 recordsApi.interceptors.request.use(config =>{
     config.headers ={
         ...config.headers,
