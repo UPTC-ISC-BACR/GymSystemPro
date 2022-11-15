@@ -4,16 +4,17 @@ const { QueryTypes } = require('sequelize');
 
 //optienen lo registrso que no tienen asociado un plan
 const getRecordNoPlan = async(req, res, next)=>{
-    const result = await sequelize.query(`SELECT r.id_record
+    const result = await sequelize.query(`SELECT  r.document, r.id_record
 	FROM records r
 	LEFT JOIN plan_records pr
     ON r.id_record = pr.id_record
     where isnull(pr.id_record) or
     pr.is_active = false`,{ type: QueryTypes.SELECT })
-    .then(data => {
-        console.log(data);
-        data.forEach(findOwnerByRecord)
-    })
+    .then((answer =>{res.send(answer)}))
+    //.then(data => {
+        //console.log(data);
+        //data.forEach(findOwnerByRecord)
+    //})
 
     async function findOwnerByRecord(element){
             await sequelize.query(`select p.document, p.name, p.last_name, r.id_record
