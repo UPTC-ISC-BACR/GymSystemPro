@@ -2,7 +2,6 @@ const {Invoce} = require("../database/db")
 const {getPricePlan, getInvoiced_periodPlan, getBalance} = require("./admi_controll")
 
 const createInvoice = async(idRecord,res,next) => {
-    console.log("BODY invoice");
     try { 
         await Promise.all([dataJson = createJsonInvoice(idRecord)]).then((values) =>{
             Invoce.create(values[0])
@@ -11,7 +10,7 @@ const createInvoice = async(idRecord,res,next) => {
             "message":"factura creada correctamente"
         })
     }catch(error){
-       console.log("error invoice", error);
+       console.log("error create invoice", error);
     }
 }
 
@@ -45,13 +44,18 @@ async function createJsonInvoice(idRecord){
     return dataJson
 }
 //actualiza una factura
-const updateInvoice =  async(req, res)=>{
-    var id = req.params.id_invoice
+const updateInvoice =  async(req, res, next)=>{
+    var id = req.body.id_invoice
+    console.log("update", id);
     var balance_result = await Promise.all([balance_result = getBalance(id)]).then((values) =>{
         return (values[0]);
     })
 
-   
+    var total_value_result = await Promise.all([total_value_result = getPricePlan(req.body.id_record)]).then((values) =>{
+        return (values[0]);
+    })
+    console.log("ja", balance_result);
+
     try {
             await Invoce.update( 
                 {
@@ -62,7 +66,7 @@ const updateInvoice =  async(req, res)=>{
                 where: {id_invoice: id}
             })
             res.json({
-                "message": "!Factura actualizada correctamente!"
+                "message": "!Factura actualizada correctamente! abono procesado"
             })
         } catch (error) {
             res.json({message: error.message})

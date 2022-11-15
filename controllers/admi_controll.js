@@ -42,15 +42,26 @@ async function getInvoiced_periodPlan(idRecord){
         WHERE r.id_record = ${idRecord} AND
             pr.id_record = r.id_record AND
             pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
-            console.log(period[0]);
     return period[0].start_date_plan + " / " + period[0].end_date_plan
 }
 
+const getTableforFertilizes = async(req, res)=>{
+    await sequelize.query(`SELECT p.document, p.name, r.end_date_register, pr.end_date_plan, i.balance, r.id_record, i.id_invoice
+        FROM Persons p, Records r, Plan_Records pr, Plans pl, invoices i
+        WHERE p.document = r.document AND
+            pr.id_record = r.id_record AND
+            pr.id_plan = pl.id_plan and
+            pr.is_active = true and
+            r.is_active = true and
+            r.id_record = i.id_record`,{ type: QueryTypes.SELECT })
+            .then(answer =>{res.send(answer)})
+}
+
 //optienen la suma de los abonos de una factura dada
-async function getBalance(idInvoide,req, res){
+async function getBalance(idInvoice,req, res){
     const balance = await sequelize.query(`SELECT COALESCE(SUM(value),0) As Total
 	from invoices i, fertilizers_histories f
-    where i.id_invoice = ${idInvoide} and
+    where i.id_invoice = ${idInvoice} and
     i.id_invoice = f.id_invoice`,{ type: QueryTypes.SELECT })   
     return parseInt(balance[0].Total)
 }
@@ -72,5 +83,5 @@ async function getMaxIdInvoice(){
     return idInvoide[0].id_invoice
 }
 module.exports = {
-    getPricePlan, getInvoiced_periodPlan, getBalance, getRecordNoPlan
+    getPricePlan, getInvoiced_periodPlan, getBalance, getRecordNoPlan, getTableforFertilizes
 }
