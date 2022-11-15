@@ -13,10 +13,17 @@ import { Box } from '@mui/system'
 import { useEffect } from 'react'
 const AssignPlan = () => {
     const [plan, setPlan] = React.useState('');
+    const [modal,setModal] = useState(false);
+
+    // useEffect(()=>{
+    //   getPlans()
+      
+    // },[])
     useEffect(()=>{
-      getPlans()
       getUsers()
-    },[])
+      
+    },[modal])
+    
     const handleChange = (event) => {
       
       setPlan(event.target.value)
@@ -37,11 +44,8 @@ const AssignPlan = () => {
       setIdRecord(id_record)
     }
     const planAssigment = async ()=>{
-      console.log('Pagando...')
-      console.log(plan)
       await recordsApi.post('/add',{id_plan:plan,id_record:idRecord}).then((response)=>console.log(response))
       .catch((error)=>console.log(error))
-
       console.log('id-pan',plan,'idecord',idRecord)
       getUsers()
       openCloseModal()
@@ -85,7 +89,6 @@ const AssignPlan = () => {
         </div>
     
     )
-    const [modal,setModal] = useState(false);
     
 
  
