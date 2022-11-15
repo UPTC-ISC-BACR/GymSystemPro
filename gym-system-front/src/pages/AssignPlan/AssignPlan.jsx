@@ -3,22 +3,21 @@ import React,{useState} from 'react'
 import { adminApi, plansApi, recordsApi } from '../../api/axios'
 import SideBar from '../../components/SideBar/SideBar'
 import { SideBarData } from '../../components/SideBar/SideBarData'
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
+import './AssignPlan.css'
 const AssignPlan = () => {
     const [plan, setPlan] = React.useState('');
     const [modal,setModal] = useState(false);
 
-    // useEffect(()=>{
-    //   getPlans()
+    useEffect(()=>{
+      getPlans()
       
-    // },[])
+    },[])
     useEffect(()=>{
       getUsers()
       
@@ -89,10 +88,6 @@ const AssignPlan = () => {
         </div>
     
     )
-    
-
- 
-
     return (
   
       <>
@@ -104,18 +99,49 @@ const AssignPlan = () => {
   
   
         <div className='table-admin'>
+        <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Documento</th>
+            <th>Asignar PlAN</th>
+        </tr>
+    </thead>
+    <tbody>
+                {users!== ''&&users.map((user) => (
+                  
+                  <tr
+                    key={user.document}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    class="active-row"
+                  >
+                    <td align="right" className='table-cell-Admin'>{user.document}</td>
+                    
+                    <td>
+                      <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name,user.id_record)} >
+                        Asignar Plan
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+    {/* <tbody>
+        <tr>
+            <td>Dom</td>
+            <td>6000</td>
+        </tr>
+        <tr class="active-row">
+            <td>Melissa</td>
+            <td>5150</td>
+        </tr>
+    </tbody> */}
+</table>
   
-          <TableContainer component={Paper}>
+          {/* <TableContainer component={Paper}>
   
-            <Table sx={{ minWidth: 650 }} aria-label="simple table" className='table-style-admin'>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table" className='styled-table'>
               <TableHead>
-                <TableRow>
+                <TableRow >
                   <TableCell className='table-cell-admin-head' align="center">Documento</TableCell>
-                  <TableCell className='table-cell-admin-head'>Nombre</TableCell>
-                  <TableCell className='table-cell-admin-head'>Last Name</TableCell>
-  
-                  {/* <TableCell align="right">Plan</TableCell>
-              <TableCell align="right">Fecha de facturacion</TableCell> */}
                   <TableCell className='table-cell-admin-head' align="center" >Asignar Plan</TableCell>
                 </TableRow>
               </TableHead>
@@ -123,12 +149,11 @@ const AssignPlan = () => {
                 {users!== ''&&users.map((user) => (
                   
                   <TableRow
-                    key={user.id_user}
+                    key={user.document}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell align="right" className='table-cell-Admin'>{user.document}</TableCell>
-                    <TableCell align="right" className='table-cell-Admin'>{user.name}</TableCell>
-                    <TableCell align="right" className='table-cell-Admin'>{user.last_name}</TableCell>
+                    
                     <td>
                       <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name,user.id_record)} >
                         Asignar Plan
@@ -138,7 +163,7 @@ const AssignPlan = () => {
                 ))}
               </TableBody>
             </Table>
-          </TableContainer>
+          </TableContainer>  */}
         </div>
   
   

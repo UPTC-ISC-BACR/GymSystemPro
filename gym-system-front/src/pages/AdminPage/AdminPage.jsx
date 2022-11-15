@@ -81,53 +81,38 @@ const AdminPage = () => {
       <Modal open = {modal} onClose= {openCloseModal} >
         {body}
       </Modal>
+      <table class="styled-table">
 
-
-      <div className='table-admin'>
-
-        <TableContainer component={Paper}>
-
-          <Table sx={{ minWidth: 650 }} aria-label="simple table" className='table-style-admin'>
-            <TableHead>
-              <TableRow>
-                <TableCell className='table-cell-admin-head' align="center">Documento</TableCell>
-                <TableCell className='table-cell-admin-head'>Nombre</TableCell>
-                <TableCell className='table-cell-admin-head'>Fecha fin de registro</TableCell>
-                <TableCell className='table-cell-admin-head'>Fecha fin del plan</TableCell>
-                <TableCell className='table-cell-admin-head'>Saldo Pendiente</TableCell>
-
-
-                {/* <TableCell align="right">Plan</TableCell>
-            <TableCell align="right">Fecha de facturacion</TableCell> */}
-                <TableCell className='table-cell-admin-head' align="center" >Realizar Pago</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {users!== ''&&users.map((user) => (
-                
-                <TableRow
-                  key={user.id_user}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell align="right" className='table-cell-Admin'>{user.document}</TableCell>
-
-                  <TableCell align="right" className='table-cell-Admin'>{user.name}</TableCell>
-                  <TableCell align="right" className='table-cell-Admin'>{user.end_date_register}</TableCell>
-                  <TableCell align="right" className='table-cell-Admin'>{user.end_date_plan}</TableCell>
-                  <TableCell align="right" className='table-cell-Admin'>{user.balance}</TableCell>
-
-                  <td>
+      <thead>
+        <tr>
+            <th>Documento</th>
+            <th>Nombre</th>
+            <th>Fecha fin de registro</th>
+            <th>Fecha fin del plan</th>
+            <th>Saldo Pendiente</th>
+        </tr>
+    </thead>
+    <tbody>
+                {users!== ''&&users.map((user,index) => (
+                  
+                  <tr
+                    key={index}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    class="active-row"
+                  >
+                    <td align="right" className='table-cell-Admin'>{user.document}</td>
+                    <td align='right' className='table-cell-Admin'>{user.end_date_register}</td>
+                    <td align='right' className='table-cell-Admin'>{user.end_date_plan}</td>
+                    <td align='right' className='table-cell-Admin'>${user.balance}</td> 
+                    <td>
                     <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_invoice,user.id_record)} >
                       Pagar
                     </Button>
                   </td>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-
+                  </tr>
+                ))}
+              </tbody>
+              </table>
 
     </>
   )

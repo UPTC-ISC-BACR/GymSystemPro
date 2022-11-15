@@ -43,7 +43,6 @@ const LogIn =()=>{
   },[status])
    const onLogin = (event)=>{
     event.preventDefault()
-    console.log('loggin')
      dispatch(startLoginWithEmailPassword({user_name,password}))
     console.log(status)
    
