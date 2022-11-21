@@ -1,4 +1,36 @@
 Aplicacion backend gym system pro
+Notas version 3.0
+
+Se añadio la funcionalidad de crear ejercicios mediante la URL http://localhost:3000/api/excercises/add con el siguiente formato JSON
+
+{
+    "id_exercise": "1",
+    "name_excersice": "pull ups",
+    "description": "do a fckn pull up xd",
+    "time":"00:00:10",
+    "repetitions": "10",
+    "weight": "100"
+}
+
+Se añadio la funcionalidad añadir test fisico mediante la URL http://localhost:3000/api/tests/add con el siguiente formato JSON
+
+{
+    "id_test": "1",
+    "test_name": "test de rendimiento",
+    "type": "duro xd"
+}
+
+Se añadio la funcionalidad de añadir un test al historial de tests del usuario mediante la URL http://localhost:3000/api/tests_history/add con el siguiente formato JSON
+
+{
+    "id_test_history": "1",
+    "rm_result": "2 xd",
+    "test_date": "2020-01-23",
+    "id_test":"1",
+    "document": "105217310",
+    "time_result": "00:00:10",
+    "repetitions_result": "2"
+}
 
 Notas version 2.3
 -para consultar los datos para mostrar en el admi (document, name, date_end_register, date_end_plan, ir_record)
