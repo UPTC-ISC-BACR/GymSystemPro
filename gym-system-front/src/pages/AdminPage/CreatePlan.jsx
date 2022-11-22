@@ -24,6 +24,7 @@ const CreatePlan = ()=>{
         .catch(error=>console.log('error'))
    
         }
+    
     return(
         <>
         <SideBar sidebarData = {SideBarData}/>

@@ -16,6 +16,7 @@ import AdminRoutes from './AdminRoutes'
 import PrivateRoutes from './PrivateRoutes'
 import PublicRouters from './PublicRouters'
 import UsersRoutes from './UsersRoutes'
+import CoachRoutes from './CoachRoutes'
 
 export const PrincipalRoute = () => {
   const isLogged = true
@@ -31,9 +32,18 @@ export const PrincipalRoute = () => {
     <AdminRoutes/>
   </PrivateRoutes>}/>
 
-  <Route path = '/userPage/*' element={<PrivateRoutes><UsersRoutes/></PrivateRoutes>}/>
-           <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
-           <Route path="/" element={<Home/>} />
+  <Route path ='/coachPage/*' element={
+     <PrivateRoutes>
+     <CoachRoutes/>
+   </PrivateRoutes>
+  }/>
+
+  <Route path = '/userPage/*' element={
+  <PrivateRoutes><UsersRoutes/>
+  </PrivateRoutes>}/>
+  
+  <Route path='/login' element = {<PublicRouters component = {LogIn} isLogged = {isLogged}/>}></Route>
+  <Route path="/" element={<Home/>} />
 
   </Routes>
   )

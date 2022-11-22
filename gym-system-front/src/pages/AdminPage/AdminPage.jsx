@@ -15,11 +15,12 @@ import Modal from '@mui/material/Modal';
 import './AdminPage.css'
 import { SideBarData } from '../../components/SideBar/SideBarData';
 import { useEffect } from 'react';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 const AdminPage = () => {
   const [payment,setPayment] = useState(0.0)
   const [modal,setModal] = useState(false);
-
+  const [searchValue,setSearchValue] = useState('')
   const [invoceId,setInvoceId] = useState('')
   const [recordId,setRecordId] = useState('')
 
@@ -30,7 +31,9 @@ const AdminPage = () => {
     getUsers( )
   },[modal])
   
+  useEffect(()=>{
 
+  },[searchValue])
   const openModal = (invoce,record) => {
     setInvoceId(invoce)
     setRecordId(record)
@@ -81,6 +84,7 @@ const AdminPage = () => {
       <Modal open = {modal} onClose= {openCloseModal} >
         {body}
       </Modal>
+      <SearchBar callback={(searchValue)=>setSearchValue(searchValue)}/>
       <table class="styled-table">
 
       <thead>

@@ -54,7 +54,7 @@
     margin: 10% 0 0 5%;
     font-size: 0.9em;
     width: 90%;
-
+    overflow:scroll;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

@@ -41,6 +41,34 @@ export const SideBarData = [
     }
    
 ]
+export const SideBarDataCoach = [
+    {
+        title:'Home',
+        path:'/coachPage',
+        icon:<AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Add New Exercise',
+        path:'/coachPage/createExercise',
+        icon:<AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    },
+    {
+        title:'Add new test',
+        path:'/coachPage/createTest',
+        icon:<AiIcons.AiFillHome/>,
+        cName:'nav-text'
+
+    },
+    {
+        title:'Excersices',
+        path:'/coachPage/exercises',
+        icon:<AiIcons.AiFillHome/>,
+        cName:'nav-text'
+    }
+  
+]
 
 export const SideBarDataClient = [
     {

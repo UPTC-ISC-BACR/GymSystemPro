@@ -21,7 +21,19 @@ export const personsApi =  axios.create({
 export const recordsApi = axios.create({
     baseURL:'http://localhost:3000/api/plans_records/'
 })
-
+export const exercisesApi = axios.create({
+    baseURL:'http://localhost:3000/api/excercises/'
+})
+export const testApi = axios.create({
+    baseURL:'http://localhost:3000/api/tests/'
+})
+exercisesApi.interceptors.request.use(config =>{
+    config.headers ={
+        ...config.headers,
+        'x-token':localStorage.getItem('token')
+    }
+    return config
+})
 recordsApi.interceptors.request.use(config =>{
     config.headers ={
         ...config.headers,
