@@ -7,9 +7,9 @@ module.exports = (sequelize,type) => {
         },
         name_excersice: type.STRING,
         description: type.STRING,
-        time: type.TIME,
-        repetitions: type.INTEGER,
-        weight: type.DOUBLE
+        time: type.STRING,
+        repetitions: type.STRING,
+        weight: type.STRING
     },{
         timestamps: false,
         createdAt: false,
