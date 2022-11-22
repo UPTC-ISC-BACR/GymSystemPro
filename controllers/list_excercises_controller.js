@@ -12,15 +12,16 @@ const getListofExcercises = async (req,res,next) =>{
 
 const addExcerciseToList = async (req,res,next) =>{
     try {
+        console.log(req.body)
         await List_Excercises.create(req.body);
         res.json({
-            "message":"Ejercicio creado correctamente"
+            "message":"Ejercicio agregado a lista correctamente"
         })
     } catch (error) {
-        // const arrayString = Object.keys(req.body)
-        // const jsonObject = JSON.parse(arrayString[0])
-        // await List_Excercises.create(jsonObject)
-        // res.json({ "message":"Ejercicio creado correctamente" })
+        const arrayString = Object.keys(req.body)
+        const jsonObject = JSON.parse(arrayString[0])
+        await List_Excercises.create(jsonObject)
+        res.json({ "message":"Ejercicio agregado a lista correctamente" })
         console.log(error)
     }
 }
