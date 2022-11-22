@@ -46,8 +46,8 @@ async function createDataJson(data){
     return jsonRecord;
 }
 
-function getTodaysDate() {
-    var dateTime = new Date();
+async function getTodaysDate () {
+    var dateTime =  await new Date();
     return dateTime;
 }
 
