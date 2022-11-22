@@ -2,6 +2,12 @@ Aplicacion backend gym system pro
 
 Notas version 3.1.1
 
+Se añadio la busqueda de personas por nombre completo o parcial mediante la URL http://localhost:3000/api/persons/by_name con el formato JSON
+
+{
+    "name":"david"
+}
+
 Se arreglo el bug que impedia la asignacion de un ejercicio a una lista de ejercicios, quedo habilitada mediante la URL http://localhost:3000/api/excercices_list/add con el sigiente formato JSON
 
 {
