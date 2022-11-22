@@ -1,4 +1,4 @@
-const {Person} = require('../database/db');
+const {Person, sequelize} = require('../database/db');
 const { postUser } = require('./users_controller');
 const {addRecord} = require('../controllers/records_controller');
 const { log } = require('console');
@@ -7,6 +7,17 @@ const getPersons = async (req, res, next) =>{
     let persons = await Person.findAll();
     res.json(persons);
 } 
+
+const getPersonsByName= async (req,res,next) =>{
+    try {
+        let bodydata = await sequelize.query(`SELECT * FROM persons 
+        WHERE name LIKE("${req.body.name}%");
+        `);
+        res.json(bodydata);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const postPersons = async (req, res, next) =>{
     try { //si viene desde postman
@@ -54,5 +65,5 @@ function fromatRequest(personJSON){
 }
 
 module.exports = {
-    getPersons, postPersons
+    getPersons, postPersons, getPersonsByName
 }

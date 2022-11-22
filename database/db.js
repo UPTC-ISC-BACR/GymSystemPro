@@ -16,7 +16,7 @@ const FertilizerModel = require("../models/fertilizer_model")
 const sequelize = new Sequelize('gymsystempro','root','mysql',{
     host:'127.0.0.1',
     dialect:'mysql',
-    port: 3307
+    port: 3306
 });
 
 const Person = PersonsModel(sequelize, Sequelize);
