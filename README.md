@@ -11,7 +11,17 @@ Se arreglo el bug que impedia la asignacion de un ejercicio a una lista de ejerc
 
 Notas version 3.1
 
-Se añadio la funcionalidad de añadir los datos de medidas corporales para un usuario mediante la URL   http://localhost:3000/api/body_data/add  y obtener todos los historicos mediante la url http://localhost:3000/api/body_data/, ademas de obtener el historico de una sola persona por id mediante la URL http://localhost:3000/api//body_data/id_body_data
+Se añadio la funcionalidad de añadir los datos de medidas corporales para un usuario mediante la URL   http://localhost:3000/api/body_data/add  y obtener todos los historicos mediante la url http://localhost:3000/api/body_data/, ademas de obtener el historico de una sola persona por id mediante la URL http://localhost:3000/api//body_data/id_body_data mediante el siguiente formato JSON
+
+{
+    "id_body_data": "1",
+    "date_data": "2020-01-23",
+    "porc_muscle_mass": "4.5",
+    "porc_masa_grasa":"6.7",
+    "porc_water": "10",
+    "document": "105217310"
+}
+
 
 
 Notas verion 3.0

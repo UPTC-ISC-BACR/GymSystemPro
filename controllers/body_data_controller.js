@@ -1,5 +1,4 @@
-const { Body_data } = require("../database/db");
-
+const { Body_data, sequelize } = require("../database/db");
 
 const getBodyData = async (req,res,next) =>{
     try {
@@ -12,12 +11,15 @@ const getBodyData = async (req,res,next) =>{
 
 const getBodyDataById = async (req,res,next) =>{
     try {
-        let bodydata = await Body_data.findByPK(req.params.id_body_data);
+        let bodydata = await sequelize.query(`SELECT * FROM historical_body_data 
+        WHERE document = (select document from historical_body_data 
+        where id_body_data = ${req.body.id_body_data});`);
         res.json(bodydata);
     } catch (error) {
         console.log(error)
     }
 }
+
 
 
 const addBodyData = async (req,res,next) =>{
