@@ -1,5 +1,12 @@
 Aplicacion backend gym system pro
-Notas version 3.0
+
+
+Notas version 3.1
+
+Se añadio la funcionalidad de añadir los datos de medidas corporales para un usuario mediante la URL   http://localhost:3000/api//body_data/add  y obtener todos los historicos mediante la url http://localhost:3000/api//body_data/, ademas de obtener el historico de una sola persona por id mediante la URL http://localhost:3000/api//body_data/id_body_data
+
+
+Notas verion 3.0
 
 Se añadio la funcionalidad de crear ejercicios mediante la URL http://localhost:3000/api/excercises/add con el siguiente formato JSON
 

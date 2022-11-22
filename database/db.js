@@ -7,6 +7,8 @@ const PlanRecordsModel = require('..//models/plan_records');
 const ExcercisesModel = require('..//models/excercises');
 const TestsModel = require('..//models/physical_test');
 const Tests_History_model = require('..//models/tests_history');
+const ListExcercisesModel = require('..//models/list_excercises');
+const BodyDataModel = require('..//models/body_data')
 
 const InvoceModel = require("../models/Invoice_model")
 const FertilizerModel = require("../models/fertilizer_model")
@@ -25,6 +27,8 @@ const PlansRecords = PlanRecordsModel(sequelize, Sequelize);
 const Excercises = ExcercisesModel(sequelize, Sequelize);
 const Physical_tests = TestsModel(sequelize, Sequelize);
 const History_tests = Tests_History_model(sequelize, Sequelize);
+const List_Excercises = ListExcercisesModel(sequelize, Sequelize);
+const Body_data = BodyDataModel(sequelize, Sequelize);
 
 const Invoce = InvoceModel(sequelize, Sequelize);
 const Fertilizer = FertilizerModel(sequelize, Sequelize);
@@ -36,5 +40,6 @@ sequelize.sync({force:false})
 
 module.exports = {
     Person, User, Plan, Record, PlansRecords, Invoce,
-    Fertilizer, sequelize, Excercises, Physical_tests,History_tests
+    Fertilizer, sequelize, Excercises, Physical_tests,
+    History_tests, List_Excercises, Body_data
 }

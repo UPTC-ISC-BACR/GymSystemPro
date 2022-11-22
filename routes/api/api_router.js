@@ -11,6 +11,8 @@ const apiAdmiRouter = require('./admi_router.js');
 const apiExcercisesRouter = require('./excercises');
 const apiPhysicalTestsRouter = require('./physical_tests');
 const apiTestsHistoryRouter = require('./tests_history');
+const apiListExcercisesRouter = require('./list_excercices');
+const apiBodyDataRouter = require('./body_data');
 
 // router.use('/persons',authenthication_middleware.checkToken, apiPersonsRouter);
 router.use('/persons', apiPersonsRouter);
@@ -21,6 +23,8 @@ router.use('/plans_records',apiPlanRecordsRouter);
 router.use('/admi',apiAdmiRouter);
 router.use('/excercises', apiExcercisesRouter);
 router.use('/tests', apiPhysicalTestsRouter);
-router.use('/tests_history', apiTestsHistoryRouter)
+router.use('/tests_history', apiTestsHistoryRouter);
+router.use('/excercices_list', apiListExcercisesRouter);
+router.use('/body_data', apiBodyDataRouter);
 
 module.exports = router;
