@@ -21,6 +21,8 @@ app.use(morgan('dev'));
 app.use('/api',apiRouter)
 
 
-app.listen(app.get('port'), function () {
-});
-console.log(`Node server running on http://localhost:${app.get('port')}`);
+const server = app.listen(app.get('port'), function () {
+   });
+  console.log(`Node server running on http://localhost:${app.get('port')}`);
+
+  module.exports={server}
