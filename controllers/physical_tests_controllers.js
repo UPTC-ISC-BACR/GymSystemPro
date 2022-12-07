@@ -25,8 +25,19 @@ const addTestWithExcercises = async(req, res, next) =>{
         }
         res.send({'message':'se creo correctamente la lista de ejercicios'})
     } catch (error) {
-        console.log(error)
-        res.send(error.message)
+        const arrayString = Object.keys(req.body)
+        const jsonObject = JSON.parse(arrayString[0])
+        number_of_excercises = jsonObject.list_exercices.length;
+        excercises_id = jsonObject.list_exercices
+        jsonTest = {
+            'test_name' : jsonObject.test_name,
+             'type' : jsonObject.type
+        }
+        test = await Physical_tests.create(jsonTest);
+        for (let i = 0; i < number_of_excercises; i++) {
+            addExcercises({'id_test': test.dataValues.id_test, 'id_exercise': excercises_id[i]})
+        }
+        res.send({'message':'se creo correctamente la lista de ejercicios'})
     }
 }
 
