@@ -1,5 +1,20 @@
 Aplicacion backend gym system pro
 
+Notas version 3.1.2
+
+Se modifico la funcion agregar test para que reciba tambien el array de ejercicios y los cree al tiempo con el test, se le asigno a la ruta: http://localhost:3000/api/tests/add_with_excercises, recibe el siguiente formato json
+
+{
+    "test_name": "example",
+    "type": "rendimiento",
+    "list_exercices": [
+        1,2,3
+    ]
+}
+
+Se siguio dejando la funcion anterior para añadir ejercicios individuales a las listas
+
+
 Notas version 3.1.1
 
 Se añadio la busqueda de personas por nombre completo o parcial mediante la URL http://localhost:3000/api/persons/by_name con el formato JSON

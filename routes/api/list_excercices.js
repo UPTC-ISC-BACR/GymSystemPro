@@ -11,6 +11,6 @@ const corsOptions ={
 
 
 router.get("/",cors(corsOptions), getListofExcercises);
-router.post("/add",cors(corsOptions), addExcerciseToList);
+router.post("/add_one",cors(corsOptions), addExcerciseToList);
 
 module.exports = router;

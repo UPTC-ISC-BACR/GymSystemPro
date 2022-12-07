@@ -10,6 +10,12 @@ const getListofExcercises = async (req,res,next) =>{
     }
 }
 
+const addExcercises = async ( excercise) =>{
+    console.log(excercise);
+    new_excercise = await List_Excercises.create(excercise);
+    console.log(new_excercise);
+}
+
 const addExcerciseToList = async (req,res,next) =>{
     try {
         console.log(req.body)
@@ -27,5 +33,5 @@ const addExcerciseToList = async (req,res,next) =>{
 }
 
 module.exports = {
-    getListofExcercises, addExcerciseToList
+    getListofExcercises, addExcerciseToList, addExcercises
 }
