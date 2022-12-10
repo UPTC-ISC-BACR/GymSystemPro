@@ -15,7 +15,7 @@ const getPlansRecords = async(req, res)=>{
 const createPlanRecord = async(req, res, next)=>{
     try { 
         const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
+        //const jsonObject = JSON.parse(arrayString[0])
         var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
             PlansRecords.create(values[0])
             return values[0].id_record
@@ -32,8 +32,8 @@ async function createDataJson(data){
         return (values[0]);
      })
     const jsonRecord ={
-        start_date_plan:getToStringDate(getTodaysDate()),
-        end_date_plan: getToStringDate(final_plan_date),
+        start_date_plan: "10/12/2022", //getToStringDate(getTodaysDate()),
+        end_date_plan: "11/12/2022", //getToStringDate(final_plan_date),
         id_record:data.id_record,
         id_plan: data.id_plan,
         is_active: true
