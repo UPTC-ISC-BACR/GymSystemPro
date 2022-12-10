@@ -37,9 +37,7 @@ const getBodyDataByDocument = async (req,res,next) =>{
 
 const addBodyData = async (req,res,next) =>{
     try {
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        await Body_data.create(jsonObject)
+        await Body_data.create(req.body)
         res.json({ "message":"Añadido historico de medidas corporales" })
     } catch (error) {
         res.json({message: error.message})
