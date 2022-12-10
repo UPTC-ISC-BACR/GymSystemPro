@@ -6,3 +6,6 @@
     height: 300px;
     overflow: scroll;
 }
+.styled-table .createTest{
+    margin-right: 40px;
+}

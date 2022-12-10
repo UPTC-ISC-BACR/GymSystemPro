@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SideBar from '../../components/SideBar/SideBar'
 import { SideBarDataCoach } from '../../components/SideBar/SideBarData'
@@ -10,6 +10,7 @@ import Popupp from '../../components/Popup/Popup';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CreateExercise from '../CreateExercise/CreateExercise';
+import { exercisesApi } from '../../api/axios';
 const Exercises = () => {
 
     const ejercicios = [
@@ -30,7 +31,20 @@ const Exercises = () => {
         reps: 5,
         peso:'80lb'}
     ]
+    const [exercisesGYm,setExercises] = useState([])
+
     const [open, setOpen] = React.useState(false);
+    useEffect(()=>{
+      getExercises()
+      
+    },[])
+  
+  
+    const getExercises = async () => {
+      await exercisesApi.get('/').then((response) =>{
+        setExercises(response.data)})
+        .catch(error => console.log(error))
+    }
   const handleOpen = () => {
     setOpen(true);
   };
@@ -44,9 +58,9 @@ const Exercises = () => {
     
    <div className='ejercio-agregar'>
     <h1 className='exercise-title'> Ejercicios</h1>
-    <Button className='add-exercise' onClick={handleOpen} variant="contained" color='success' startIcon={<AddIcon />}>
+    {/* <Button className='add-exercise' onClick={handleOpen} variant="contained" color='success' startIcon={<AddIcon />}>
             Agregar Ejercicio
-    </Button>
+    </Button> */}
 
    </div>
 <Modal
@@ -77,13 +91,13 @@ const Exercises = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {ejercicios.map( (plan,index)=>(
+                            {exercisesGYm.map( (plan,index)=>(
                                 
-                                <tr key={plan.nombre}>
-                                    <td>{plan.nombre}</td>
-                                    <td> {!plan.tiempo ? 'no aplica' : plan.tiempo} </td>
-                                    <td> {!plan.reps ? 'no aplica': plan.reps} </td>
-                                    <td> {!plan.peso ? 'no aplica':plan.peso} </td>
+                                <tr key={index}>
+                                    <td>{plan.name_excersice}</td>
+                                    <td> {!plan.time ? 'no aplica' : plan.time} </td>
+                                    <td> {!plan.repetitions ? 'no aplica': plan.repetitions} </td>
+                                    <td> {!plan.weight ? 'no aplica':plan.weight} </td>
                                     <td>
                                         <Link to={`/adminPage/editPlan/${plan.id_plan}`} className="btn btn-info"><i className="fa-solid fa-pen-to-square"></i></Link>
                                         <button onClick={()=>{/*deletePlan(plan.id_plan)*/ console.log('click')}} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>

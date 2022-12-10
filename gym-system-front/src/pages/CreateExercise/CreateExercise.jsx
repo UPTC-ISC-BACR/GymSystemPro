@@ -21,14 +21,14 @@ const CreateExercise = () => {
      
     const {name_excersice,description,time,reps,weight} = formValues
     const handleSubmit = async (event)=>{
-
+      
         event.preventDefault() 
          await exercisesApi.post('/add',JSON.stringify({
           "name_excersice": name_excersice,
           "description": description,
-           "time":time !== ''?time:'No aplica',
-          "repetitions": reps !== ''?reps:'No aplica',
-          "weight": weight !== ''?weight:'No aplica'
+           "time":time !== ''?time:0,
+          "repetitions": reps !== ''?reps:0,
+          "weight": weight !== ''?weight:0
       }))
         .then(response=>{
             MySwal.fire({
@@ -41,8 +41,10 @@ const CreateExercise = () => {
     
     return(
         <>
+            <SideBar sidebarData= {SideBarDataCoach}/>
+
         <h1 className=''>Crear Ejercicio</h1>
-        <form onSubmit={handleSubmit} className = 'form-createExercise'>
+        <form onSubmit={handleSubmit} className = 'form-createuser'>
         <div>
         <input type="text" id="username" className='input-exercise'   name="name_excersice" placeholder="Name" value={name_excersice} onChange={handleInputChange} />
         <input type="text-area" id="description"   className='input-exercise'  name="description" placeholder="Description" value={description} onChange={handleInputChange} />

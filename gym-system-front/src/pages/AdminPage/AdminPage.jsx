@@ -1,18 +1,11 @@
+import './AdminPage.css'
 import React, { useState } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
-//import { withStyles, makeStyles } from '@mui/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+
 import { adminApi, usersApi } from "../../api/axios";
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
-import './AdminPage.css'
 import { SideBarData } from '../../components/SideBar/SideBarData';
 import { useEffect } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -73,6 +66,7 @@ const AdminPage = () => {
 
   if (users === '') {
     getUsers()
+    console.log(users)
   }
  
  
@@ -85,7 +79,9 @@ const AdminPage = () => {
         {body}
       </Modal>
       <SearchBar callback={(searchValue)=>setSearchValue(searchValue)}/>
-      <table class="styled-table">
+      <div className='body-admin-main-page'>
+
+      <table className="styled-table">
 
       <thead>
         <tr>
@@ -94,6 +90,8 @@ const AdminPage = () => {
             <th>Fecha fin de registro</th>
             <th>Fecha fin del plan</th>
             <th>Saldo Pendiente</th>
+            <th>Pagar</th>
+
         </tr>
     </thead>
     <tbody>
@@ -102,9 +100,11 @@ const AdminPage = () => {
                   <tr
                     key={index}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    class="active-row"
+                    className="active-row"
                   >
                     <td align="right" className='table-cell-Admin'>{user.document}</td>
+                    <td align="right" className='table-cell-Admin'>{user.name}</td>
+
                     <td align='right' className='table-cell-Admin'>{user.end_date_register}</td>
                     <td align='right' className='table-cell-Admin'>{user.end_date_plan}</td>
                     <td align='right' className='table-cell-Admin'>${user.balance}</td> 
@@ -117,6 +117,7 @@ const AdminPage = () => {
                 ))}
               </tbody>
               </table>
+      </div>
 
     </>
   )

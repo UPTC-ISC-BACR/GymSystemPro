@@ -63,18 +63,33 @@ const CreateTest = () => {
 
 
   const getExercises = async () => {
-    await exercisesApi.get('/').then((response) =>{
-      setExercises(response.data)})
-      .catch(error => console.log(error))
+    try{
+      await exercisesApi.get('/').then((response) =>{
+        setExercises(response.data)})
+        .catch(error => console.log(error))
+
+    }catch{
+      MySwal.fire({
+                   title: <p>Ejercicios</p>,
+                  icon:'error'
+    })
   }
+  }
+  const { name, exercises } = formValues
+
   const handleSubmit = async(event) => {
     event.preventDefault()
-    console.log({ 'test': name, 'exercises': exerciseList })
-    await testApi.post('/add',JSON.stringify({
-      "test_name": name,
+    console.log(exerciseList)
+    let tests_id = []
+    exerciseList.map(execise =>{
+      tests_id.push(parseInt(execise.id))
+    })
+ 
+    await testApi.post('/add_with_excercises',{
+      "test_name": nameTest,
       "type": type_exercise,
-
-  }))
+      "list_exercices":tests_id
+  })
     .then(response=>{
         console.log(response)
         MySwal.fire({
@@ -89,11 +104,11 @@ const CreateTest = () => {
       icon: 'success'
     })
   }
-  const { name, exercises } = formValues
   const addExercise = (event) => {
     event.preventDefault()
      setexerciseList([...exerciseList, JSON.parse(selectedExercise)])
     //console.log(exerciseList)
+    console.log(exerciseList)
   }
 
 
@@ -101,7 +116,7 @@ const CreateTest = () => {
     <>
       <SideBar sidebarData={SideBarDataCoach} />
       <h1>Crear Test</h1>
-      <form onSubmit={handleSubmit} className='form-createExercise'>
+      <form onSubmit={handleSubmit} className='form-createuser'>
         <div>
           <input type="text" id="nameTest" className='input-exercise' name="nameTest" placeholder="Name" value={nameTest} onChange={handleInputChange} />
           <label >Tipo de ejercicio:</label>
@@ -116,14 +131,14 @@ const CreateTest = () => {
           <select className='input-exercise' value={selectedExercise} onChange={(choice) => setSelectedExercise((choice.target.value))}>
             <optgroup>
               {exercisesGYm.map((exercise, index) => (
-                <option key={index} value={JSON.stringify({'name':exercise.name_excersice,'description':exercise.description,'time':exercise.time,'peso':exercise.weight,'repeticiones':exercise.repetitions})}>{exercise.name_excersice}</option>
+                <option key={index} value={JSON.stringify({'id':exercise.id_exercise,'name':exercise.name_excersice,'description':exercise.description,'time':exercise.time,'peso':exercise.weight,'repeticiones':exercise.repetitions})}>{exercise.name_excersice}</option>
 
               ))}
             </optgroup>
           </select>
           <hr />
           <div className='exercise-list'>
-          <table class="styled-table">
+          <table class="styled-table createTest">
           <thead>
         <tr>
             <th>Nombre</th>

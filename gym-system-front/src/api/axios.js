@@ -27,6 +27,27 @@ export const exercisesApi = axios.create({
 export const testApi = axios.create({
     baseURL:'http://localhost:3000/api/tests/'
 })
+export const body_data_api = axios.create({
+    baseURL:' http://localhost:3000/api/body_data/'
+})
+export const testHistoryApi = axios.create({
+    baseURL:'http://localhost:3000/api/tests_history/'
+
+})
+testHistoryApi.interceptors.request.use(config =>{
+    config.headers ={
+        ...config.headers,
+        'x-token':localStorage.getItem('token')
+    }
+    return config
+})
+body_data_api.interceptors.request.use(config =>{
+    config.headers ={
+        ...config.headers,
+        'x-token':localStorage.getItem('token')
+    }
+    return config
+})
 exercisesApi.interceptors.request.use(config =>{
     config.headers ={
         ...config.headers,

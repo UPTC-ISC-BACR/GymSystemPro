@@ -4,10 +4,19 @@ import {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 import SideBar from "../../components/SideBar/SideBar"
 import { SideBarData } from '../../components/SideBar/SideBarData';
+import TextField from "@mui/material/TextField";
+import { height } from "@mui/system"
+
+
 
 
 const ShowPlans = ()=>{
-    
+
+
+
+
+    const [searchInput, setSearchInput] = useState("");
+
     const[plans, setPlan] = useState([])
     useEffect( ()=>{
         getPlans()
@@ -23,11 +32,51 @@ const ShowPlans = ()=>{
         
         getPlans()
     }
+    const filteredData = plans.filter((el) => {
+        //if no input the return the original
+        console.log(searchInput)
+
+        if (searchInput.input === '') {
+            return el;
+        }
+        //return the item which contains the user input
+        else {
+            return el.name_plan.toLowerCase().includes(searchInput)
+        }
+    })
+    const handleChange = (e) => {
+        e.preventDefault();
+        var lowerCase = e.target.value.toLowerCase();
+        setSearchInput(lowerCase);
+      };
+      
+      if (searchInput.length > 0) {
+          plans.filter((plan) => {
+          return plan.name_plan.match(searchInput);
+      });
+      }
 
     return(
         <>
+        
+        
         <SideBar  sidebarData = {SideBarData}/>
         <h1> Planes</h1>
+        <TextField
+          id="outlined-basic"
+          onChange={handleChange}
+          variant="outlined"
+          fullWidth
+          label="search"
+          className="search"
+          style={{
+            width: "50%",
+            height:"20px",
+            marginLeft:"10%",
+            marginTop:"15px"
+        }}
+        />
+    
         <div className="container">
             <div className="row">
                 <div className="col">
@@ -42,7 +91,7 @@ const ShowPlans = ()=>{
                             </tr>
                         </thead>
                         <tbody>
-                            {plans.map( (plan)=>(
+                            {filteredData.map( (plan)=>(
                                 <tr key={plan.id_plan}>
                                     <td> {plan.name_plan} </td>
                                     <td> {plan.price} </td>

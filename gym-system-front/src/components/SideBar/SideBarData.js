@@ -78,18 +78,25 @@ export const SideBarDataClient = [
         cName:'nav-text'
     },
     {
-        title:'Show Billing History',
-        path:'/userPage/billingHistory',
+        title:'Tests',
+        path:'/userPage/showTests',
         icon:<IcoMoon.ImUserPlus/>,
         cName:'nav-text'
         
     },
     {
-        title:'Create Plan',
-        path:'/adminPage/createPlan',
+        title:'Stadistics',
+        path:'/userPage/stadistics',
+        icon:<IcoMoon.ImUserPlus/>,
+        cName:'nav-text'
+    },
+   
+    {
+        title:'Healthy',
+        path:'/userPage/healthy',
         icon:<CG.CgGym/>,
         cName:'nav-text'
-        
     }
+
    
 ]

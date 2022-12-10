@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --custom-color: #B50006;
     --dark-red: #610003;
     --base-red: #E00007;
@@ -13,9 +13,9 @@
     --white: white;
 
     --grey-dark: #535353;
-  }
+  } */
 
-body {
+/* body {
     font-family: 'Nunito', sans-serif;
     color: #384047;
   }
@@ -64,4 +64,4 @@ input[type="password"],
         border: 3px solid #0075FF;
         outline: none;
         box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
-      }
+      } */

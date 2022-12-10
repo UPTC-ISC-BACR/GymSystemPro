@@ -1,6 +1,7 @@
 *{
     border: 0px;
     padding: 0px;
+    
 }
 .buttons_register{
     width: 30%;
@@ -8,6 +9,7 @@
     justify-content: flex-start;
     margin-right: 200px;
 }
+
 .user_data{
     
     border: 1px solid;
@@ -17,8 +19,11 @@
     margin-left: 10px;
     border-radius: 10px;
 }
-
+.container{
+    margin-top: 10%;
+}
 .table-admin{
+    
     text-align: center;
     margin: 15% 40px 40px 40px;
 }
@@ -48,6 +53,15 @@
 }
 .table-cell-admin-head{
     color: aqua;
+}
+.search{
+    margin-top: 40px;
+    width: 50%;
+    margin-left:13.7%;
+    margin-bottom: px;
+    max-height: 10px;
+    height: 10px;
+    border-color: #ffffff;
 }
 .styled-table {
     border-collapse: collapse;

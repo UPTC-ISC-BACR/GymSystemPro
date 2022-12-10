@@ -43,9 +43,9 @@ const AssignPlan = () => {
       setIdRecord(id_record)
     }
     const planAssigment = async ()=>{
+      console.log(plan,'idecord',idRecord)
       await recordsApi.post('/add',{id_plan:plan,id_record:idRecord}).then((response)=>console.log(response))
       .catch((error)=>console.log(error))
-      console.log('id-pan',plan,'idecord',idRecord)
       getUsers()
       openCloseModal()
     }
@@ -59,6 +59,8 @@ const AssignPlan = () => {
       await adminApi.get('/').then((response)=>{
         setUsers(response.data)
       }).catch(error=>console.log(error))
+
+      console.log(users)
     }
 
      const body =(
@@ -103,6 +105,7 @@ const AssignPlan = () => {
     <thead>
         <tr>
             <th>Documento</th>
+
             <th>Asignar PlAN</th>
         </tr>
     </thead>
@@ -124,46 +127,10 @@ const AssignPlan = () => {
                   </tr>
                 ))}
               </tbody>
-    {/* <tbody>
-        <tr>
-            <td>Dom</td>
-            <td>6000</td>
-        </tr>
-        <tr class="active-row">
-            <td>Melissa</td>
-            <td>5150</td>
-        </tr>
-    </tbody> */}
+   
 </table>
   
-          {/* <TableContainer component={Paper}>
-  
-            <Table sx={{ minWidth: 650 }} aria-label="simple table" className='styled-table'>
-              <TableHead>
-                <TableRow >
-                  <TableCell className='table-cell-admin-head' align="center">Documento</TableCell>
-                  <TableCell className='table-cell-admin-head' align="center" >Asignar Plan</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users!== ''&&users.map((user) => (
-                  
-                  <TableRow
-                    key={user.document}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell align="right" className='table-cell-Admin'>{user.document}</TableCell>
-                    
-                    <td>
-                      <Button variant="outlined" color="primary" onClick={()=>openModal(user.id_user,user.user_name,user.id_record)} >
-                        Asignar Plan
-                      </Button>
-                    </td>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>  */}
+      
         </div>
   
   

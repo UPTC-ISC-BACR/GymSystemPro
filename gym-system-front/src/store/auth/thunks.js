@@ -5,7 +5,6 @@ import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-const LOGIN_URL = 'http://localhost:3000/api/users/login'
 const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
 const MySwal = withReactContent(Swal)
 
