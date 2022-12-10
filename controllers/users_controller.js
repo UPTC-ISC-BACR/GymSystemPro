@@ -35,6 +35,7 @@ const loginUser = async (req,res,next) =>{
             if(passwordChecking){
             res.json({
                 user:user.user_name,
+                document:user.document,
                 type:user.type_user,
                 success:createToken(user)})
             }else{
