@@ -1,5 +1,4 @@
 const {Fertilizer} = require("../database/db")
-const{getToStringDate, getTodaysDate} = require("./plans_records_controller")
 const{updateInvoice} = require("./invoice_controller")
 
 
@@ -20,6 +19,15 @@ function createJsonFertilize(body){
         id_invoice: body.id_invoice
     }
     return fertilize
+}
+
+function getToStringDate(dateTime){
+    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
+}
+
+function getTodaysDate() {
+    var dateTime = new Date();
+    return dateTime;
 }
 
 module.exports={

@@ -6,7 +6,8 @@ const getAllPlans = async(req, res)=>{
         const plans = await Plan.findAll();
         res.json(plans)
     } catch (error) {
-        res.json({message: error.message})
+        res.json({ "message":error.message})
+        console.log(error)
     }
     
 }

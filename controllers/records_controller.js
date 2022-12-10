@@ -6,9 +6,7 @@ const PriceOfSubscription = 100000;
 const addRecord = async(document, email, person_name)=>{
     try {
         dataJsonRecords = createDataJson(document);
-
         await Record.create(dataJsonRecords);
-
         sendEmails(dataJsonRecords, email, person_name);
         return({message: "Factura de registro creada en base de datos"})
     } catch (error) {

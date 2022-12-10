@@ -11,6 +11,7 @@ const createInvoice = async(idRecord,res,next) => {
         })
     }catch(error){
        console.log("error create invoice", error);
+       res.json({message:error.message})
     }
 }
 

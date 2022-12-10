@@ -14,13 +14,6 @@ const getPlansRecords = async(req, res)=>{
 //vincula un plan con un registro
 const createPlanRecord = async(req, res, next)=>{
     try { 
-        var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
-            PlansRecords.create(values[0])
-            return values[0].id_record
-        })
-        createInvoice(idRecord, res, next)
-        
-    }catch(error){
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
         var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
@@ -28,8 +21,10 @@ const createPlanRecord = async(req, res, next)=>{
             return values[0].id_record
         })
         createInvoice(idRecord, res, next)
+    }catch(error){
+        console.log(error)
         
-        //console.log("pr", error);
+        res.json({message: error.message})
     }
 }
 async function createDataJson(data){
@@ -69,7 +64,6 @@ function getToStringDate(dateTime){
     return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
 }
 
-
 module.exports = {
-    getPlansRecords, createPlanRecord, getToStringDate, getTodaysDate
+    getPlansRecords, createPlanRecord
 }

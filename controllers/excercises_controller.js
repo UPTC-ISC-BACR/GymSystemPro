@@ -6,21 +6,19 @@ const getExcercises = async (req,res,next) =>{
         let excercises = await Excercises.findAll();
         res.json(excercises);
     } catch (error) {
+        res.json({message:error.message})
         console.log(error)
     }
 }
 
 const addExcercises = async (req,res,next) =>{
     try {
-        await Excercises.create(req.body);
-        res.json({
-            "message":"Ejercicio creado correctamente"
-        })
-    } catch (error) {
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
         await Excercises.create(jsonObject)
         res.json({ "message":"Ejercicio creado correctamente" })
+    } catch (error) {
+        res.json({message:error.message})
         console.log(error)
     }
 }
