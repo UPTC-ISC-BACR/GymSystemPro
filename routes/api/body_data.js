@@ -1,4 +1,4 @@
-const {getBodyData, addBodyData, getBodyDataById} = require('../../controllers/body_data_controller');
+const {getBodyData, addBodyData, getBodyDataById, getBodyDataByDocument} = require('../../controllers/body_data_controller');
 const {Router} = require('express');
 const router = Router();
 const cors = require('cors');
@@ -11,7 +11,7 @@ const corsOptions ={
 
 
 router.get("/",cors(corsOptions), getBodyData);
-router.get("/:id_body_data",cors(corsOptions), getBodyDataById);
+router.get("/by_document/",cors(corsOptions), getBodyDataByDocument);
 router.post("/add",cors(corsOptions), addBodyData);
 
 module.exports = router;
