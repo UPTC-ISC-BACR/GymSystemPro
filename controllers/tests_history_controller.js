@@ -12,7 +12,7 @@ const getTestsHistory = async (req,res,next) =>{
 
 const getTestsByDocument = async (req,res,next) =>{
     try {
-        let bodydata = await sequelize.query(`SELECT * FROM test_histories 
+        let bodydata = await sequelize.query(`SELECT * FROM test_ histories 
         WHERE document = ${req.body.document};`);
         res.json(bodydata);
     } catch (error) {
