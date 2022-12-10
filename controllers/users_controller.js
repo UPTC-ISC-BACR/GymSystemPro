@@ -36,6 +36,7 @@ const loginUser = async (req,res,next) =>{
             res.json({
                 user:user.user_name,
                 type:user.type_user,
+                document:user.document,
                 success:createToken(user)})
             }else{
             res.json({error: 'Los datos proporcionados no coinciden con un usuario existente'})

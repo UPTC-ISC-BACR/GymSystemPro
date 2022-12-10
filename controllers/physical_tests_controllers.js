@@ -14,13 +14,11 @@ const getTests = async (req,res,next) =>{
 
 const addTestWithExcercises = async(req, res, next) =>{
     try {
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        number_of_excercises = jsonObject.list_exercices.length;
-        excercises_id = jsonObject.list_exercices
+        number_of_excercises = req.body.list_exercices.length;
+        excercises_id = req.body.list_exercices
         jsonTest = {
-            'test_name' : jsonObject.test_name,
-             'type' : jsonObject.type
+            'test_name' : req.body.test_name,
+             'type' : req.body.type
         }
         test = await Physical_tests.create(jsonTest);
         for (let i = 0; i < number_of_excercises; i++) {
