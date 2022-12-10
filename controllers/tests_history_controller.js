@@ -1,4 +1,4 @@
-const { History_tests } = require("../database/db");
+const { History_tests, sequelize } = require("../database/db");
 
 
 const getTestsHistory = async (req,res,next) =>{
