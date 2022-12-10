@@ -25,7 +25,7 @@ const getBodyDataById = async (req,res,next) =>{
 const getBodyDataByDocument = async (req,res,next) =>{
     try {
         let bodydata = await sequelize.query(`SELECT * FROM historical_body_data 
-        WHERE document = ${req.body.document});`);
+        WHERE document = ${req.body.document};`);
         res.json(bodydata);
     } catch (error) {
         res.json({message:error.message})
