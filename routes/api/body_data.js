@@ -11,7 +11,7 @@ const corsOptions ={
 
 
 router.get("/",cors(corsOptions), getBodyData);
-router.get("/by_document/",cors(corsOptions), getBodyDataByDocument);
+router.post("/by_document/",cors(corsOptions), getBodyDataByDocument);
 router.post("/add",cors(corsOptions), addBodyData);
 
 module.exports = router;
