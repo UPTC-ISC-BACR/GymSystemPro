@@ -2,7 +2,7 @@ const moment = require('moment');
 
 async function getTodaysDate() {
     var now = await moment();
-    return then.format('YYYY-MM-DD');
+    return now.format('YYYY-MM-DD');
 }
 
 async function getFinalDate(timeInMonths) {
