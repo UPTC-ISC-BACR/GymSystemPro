@@ -19,9 +19,9 @@ var sendEmails = async(dataJsonRecords, email, person_name)=>{
   var mailOptions = {
     from: '"Fred Foo 👻" <foo@example.com>',
     to: `${email}`,
-    subject: 'Registro completado ✔✔',
-    text: `Hola ${person_name}!👻👻, te informamos que se ha realizado tu registro al sistema GYM SYSPRO de manera satisfactoria, 
-    recuerda que tu suscripcion se encuentra vigente desde el ${start_date} y hasta el ${end_date}, te esperamos💪💪`
+    subject: 'Pago registrado ✔✔',
+    text: `Hola ${person_name}!👻👻, te informamos que se ha realizado efectuado un pago a tu nombre para el plan contratado
+    , recuerda que tu plan estara vigente desde ${start_date} y hasta el ${end_date}, te esperamos💪💪`
   }
 
   var sendEmail = transporter.sendMail(mailOptions, function(error, info){

@@ -9,6 +9,18 @@ const getTestsHistory = async (req,res,next) =>{
         console.log(error)
     }
 }
+
+const getTestsByDocument = async (req,res,next) =>{
+    try {
+        let bodydata = await sequelize.query(`SELECT * FROM test_histories 
+        WHERE document = ${req.body.document};`);
+        res.json(bodydata);
+    } catch (error) {
+        res.json({message:error.message})
+        console.log(error)
+    }
+}
+
 const addTestToHistory = async (req,res,next) =>{
     try {
         const arrayString = Object.keys(req.body)
@@ -22,5 +34,5 @@ const addTestToHistory = async (req,res,next) =>{
 }
 
 module.exports = {
-    getTestsHistory, addTestToHistory
+    getTestsHistory, addTestToHistory, getTestsByDocument
 }

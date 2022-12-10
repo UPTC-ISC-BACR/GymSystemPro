@@ -15,17 +15,15 @@ const getAllPlans = async(req, res)=>{
 //crear un Plan
 const createPlan = async(req, res)=>{
     try { // si viene de postman
-        await Plan.create(req.body)
-        res.json({
-            "message":"Registro creado correctamente"
-        })
-        
-    }catch(error){ // si viene de IU
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
             
         await Plan.create(jsonObject)
         res.json({ "message":"Registro creado correctamente" })
+        
+    }catch(error){ // si viene de IU
+        res.json({ "message":error.message})
+        console.log(error)
     }
 }
 
