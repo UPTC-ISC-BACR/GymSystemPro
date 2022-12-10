@@ -23,9 +23,7 @@ const getTestsByDocument = async (req,res,next) =>{
 
 const addTestToHistory = async (req,res,next) =>{
     try {
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        await History_tests.create(jsonObject)
+        await History_tests.create(req.body)
         res.json({ "message":"Test añadido a historial" })
     } catch (error) {
         res.json({message:error.message})
