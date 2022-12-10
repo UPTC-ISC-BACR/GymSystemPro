@@ -1,5 +1,6 @@
 const {Invoce} = require("../database/db")
 const {getPricePlan, getInvoiced_periodPlan, getBalance} = require("./admi_controll")
+const{getTodaysDate} = require('../utilities/date_utils')
 
 const createInvoice = async(idRecord,res,next) => {
     try { 
@@ -36,7 +37,7 @@ async function createJsonInvoice(idRecord){
         return (values[0]);
     })*/
     let dataJson = {
-        generation_date: getToStringDate(getTodaysDate()),
+        generation_date: getTodaysDate(),
         total_value: total_value_result,
         balance: total_value_result, //sin abonos
         invoiced_period: invoiced_period_result,
@@ -60,7 +61,7 @@ const updateInvoice =  async(req, res, next)=>{
     try {
             await Invoce.update( 
                 {
-                    generation_date: getToStringDate(getTodaysDate()), 
+                    generation_date: getTodaysDate(), 
                     balance: total_value_result - balance_result
                 },
                 {
@@ -74,12 +75,4 @@ const updateInvoice =  async(req, res, next)=>{
         }
 }
 
-function getToStringDate(dateTime){
-    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
-}
-
-function getTodaysDate() {
-    var dateTime = new Date();
-    return dateTime;
-}
 module.exports={createInvoice, updateInvoice}

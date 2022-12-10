@@ -1,5 +1,6 @@
 const {Fertilizer} = require("../database/db")
 const{updateInvoice} = require("./invoice_controller")
+const{getTodaysDate} = require('../utilities/date_utils')
 
 
 const createFertilize = async(req, res, next)=>{   
@@ -15,19 +16,10 @@ const createFertilize = async(req, res, next)=>{
 function createJsonFertilize(body){
     const fertilize = {
         value:body.value,
-        date_fertilizers: getToStringDate(getTodaysDate()),
+        date_fertilizers: getTodaysDate(),
         id_invoice: body.id_invoice
     }
     return fertilize
-}
-
-function getToStringDate(dateTime){
-    return dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
-}
-
-function getTodaysDate() {
-    var dateTime = new Date();
-    return dateTime;
 }
 
 module.exports={
