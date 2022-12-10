@@ -32,8 +32,11 @@ async function createDataJson(data){
     var final_plan_date = await Promise.all([final_plan_date = getFinalRegistrationDate(data.id_plan)]).then((values) =>{
         return (values[0]);
      })
+     var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
+        return (values[0]);
+     })
     const jsonRecord ={
-        start_date_plan: getTodaysDate(),
+        start_date_plan: first_date,
         end_date_plan: final_plan_date,
         id_record:data.id_record,
         id_plan: data.id_plan,
@@ -41,8 +44,6 @@ async function createDataJson(data){
     }
     return jsonRecord;
 }
-
-
 
 async function getFinalRegistrationDate(id_plan_request){
     var planDuration = await Promise.all([planDuration = getPlanDuration(id_plan_request)]).then((values) =>{

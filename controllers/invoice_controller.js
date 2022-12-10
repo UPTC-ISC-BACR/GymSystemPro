@@ -59,9 +59,12 @@ const updateInvoice =  async(req, res, next)=>{
     console.log("ja", balance_result);
 
     try {
+            var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
+                return (values[0]);
+            })
             await Invoce.update( 
                 {
-                    generation_date: getTodaysDate(), 
+                    generation_date: first_date, 
                     balance: total_value_result - balance_result
                 },
                 {

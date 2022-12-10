@@ -13,10 +13,13 @@ const createFertilize = async(req, res, next)=>{
     // })
 }
 
-function createJsonFertilize(body){
+async function createJsonFertilize(body){
+    var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
+        return (values[0]);
+     })
     const fertilize = {
         value:body.value,
-        date_fertilizers: getTodaysDate(),
+        date_fertilizers: first_date,
         id_invoice: body.id_invoice
     }
     return fertilize

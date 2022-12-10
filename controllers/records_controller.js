@@ -25,11 +25,17 @@ const getRecords = async(req, res)=>{
     
 }
 
-function createDataJson(document) {
+async function createDataJson(document) {
+    var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
+        return (values[0]);
+     })
+     var final_date = await Promise.all([final_date = getFinalDate(MonthsOfSubcription)]).then((values) =>{
+        return (values[0]);
+     })
     const jsonRecord ={
         document: document,
-        start_date_register:getTodaysDate(),
-        end_date_register: getFinalDate(MonthsOfSubcription) ,
+        start_date_register: first_date,
+        end_date_register: final_date,
         price: PriceOfSubscription,
         is_active: true
     }
