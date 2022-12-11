@@ -14,7 +14,7 @@ const InvoceModel = require("../models/Invoice_model")
 const FertilizerModel = require("../models/fertilizer_model")
 
                                 //nombre bd, usuario, password
-const sequelize = new Sequelize(heroku_d7b5f43499dea1e,'b4f8bb6f2d89f7','285945f5',{
+const sequelize = new Sequelize("heroku_d7b5f43499dea1e",'b4f8bb6f2d89f7','285945f5',{
     host:'us-cdbr-east-06.cleardb.net',
     dialect:'mysql',
     port: 3306
