@@ -23,9 +23,8 @@ const ModalForm = ({test,type}) => {
     const handleTestData = async(e)=>{
         //localhost:3000/api/tests_history/add
         e.preventDefault()
-
         await testHistoryApi.post('/add',{
-            "rm_resul":rm_result,
+            "rm_result":rm_result,
             'test_date':test_date,
             'id_test':test,
             'document':document,
