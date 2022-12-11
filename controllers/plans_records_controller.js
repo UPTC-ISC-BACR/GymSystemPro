@@ -19,6 +19,8 @@ const createPlanRecord = async(req, res, next)=>{
         //const jsonObject = JSON.parse(arrayString[0])
         var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
             PlansRecords.create(values[0])
+
+            console.log("23", values[0]);
             return values[0].id_record
         })
         createInvoice(idRecord, res, next)
