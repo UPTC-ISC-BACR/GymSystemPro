@@ -13,8 +13,9 @@ const BodyDataModel = require('..//models/body_data')
 const InvoceModel = require("../models/Invoice_model")
 const FertilizerModel = require("../models/fertilizer_model")
 
-const sequelize = new Sequelize('gymsystempro','root','mysql',{
-    host:'127.0.0.1',
+                                //nombre bd, usuario, password
+const sequelize = new Sequelize(heroku_d7b5f43499dea1e,'b4f8bb6f2d89f7','285945f5',{
+    host:'us-cdbr-east-06.cleardb.net',
     dialect:'mysql',
     port: 3306
 });
