@@ -1,5 +1,5 @@
 const {sequelize} = require("../database/db")
-const Sequelize = require('sequelize');
+//const Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
 //optienen lo registrso que no tienen asociado un plan
@@ -28,21 +28,26 @@ const getRecordNoPlan = async(req, res, next)=>{
 
 //optiene el precio del plan que contrato un registro
 const getPricePlan = async(id_record, res)=>{
-    const price = await sequelize.query(`SELECT pl.price
+    let price = await sequelize.query(`SELECT pl.price
     FROM Records r, Plan_Records pr, Plans pl
     WHERE r.id_record = ${id_record} AND
         pr.id_record = r.id_record AND
         pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT }) 
+    console.log("36 admi", price, "idRecord", id_record);
     return parseInt(price[0].price)
 }
 
 
 async function getInvoiced_periodPlan(idRecord){
-    const period = await sequelize.query(`SELECT  pr.start_date_plan, pr.end_date_plan
+    /*const period = await sequelize.query(`SELECT  pr.start_date_plan, pr.end_date_plan
         FROM Records r, Plan_Records pr, Plans pl
         WHERE r.id_record = ${idRecord} AND
             pr.id_record = r.id_record AND
-            pr.id_plan = pl.id_plan`,{ type: QueryTypes.SELECT })
+            pr.id_plan = pl.id_plan;`,{ type: QueryTypes.SELECT })
+    */
+   const period = await sequelize.query(`SELECT  *
+   FROM  Plan_Records
+   WHERE id_record = ${idRecord};`,{ type: QueryTypes.SELECT })
     return period[0].start_date_plan + " / " + period[0].end_date_plan
 }
 
