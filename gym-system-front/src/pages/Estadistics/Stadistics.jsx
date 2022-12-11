@@ -12,7 +12,7 @@ const Stadistics = () => {
 
   const [tests,seTests] = useState([1,2,3,4,5,5])
   const [tests_history,seTestsHistory] = useState([1,2,3,4,5,5])
-
+  const [ultimatePhysicalData,setUltimatePysicalData] = useState([1,2,3])
   const getTests = async () => {
     
       await testApi.get('').then((response) =>{
@@ -33,27 +33,24 @@ const Stadistics = () => {
       await body_data_api.post('/by_document/',{'document':document}).then((response)=>{
         setphysicalData(response.data)
       }).catch(error=>console.log(error,'error'))
-
     }
    
     useEffect(() => {
       getTestsHistory()
       getPhysicalData()
-      getTests()
-      
-      
-    }, [])
+      getTests()      
+    },[])
 
     const masa = physicalData && physicalData[0].map((data)=>data.porc_muscle_mass)
     const grasa = physicalData && physicalData[0].map((data)=>data.porc_masa_grasa)
     const agua = physicalData && physicalData[0].map((data)=>data.porc_water)
-    const tests_history_user  = tests_history && tests_history[0]
-    console.log(tests)
+    const datosbody = [parseInt(masa[masa.length-1]),parseInt(grasa[grasa.length-1]),agua[agua.length-1]]
+    console.log(datosbody)
     const [userData,setUserData] = useState({
       labels:['Masa muscular','Grasa','Agua'],
       datasets:[{
           label:"Datos Fisicos Actuales",
-          data:[1,2,3],
+          data:datosbody[0]? datosbody:[1,2,3,],
           backgroundColor:["rgba(75,192,192,1)","#ecf0f1","#50AF95","#f3ba2f","#2a71d0"]
       }],
       borderColor:"black",
@@ -136,12 +133,8 @@ const Stadistics = () => {
               <td align="right" className='table-cell-Admin'>{user.repetitions_result}</td>
               <td align="right" className='table-cell-Admin'>{user.test_date}</td>       
               <td align="right" className='table-cell-Admin'>{user.rm_result}</td>       
-       
                   </>
-              
-
-              <td>
-                
+              <td>       
             </td>
             </tr>
               )  )}
