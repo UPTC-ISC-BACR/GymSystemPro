@@ -1,5 +1,6 @@
 require('./database/db');
 const apiRouter = require('./routes/api/api_router')
+const routerHello = require("./routes/api/message")
 const cors = require('cors')
 
 const express = require("express")
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(morgan('dev'));
 app.use('/api',apiRouter)
+app.use("/", routerHello)
 
 
 const server = app.listen(app.get('port'), function () {
