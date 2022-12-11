@@ -19,11 +19,12 @@ const createPlanRecord = async(req, res, next)=>{
         //const jsonObject = JSON.parse(arrayString[0])
         var idRecord = await Promise.all([dataJson = createDataJson(req.body)]).then((values) =>{
             PlansRecords.create(values[0])
-
-            console.log("23", values[0]);
             return values[0].id_record
         })
-        createInvoice(idRecord, res, next)
+        setTimeout(function() {
+            // Aquí el código que se tiene que ejecutar con retardo
+            createInvoice(idRecord, res, next)
+        }, 3000)
     }catch(error){
         console.log(error)
         

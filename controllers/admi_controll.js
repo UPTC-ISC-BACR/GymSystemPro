@@ -1,6 +1,8 @@
-const {sequelize} = require("../database/db")
+const {sequelize, PlansRecords} = require("../database/db")
 //const Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
+const plan_records = require("../models/plan_records")
+
 
 //optienen lo registrso que no tienen asociado un plan
 const getRecordNoPlan = async(req, res, next)=>{
@@ -16,13 +18,13 @@ const getRecordNoPlan = async(req, res, next)=>{
         //data.forEach(findOwnerByRecord)
     //})
 
-    async function findOwnerByRecord(element){
+    /*async function findOwnerByRecord(element){
             await sequelize.query(`select p.document, p.name, p.last_name, r.id_record
                     from persons p, records r
                     where p.document = r.document and
                     r.id_record = ${element.id_record}`,{ type: QueryTypes.SELECT })
                     .then((answer =>{res.send(answer)}))
-        }
+        }*/
 }
 
 
@@ -42,13 +44,16 @@ async function getInvoiced_periodPlan(idRecord){
     /*const period = await sequelize.query(`SELECT  pr.start_date_plan, pr.end_date_plan
         FROM Records r, Plan_Records pr, Plans pl
         WHERE r.id_record = ${idRecord} AND
-            pr.id_record = r.id_record AND
-            pr.id_plan = pl.id_plan;`,{ type: QueryTypes.SELECT })
-    */
-   const period = await sequelize.query(`SELECT  *
-   FROM  Plan_Records
-   WHERE id_record = ${idRecord};`,{ type: QueryTypes.SELECT })
+        pr.id_record = r.id_record AND
+        pr.id_plan = pl.id_plan;`,{ type: QueryTypes.SELECT }) 
+        */
+        
+    const period = await sequelize.query(`SELECT  *
+        FROM  Plan_Records
+        WHERE id_record = ${idRecord};`,{ type: QueryTypes.SELECT })
+        
     return period[0].start_date_plan + " / " + period[0].end_date_plan
+
 }
 
 const getTableforFertilizes = async(req, res)=>{

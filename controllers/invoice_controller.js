@@ -5,6 +5,7 @@ const{getTodaysDate} = require('../utilities/date_utils')
 const createInvoice = async(idRecord,res,next) => {
     try { 
         await Promise.all([dataJson = createJsonInvoice(idRecord)]).then((values) =>{
+            console.log("i 8 ", values[0]);
             Invoce.create(values[0])
          })
         res.json({
@@ -16,26 +17,26 @@ const createInvoice = async(idRecord,res,next) => {
     }
 }
 
+const {sequelize} = require("../database/db")
+const { QueryTypes } = require('sequelize');
 //factura del plan
 async function createJsonInvoice(idRecord){
-    /*var total_value_result = await Promise.all([total_value_result = getPricePlan(document)]).then((values) =>{
-        return (values[0]);
-    })*/
+    console.log(idRecord);
+    /*const period = await sequelize.query(`SELECT  *
+    FROM  plan_records WHERE id_record = ${idRecord};`,{ type: QueryTypes.SELECT })
+        .then((answer =>{console.log("i 26 dro", answer);}))
+    */
     
-    /*var balance_result = await Promise.all([balance_result = getBalance(document)]).then((values) =>{
-        return (values[0]);
-    })*/
-
+    //ojo este se usa pero falla
     var invoiced_period_result = await Promise.all([invoiced_period_result = getInvoiced_periodPlan(idRecord)]).then((values) =>{
         return (values[0]);
     })
-
+    
     var total_value_result = await Promise.all([total_value_result = getPricePlan(idRecord)]).then((values) =>{
         return (values[0]);
     })
-    /*var idRecord_result = await Promise.all([idRecord_result = getIdRecord(document)]).then((values) =>{
-        return (values[0]);
-    })*/
+    
+    
     var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
         return (values[0]);
      })
