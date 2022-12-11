@@ -16,39 +16,28 @@ const getPersonsByName= async (req,res,next) =>{
         res.json(bodydata);
     } catch (error) {
         console.log(error)
+        
+        res.json({message:error.message})
     }
 }
 
 const postPersons = async (req, res, next) =>{
     try { //si viene desde postman
-        let person = await Person.create(req.body);
-        const jsonUser  = fromatRequest(req.body)
-        //llamar el metodo que guarda en BD un Usuario
-        if(jsonUser.type_user === "Cl"){
-            addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name))
-            .then(data=>{console.log("oye", data);})
-            
-        }
-        postUser(jsonUser,res);
-        
-    } catch (error) { //si viene desde IU
-       
         const arrayString = Object.keys(req.body)
         const jsonObject = JSON.parse(arrayString[0])
-        //console.log(jsonObject,'JSON OBJECT')
-        //crea la persona
         const person = await Person.create(jsonObject)
 
         const jsonUser  = fromatRequest(jsonObject)
-        //llamar el metodo que guarda en BD un Usuario
-        //console.log("ENTRO", jsonUser.type_user);
-        
-        //no esta entrando al if
         if(jsonUser.type_user === "Cl"){
            addRecord(jsonUser.document)
             .then(data=>{console.log("oye", data);})
         }
         postUser(jsonUser,res);
+        
+    } catch (error) { 
+       console.log(error)
+        
+        res.json({message:error.message})
     }
 }
 

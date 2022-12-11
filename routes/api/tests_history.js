@@ -1,4 +1,4 @@
-const {getTestsHistory, addTestToHistory} = require('../../controllers/tests_history_controller');
+const {getTestsHistory, addTestToHistory, getTestsByDocument} = require('../../controllers/tests_history_controller');
 const {Router} = require('express');
 const router = Router();
 const cors = require('cors');
@@ -12,5 +12,6 @@ const corsOptions ={
 
 router.get("/",cors(corsOptions), getTestsHistory);
 router.post("/add",cors(corsOptions), addTestToHistory);
+router.post("/by_document/",cors(corsOptions), getTestsByDocument);
 
 module.exports = router;

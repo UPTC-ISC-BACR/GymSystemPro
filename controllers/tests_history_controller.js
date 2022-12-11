@@ -1,4 +1,4 @@
-const { History_tests } = require("../database/db");
+const { History_tests, sequelize } = require("../database/db");
 
 
 const getTestsHistory = async (req,res,next) =>{
@@ -9,22 +9,28 @@ const getTestsHistory = async (req,res,next) =>{
         console.log(error)
     }
 }
+
+const getTestsByDocument = async (req,res,next) =>{
+    try {
+        let bodydata = await sequelize.query(`SELECT * FROM test_histories 
+        WHERE document = ${req.body.document};`);
+        res.json(bodydata);
+    } catch (error) {
+        res.json({message:error.message})
+        console.log(error)
+    }
+}
+
 const addTestToHistory = async (req,res,next) =>{
     try {
-        console.log(req.body)
-        await History_tests.create(req.body);
-        res.json({
-            "message":"Test añadido a historial "
-        })
-    } catch (error) {
-        const arrayString = Object.keys(req.body)
-        const jsonObject = JSON.parse(arrayString[0])
-        await History_tests.create(jsonObject)
+        await History_tests.create(req.body)
         res.json({ "message":"Test añadido a historial" })
+    } catch (error) {
+        res.json({message:error.message})
         console.log(error)
     }
 }
 
 module.exports = {
-    getTestsHistory, addTestToHistory
+    getTestsHistory, addTestToHistory, getTestsByDocument
 }
