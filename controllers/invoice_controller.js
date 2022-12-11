@@ -63,7 +63,7 @@ const updateInvoice =  async(req, res, next)=>{
     })
 
     var calculateDebt = total_value_result - balance_result
-    var date = getToStringDate(getTodaysDate())
+    var date = getTodaysDate()
 
     try {
             var first_date = await Promise.all([first_date = getTodaysDate()]).then((values) =>{
