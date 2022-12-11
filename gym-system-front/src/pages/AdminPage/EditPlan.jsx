@@ -43,7 +43,7 @@ const EditPlan = ()=>{
                 <SideBar  sidebarData = {SideBarData}/>
 
         <h1>Editar Plan</h1>
-        <form onSubmit={handleSubmit(update)}>
+        <form onSubmit={handleSubmit(update)} className= "form-createuser">
             <div>
                 <label>Nombre Plan  {errors.name_plan?.type === "required" && <small className="is-required"></small>}</label>
                 <input  {...register("name_plan", {required: true})}/> 

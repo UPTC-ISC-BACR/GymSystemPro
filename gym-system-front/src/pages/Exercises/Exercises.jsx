@@ -98,10 +98,7 @@ const Exercises = () => {
                                     <td> {!plan.time ? 'no aplica' : plan.time} </td>
                                     <td> {!plan.repetitions ? 'no aplica': plan.repetitions} </td>
                                     <td> {!plan.weight ? 'no aplica':plan.weight} </td>
-                                    <td>
-                                        <Link to={`/adminPage/editPlan/${plan.id_plan}`} className="btn btn-info"><i className="fa-solid fa-pen-to-square"></i></Link>
-                                        <button onClick={()=>{/*deletePlan(plan.id_plan)*/ console.log('click')}} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
-                                    </td>
+                                    
                                 </tr>
                             )) }
                         </tbody>

@@ -30,10 +30,10 @@ const LogIn =()=>{
         nav('/adminPage')
         break
       case 'En':
-        nav('/coachPage')
+        nav('/coachPage/createTest')
         break
       case 'Cl':
-        nav('/userPage')
+        nav('/userPage/showTests')
         break
       default:
         console.log('Role no encontrado')
