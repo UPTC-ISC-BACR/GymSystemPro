@@ -10,36 +10,24 @@ const Stadistics = () => {
   const {document} =  useSelector(state=>state.auth)
   const [physicalData, setphysicalData] = useState('')
 
-  const [tests,seTests] = useState([])
-  const [tests_history,seTestsHistory] = useState([])
-  const [selectedTest, setSelectedTest] = useState({
-    name:'',
-    description:'',
-    time:'',
-    repeticiones:'',
-    peso:''
-  })
+  const [tests,seTests] = useState([1,2,3,4,5,5])
+  const [tests_history,seTestsHistory] = useState([1,2,3,4,5,5])
+
   const getTests = async () => {
-    try{
+    
       await testApi.get('').then((response) =>{
         seTests(response.data)})
         .catch(error => console.log(error))
 
-    }catch{
-     
-    }
+   
   }
   const getTestsHistory = async () => {
-    try{
-      await testHistoryApi.get('/by_document',{'document':document}).then((response) =>{
-        seTestsHistory(response.data)})
+    
+      await testHistoryApi.post('/by_document',{'document':document}).then((response) =>{
+        seTestsHistory(response.data[0])})
         .catch(error => console.log(error))
-
-    }catch{
-     
-    }
+      
   }
-  console.log(tests_history,'tests')
   
     const getPhysicalData = async ()=>{
       await body_data_api.post('/by_document/',{'document':document}).then((response)=>{
@@ -47,18 +35,19 @@ const Stadistics = () => {
       }).catch(error=>console.log(error,'error'))
 
     }
+   
     useEffect(() => {
+      getTestsHistory()
       getPhysicalData()
       getTests()
-      getTestsHistory()
+      
       
     }, [])
 
     const masa = physicalData && physicalData[0].map((data)=>data.porc_muscle_mass)
     const grasa = physicalData && physicalData[0].map((data)=>data.porc_masa_grasa)
     const agua = physicalData && physicalData[0].map((data)=>data.porc_water)
-
-    const datosCorporalesActuales = physicalData && [parseInt(physicalData[0][0].porc_muscle_mass),parseInt(physicalData[0][0].porc_masa_grasa),parseInt(physicalData[0][0].porc_water)]
+    const tests_history_user  = tests_history && tests_history[0]
     console.log(tests)
     const [userData,setUserData] = useState({
       labels:['Masa muscular','Grasa','Agua'],
@@ -96,10 +85,13 @@ const Stadistics = () => {
           yAxisID: 'y1',
         }]
        }
+    
+       console.log(tests_history)
   return (
     <>
-    <SideBar sidebarData = {SideBarDataClient}/>
-    <div style = {{width:700,marginLeft:50, float:'left'}}>
+      <SideBar sidebarData = {SideBarDataClient}/>
+
+     <div style = {{width:700,marginLeft:50, float:'left'}}>
       <h1>Historial de datos fisicos</h1>
       <LineChart chartData={data}/>
     </div>
@@ -112,17 +104,50 @@ const Stadistics = () => {
       <PieChart chartData={userData}/>
     </div>
     <hr />
-    <select style = {{width:500,marginLeft:100}}  value={selectedTest} onChange={(choice) => setSelectedTest((choice.target.value))}>
-            <optgroup>
-              {tests.map((exercise, index) => (
-                <option key={index} value={JSON.stringify({'id':exercise.id_test,'name':exercise.test_name})}>{exercise.test_name}</option>
-              ))}
-            </optgroup>
-          </select>
+    
     {
-    <div style = {{width:800,marginLeft:50,display:'block'}}>
+      <div style = {{width:800,marginLeft:50,display:'block'}}>
       <h1>Historial de tests</h1>
-      <LineChart chartData={userData}/>
+      
+            
+ <table className="styled-table">
+
+<thead>
+  <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Tiempo</th>
+      <th>Repeticiones</th>
+      <th>Fecha</th>
+      <th>RM result</th>
+  </tr>
+</thead>
+<tbody> 
+  {/* {(tests_history  && tests_history[0].lenght>0) ? <div>{tests_history[0].map(test=>(<h1>{test}</h1>))}</div>:<p>asdfasdf</p>} */}
+  {tests_history.map((user,index) => (
+<tr              
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              className="active-row"
+            >
+                  <>
+              <td align="right" className='table-cell-Admin'>{user.test_name}</td>
+              <td align="right" className='table-cell-Admin'>{user.type}</td>       
+              <td align="right" className='table-cell-Admin'>{user.time_result}</td>       
+              <td align="right" className='table-cell-Admin'>{user.repetitions_result}</td>
+              <td align="right" className='table-cell-Admin'>{user.test_date}</td>       
+              <td align="right" className='table-cell-Admin'>{user.rm_result}</td>       
+       
+                  </>
+              
+
+              <td>
+                
+            </td>
+            </tr>
+              )  )}
+            </tbody>
+            </table> 
+
     </div> }
     <hr />
 

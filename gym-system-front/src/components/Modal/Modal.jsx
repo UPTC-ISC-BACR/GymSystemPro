@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { testHistoryApi } from '../../api/axios';
 import { useForm } from '../../helpers/useForm';
 
-const ModalForm = ({test}) => {
+const ModalForm = ({test,type}) => {
     const [show, setShow] = useState(false);
     const {document} = useSelector(state => state.auth);
     console.log(test,'id_test')

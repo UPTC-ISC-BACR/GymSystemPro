@@ -50,7 +50,7 @@ const ShowTests = () => {
       
                     <td>
                       
-                    <ModalForm test = {user.id_test} />
+                    <ModalForm test = {user.id_test} type = {user.type} />
                   </td>
                   </tr>
                     )  )}
