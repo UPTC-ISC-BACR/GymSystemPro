@@ -13,9 +13,7 @@ const getTestsHistory = async (req,res,next) =>{
 const getTestsByDocument = async (req,res,next) =>{
     try {
         let bodydata = await sequelize.query(`SELECT * FROM test_histories 
-        WHERE document = ${req.body.document}
-        and
-        th.id_test = pt.id_test;`);
+        WHERE document = ${req.body.document};`);
         res.json(bodydata);
     } catch (error) {
         res.json({message:error.message})
