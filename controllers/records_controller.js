@@ -6,7 +6,12 @@ const PriceOfSubscription = 100000;
 
 const addRecord = async(document, email, person_name)=>{
     try {
-        dataJsonRecords = createDataJson(document);
+        var dataJsonRecords = await Promise.all([dataJsonRecords = createDataJson(document)]).then((values) =>{
+            return (values[0]);
+        })
+        
+        //dataJsonRecords = createDataJson(document);
+        console.log("records", dataJsonRecords);
         await Record.create(dataJsonRecords);
         sendEmails(dataJsonRecords, email, person_name);
         return({message: "Factura de registro creada en base de datos"})
