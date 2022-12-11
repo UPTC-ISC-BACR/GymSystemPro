@@ -32,7 +32,7 @@ const CreateExercise = () => {
       }))
         .then(response=>{
             MySwal.fire({
-                title: <p>Plan Creado</p>,
+                title: <p>Ejercicio Creado</p>,
                 icon:'success'
         })})
         .catch(error=>console.log('error'))

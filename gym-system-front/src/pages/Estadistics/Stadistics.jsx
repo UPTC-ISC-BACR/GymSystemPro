@@ -44,19 +44,9 @@ const Stadistics = () => {
     const masa = physicalData && physicalData[0].map((data)=>data.porc_muscle_mass)
     const grasa = physicalData && physicalData[0].map((data)=>data.porc_masa_grasa)
     const agua = physicalData && physicalData[0].map((data)=>data.porc_water)
-    const datosbody = [parseInt(masa[masa.length-1]),parseInt(grasa[grasa.length-1]),agua[agua.length-1]]
-    console.log(datosbody)
-    const [userData,setUserData] = useState({
-      labels:['Masa muscular','Grasa','Agua'],
-      datasets:[{
-          label:"Datos Fisicos Actuales",
-          data:datosbody[0]? datosbody:[1,2,3,],
-          backgroundColor:["rgba(75,192,192,1)","#ecf0f1","#50AF95","#f3ba2f","#2a71d0"]
-      }],
-      borderColor:"black",
-      borderWidth:2,
+    
 
-  })
+
      const data = {
        labels: physicalData &&  physicalData[0].map((data)=>data.date_data),
       datasets: [
@@ -82,6 +72,16 @@ const Stadistics = () => {
           yAxisID: 'y1',
         }]
        }
+       const pieData = {
+        labels:physicalData && ['Masa muscular','Grasa','Agua'],
+        datasets:[{
+            label:"Datos Fisicos Actuales",
+            data:[ parseInt(masa[masa.length-1]), parseInt(grasa[grasa.length-1]), parseInt(agua[agua.length-1])],
+            backgroundColor:["rgba(75,192,192,1)","#ecf0f1","#50AF95","#f3ba2f","#2a71d0"]
+        }],
+        borderColor:"black",
+        borderWidth:2,
+      }
     
        console.log(tests_history)
   return (
@@ -98,7 +98,7 @@ const Stadistics = () => {
 
      <div style = {{width:400, display:'inline-block',marginLeft:'15%'}}>
       <h1>Datos fisicos actuales</h1>
-      <PieChart chartData={userData}/>
+      <PieChart chartData={pieData}/>
     </div>
     <hr />
     
