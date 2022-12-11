@@ -87,7 +87,7 @@ const Exercises = () => {
                                 <th>Tiempo</th>
                                 <th>Reps</th>
                                 <th>Peso</th>
-                                <th>Acciones</th>
+                              
                             </tr>
                         </thead>
                         <tbody>

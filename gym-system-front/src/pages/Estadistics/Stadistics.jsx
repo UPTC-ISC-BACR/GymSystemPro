@@ -127,8 +127,8 @@ const Stadistics = () => {
               className="active-row"
             >
                   <>
-              <td align="right" className='table-cell-Admin'>{user.test_name}</td>
-              <td align="right" className='table-cell-Admin'>{user.type}</td>       
+              <td align="right" className='table-cell-Admin'>{tests.map(test=>((test.id_test === user.id_test)?test.test_name:''))}</td>
+              <td align="right" className='table-cell-Admin'>{tests.map(test=>((test.id_test === user.id_test)?test.type:''))}</td>
               <td align="right" className='table-cell-Admin'>{user.time_result}</td>       
               <td align="right" className='table-cell-Admin'>{user.repetitions_result}</td>
               <td align="right" className='table-cell-Admin'>{user.test_date}</td>       
