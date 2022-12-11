@@ -29,7 +29,7 @@ const postPersons = async (req, res, next) =>{
 
         const jsonUser  = fromatRequest(jsonObject)
         if(jsonUser.type_user === "Cl"){
-           addRecord(jsonUser.document)
+            addRecord(jsonUser.document, req.body.email, (req.body.name+" "+req.body.last_name))
             .then(data=>{console.log("oye", data);})
         }
         postUser(jsonUser,res);
