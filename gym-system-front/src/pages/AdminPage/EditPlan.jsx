@@ -6,7 +6,6 @@ import SideBar from "../../components/SideBar/SideBar";
 import { SideBarData } from "../../components/SideBar/SideBarData";
 
 
-const PLANS_URL = 'http://localhost:3000/api/plans/'
 
 
 const EditPlan = ()=>{

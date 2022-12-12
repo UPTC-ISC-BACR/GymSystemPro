@@ -21,7 +21,6 @@ const ModalForm = ({test,type}) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleTestData = async(e)=>{
-        //localhost:3000/api/tests_history/add
         e.preventDefault()
         await testHistoryApi.post('/add',{
             "rm_result":rm_result,

@@ -1,11 +1,10 @@
 import  axios  from "axios";
 import { useDispatch } from "react-redux";
-import { usersApi } from "../../api/axios";
+import { personsApi, usersApi } from "../../api/axios";
 import { checkingCredentials, login, logout ,registerSuccess} from "./authSlice"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-const LOGIN_REGISTER = 'http://localhost:3000/api/persons/register'
 const MySwal = withReactContent(Swal)
 
 
@@ -38,7 +37,7 @@ export const startLoginWithEmailPassword=  ({user_name,password})=>{
 }
 export const starRegister = (data)=>{
     return async(dispatch)=>{
-            await axios.post(LOGIN_REGISTER,JSON.stringify(data))
+            await personsApi.post('register',JSON.stringify(data))
                 .then(response=>{
                     MySwal.fire({
                         title: <p>Usuario Creado</p>,
