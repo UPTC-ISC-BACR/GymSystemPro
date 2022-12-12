@@ -2,7 +2,7 @@ FROM node:18-alpine3.15
 RUN mkdir GymSystemPro
 WORKDIR /GymSystemPro
 RUN npm init -y
-RUN npm i bcryptjs body-parser cors express express-validator jwt-simple method-override moment morgan mysql2 nodemailer sequelize
+RUN npm i bcryptjs body-parser cors express express-validator jwt-simple method-override moment morgan mysql2 nodemailer sequelize sequelize-cli
 RUN mkdir /controllers
 COPY /controllers /GymSystemPro/controllers
 RUN mkdir /database
