@@ -83,9 +83,6 @@ const updateInvoice =  async(req, res, next)=>{
         } catch (error) {
             res.json({message: error.message})
         }
-    if(calculateDebt === 0){
-        generateInvoice(req.body, date, total_value_result)
-    }
 }
 
 //genera la factura que se va ha enviar por Email (formato HTML)
