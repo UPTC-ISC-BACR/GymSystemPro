@@ -1,6 +1,6 @@
 import axios from "axios";
 export const usersApi =  axios.create({
-    baseURL:'http://localhost:3000/api/users'
+    baseURL:'http://54.152.251.221:3000/api/users'
 })
 usersApi.interceptors.request.use(config =>{
     config.headers ={
@@ -10,28 +10,28 @@ usersApi.interceptors.request.use(config =>{
     return config
 })
 export const adminApi = axios.create({
-    baseURL:'http://localhost:3000/api/admi'
+    baseURL:'http://54.152.251.221:3000/api/admi'
 })  
 export const plansApi = axios.create({
-    baseURL:'http://localhost:3000/api/plans'
+    baseURL:'http://54.152.251.221:3000/api/plans'
 })
 export const personsApi =  axios.create({
-    baseURL:'http://localhost:3000/persons/'
+    baseURL:'http://54.152.251.221:3000/persons/'
 })
 export const recordsApi = axios.create({
-    baseURL:'http://localhost:3000/api/plans_records/'
+    baseURL:'http://54.152.251.221:3000/api/plans_records/'
 })
 export const exercisesApi = axios.create({
-    baseURL:'http://localhost:3000/api/excercises/'
+    baseURL:'http://54.152.251.221:3000/api/excercises/'
 })
 export const testApi = axios.create({
-    baseURL:'http://localhost:3000/api/tests/'
+    baseURL:'http://54.152.251.221:3000/api/tests/'
 })
 export const body_data_api = axios.create({
-    baseURL:' http://localhost:3000/api/body_data/'
+    baseURL:' http://54.152.251.221:3000/api/body_data/'
 })
 export const testHistoryApi = axios.create({
-    baseURL:'http://localhost:3000/api/tests_history/'
+    baseURL:'http://54.152.251.221:3000/api/tests_history/'
 
 })
 testHistoryApi.interceptors.request.use(config =>{
