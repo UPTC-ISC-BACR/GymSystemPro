@@ -1,4 +1,5 @@
 {
+  "homepage": "htts://drox13.git.io/UPTC-ISC-BACR/GymSystemPro",
   "name": "gym-system-front",
   "version": "0.1.0",
   "private": true,
@@ -31,9 +32,12 @@
   },
   "scripts": {
     "start": "set PORT=3001 && react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gp-pages -b build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build -p 3001"
   },
   "eslintConfig": {
     "extends": [
