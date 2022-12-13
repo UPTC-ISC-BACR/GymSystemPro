@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "set PORT=3001 && react-scripts start",
-    "predeploy": "npm run bild",
+    "predeploy": "npm run build",
     "deploy": "gp-pages -b build",
     "build": "react-scripts build",
     "test": "react-scripts test",
